@@ -1,6 +1,9 @@
 class_name Player
 extends Node2D
 
+const GENDER_M = 0
+const GENDER_F = 1
+
 @export var speed := 3.5
 @export var run_multiplier := 2.0
 
@@ -13,6 +16,13 @@ var current_direction := Vector2.DOWN:
 @onready var shapecast: ShapeCast2D = $ShapeCast2D
 
 signal end_step
+
+func _ready() -> void:
+	match GameData.trainer_gender:
+		GENDER_M:
+			$AnimatedSprite2D.sprite_frames = load("uid://clr1mn8he7uwv")
+		GENDER_F:
+			$AnimatedSprite2D.sprite_frames = load("uid://cfmyy4ww4hwpi")
 
 func is_blocked() -> bool:
 	shapecast.force_shapecast_update()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sdiid5de54iy"]
 
-[ext_resource type="SpriteFrames" uid="uid://clr1mn8he7uwv" path="res://src/resources/player/sprite_frames_m.tres" id="1_cusn3"]
 [ext_resource type="Script" uid="uid://cbt56i628mrjn" path="res://src/scripts/scenes/player/player.gd" id="1_hwyk6"]
+[ext_resource type="SpriteFrames" uid="uid://cfmyy4ww4hwpi" path="res://src/resources/player/sprite_frames_f.tres" id="2_ya6j6"]
 [ext_resource type="Script" uid="uid://cok4ar3ahv7ax" path="res://src/scripts/scenes/player/player_state_machine.gd" id="3_l2v1k"]
 [ext_resource type="Script" uid="uid://bu481d6qkc6gi" path="res://src/scripts/scenes/player/player_state_idle.gd" id="4_l2v1k"]
 [ext_resource type="Script" uid="uid://0ehypd41imc0" path="res://src/scripts/scenes/player/player_state_walk.gd" id="5_ya6j6"]
@@ -14,7 +14,8 @@ y_sort_enabled = true
 script = ExtResource("1_hwyk6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=848917796]
-sprite_frames = ExtResource("1_cusn3")
+sprite_frames = ExtResource("2_ya6j6")
+animation = &"walk_up"
 autoplay = "default"
 centered = false
 offset = Vector2(0, -16)
