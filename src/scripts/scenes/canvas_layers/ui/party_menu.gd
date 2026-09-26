@@ -6,9 +6,15 @@ extends UIState
 func enter(_default := false) -> void:
 	%Party1.grab_focus()
 	visible = true
+	if TransitionManager.transitioned_in:
+		TransitionManager.fade_out()
+		await TransitionManager.animation_finished
 
 func exit(_default := false) -> void:
 	get_viewport().gui_release_focus()
+	if not TransitionManager.transitioned_in:
+		TransitionManager.fade_in()
+		await TransitionManager.animation_finished
 	visible = false
 
 func input(event: InputEvent) -> UIState:

@@ -4,16 +4,23 @@ extends UIState
 
 var current_state: UIState = self
 
+func _ready() -> void:
+	if TransitionManager.transitioned_in:
+		TransitionManager.fade_out()
+
 func change_state(new_state: UIState) -> void:
 	if new_state != null:
 		#prints("Change state", current_state, "->", new_state)
-		current_state.exit(new_state == self)
-		new_state.enter(current_state == self)
+		var old_state := current_state
+		current_state = null
+		await old_state.exit(new_state == self)
+		await new_state.enter(old_state == self)
 		current_state = new_state
 
 func _input(event: InputEvent) -> void:
-	var new_state := current_state.input(event)
-	change_state(new_state)
+	if current_state != null:
+		var new_state := await current_state.input(event)
+		change_state(new_state)
 
 func input(event: InputEvent) -> UIState:
 	if event.is_action_pressed("Pause"):
@@ -24,5 +31,6 @@ func input(event: InputEvent) -> UIState:
 	return null
 
 func _process(delta: float) -> void:
-	var new_state := current_state.process(delta)
-	change_state(new_state)
+	if current_state != null:
+		var new_state := current_state.process(delta)
+		change_state(new_state)

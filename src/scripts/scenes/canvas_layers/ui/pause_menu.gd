@@ -30,6 +30,9 @@ func enter(default := false) -> void:
 	if default:
 		get_tree().paused = true
 		$UIMenuOpen.play()
+	
+	if TransitionManager.transitioned_in:
+		TransitionManager.fade_out()
 
 func exit(default := false) -> void:
 	if default:
@@ -62,6 +65,11 @@ func input(event: InputEvent) -> UIState:
 		get_viewport().set_input_as_handled()
 		
 		$UISelect.play()
+		match _index:
+			0, 1, 2, 3, 4, 6, 7:
+				TransitionManager.fade_in()
+				await TransitionManager.animation_finished
+		
 		match _index:
 			0: return ui_pokedex
 			1: return ui_pokemon

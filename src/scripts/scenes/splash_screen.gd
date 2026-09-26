@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed(&"Accept") or event.is_action_pressed(&"Cancel")):
-		if not TransitionManager.fading:
+		if not TransitionManager.transitioning:
 			next_splash()
 
 func _on_timer_timeout() -> void:

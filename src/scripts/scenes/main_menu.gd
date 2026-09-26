@@ -10,7 +10,7 @@ func _ready() -> void:
 	TransitionManager.fade_out()
 
 func _input(event: InputEvent) -> void:
-	if TransitionManager.fading: return
+	if TransitionManager.transitioning: return
 	
 	if event.is_action_pressed(&"Down") or event.is_action_pressed(&"Up"):
 		#accept_event()
