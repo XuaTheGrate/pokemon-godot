@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="pkmn-project"
+run/main_scene="uid://dhdlvvp32mnsd"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=240
 config/icon="res://icon.svg"
@@ -21,12 +22,13 @@ buses/default_bus_layout="uid://dhc56fhaga4cw"
 
 [autoload]
 
-DebugLayer="*uid://6ieesaoekp61"
+TransitionManager="*uid://sv27jl0ops55"
 GameData="*uid://bh7tur0ewgvsd"
 TypesManager="*uid://dwjlesyj614p5"
 MovesManager="*uid://bwi5bj2lw36yb"
 SpeciesManager="*uid://jgt41ukcq5s8"
 Calculator="*uid://mjtbw7p8r8nr"
+DebugLayer="*uid://6ieesaoekp61"
 DialogueManager="*uid://c3rodes2l3gxb"
 
 [dialogue_manager]

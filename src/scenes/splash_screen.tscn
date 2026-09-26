@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dhdlvvp32mnsd"]
+
+[ext_resource type="Script" uid="uid://chmfah18qgfta" path="res://src/scripts/scenes/splash_screen.gd" id="1_ax5h4"]
+[ext_resource type="Texture2D" uid="uid://c0j55kt8w7dg6" path="res://assets/graphics/splash/splash1.png" id="1_x2qc0"]
+[ext_resource type="Texture2D" uid="uid://c6n5ip45ky0wf" path="res://assets/graphics/splash/splash2.png" id="2_ax5h4"]
+[ext_resource type="Texture2D" uid="uid://lajmkp6u6iji" path="res://assets/graphics/splash/title.png" id="3_sbx5m"]
+[ext_resource type="Texture2D" uid="uid://b05uwuhe78hqv" path="res://assets/graphics/splash/start.png" id="4_4k7fw"]
+
+[sub_resource type="Animation" id="Animation_ax5h4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sbx5m"]
+resource_name = "default"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4k7fw"]
+_data = {
+&"RESET": SubResource("Animation_ax5h4"),
+&"default": SubResource("Animation_sbx5m")
+}
+
+[node name="SplashScreen" type="CanvasLayer" unique_id=1201217174]
+script = ExtResource("1_ax5h4")
+main_menu = "uid://ck728ce2ry2a5"
+
+[node name="Splash1" type="TextureRect" parent="." unique_id=834494768]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x2qc0")
+stretch_mode = 2
+
+[node name="Splash2" type="TextureRect" parent="." unique_id=646433933]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ax5h4")
+stretch_mode = 2
+
+[node name="Title" type="TextureRect" parent="." unique_id=934551346]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_sbx5m")
+stretch_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Title" unique_id=1834074946]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_4k7fw")
+stretch_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title" unique_id=446765608]
+libraries/ = SubResource("AnimationLibrary_4k7fw")
+autoplay = &"default"
+
+[node name="Timer" type="Timer" parent="." unique_id=1919434047]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

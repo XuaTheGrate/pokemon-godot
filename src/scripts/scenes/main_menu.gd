@@ -5,8 +5,11 @@ var _temp_save_file: SaveFile = null
 func _ready() -> void:
 	_setup_continue()
 	%Debug.visible = OS.has_feature("editor")
+	TransitionManager.fade_out()
 
 func _gui_input(event: InputEvent) -> void:
+	if TransitionManager.fading: return
+	
 	if event.is_action_pressed(&"Down") or event.is_action_pressed(&"Up"):
 		accept_event()
 		$GUIFocus.play()
