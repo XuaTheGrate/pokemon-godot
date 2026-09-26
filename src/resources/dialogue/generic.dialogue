@@ -1,0 +1,21 @@
+~ start
+Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => start
+- End the conversation => END
+Nathan: For more information see the online documentation.
+=> END
+
+~ initiate_save
+Would you like to save the game?
+- Yes
+	$> SaveUI.commit_save()
+	{{GameData.trainer_name}} saved the game.
+	$> SaveUI.finish_save()
+- No
+	$> SaveUI.cancel_save()
+=> END

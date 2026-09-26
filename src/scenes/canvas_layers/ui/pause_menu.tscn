@@ -1,0 +1,222 @@
+[gd_scene format=3 uid="uid://bppo308wxlgju"]
+
+[ext_resource type="Script" uid="uid://f2n2h50dedof" path="res://src/scripts/scenes/canvas_layers/ui/pause_menu.gd" id="1_t0qg3"]
+[ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="2_a72hi"]
+[ext_resource type="AudioStream" uid="uid://bq5y8yawapoi8" path="res://assets/audio/sounds/ui_focus.ogg" id="2_orvji"]
+[ext_resource type="AudioStream" uid="uid://duo7iw3m7g52n" path="res://assets/audio/sounds/ui_select.ogg" id="3_h74hu"]
+[ext_resource type="Texture2D" uid="uid://bigpbdu8vgb6c" path="res://assets/graphics/ui/sel_arrow.png" id="3_orvji"]
+[ext_resource type="AudioStream" uid="uid://m4o65aq2wa77" path="res://assets/audio/sounds/ui_menu_close.ogg" id="4_h74hu"]
+[ext_resource type="AudioStream" uid="uid://xw1pemwvnoo4" path="res://assets/audio/sounds/ui_menu_open.ogg" id="5_eqngx"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1177538951]
+layer = 10
+script = ExtResource("1_t0qg3")
+
+[node name="UIFocus" type="AudioStreamPlayer" parent="." unique_id=1205851813]
+process_mode = 3
+stream = ExtResource("2_orvji")
+bus = &"Sound"
+
+[node name="UISelect" type="AudioStreamPlayer" parent="." unique_id=402570956]
+process_mode = 3
+stream = ExtResource("3_h74hu")
+bus = &"Sound"
+
+[node name="UIMenuClose" type="AudioStreamPlayer" parent="." unique_id=471486066]
+process_mode = 3
+stream = ExtResource("4_h74hu")
+bus = &"Sound"
+
+[node name="UIMenuOpen" type="AudioStreamPlayer" parent="." unique_id=1320261796]
+process_mode = 3
+stream = ExtResource("5_eqngx")
+bus = &"Sound"
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1975331878]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+theme = ExtResource("2_a72hi")
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=9010749]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=1286396415]
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Pokedex" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=1888126554]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/Pokedex" unique_id=1906862649]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/Pokedex" unique_id=1022217605]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Pokédex"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Pokemon" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=915753140]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/Pokemon" unique_id=1876813814]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/Pokemon" unique_id=805174064]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Pokémon"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Bag" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=1460757010]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/Bag" unique_id=1574317067]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/Bag" unique_id=2135855195]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Bag"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Pokegear" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=580676335]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/Pokegear" unique_id=1321718316]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/Pokegear" unique_id=449130775]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Pokégear"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TrainerCard" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=544677125]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/TrainerCard" unique_id=950806989]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/TrainerCard" unique_id=1907988629]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "TRAINER"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Save" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=146331141]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/Save" unique_id=1341215535]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/Save" unique_id=378095060]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Save"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Options" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=2052016406]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/Options" unique_id=1191679269]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/Options" unique_id=1446563292]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Options
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Debug" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=2006769191]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/Debug" unique_id=414610049]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/Debug" unique_id=430544276]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Debug"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="QuitGame" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=1659116463]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+
+[node name="Cursor" type="TextureRect" parent="Panel/Margin/VBox/QuitGame" unique_id=1229843477]
+layout_mode = 2
+texture = ExtResource("3_orvji")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Panel/Margin/VBox/QuitGame" unique_id=236170816]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_a72hi")
+text = "Quit Game
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

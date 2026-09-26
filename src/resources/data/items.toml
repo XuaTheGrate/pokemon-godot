@@ -1,0 +1,946 @@
+# [KEY]
+# name: [str, str] # ["Singular Name", "Plural Name"]
+# description: str
+# I default to using the Scarlet/Violet values when possible, otherwise the latest gen game since
+#
+# pocket_id: int (default: 0)
+# 0:Items, 1:Medicine, 2:Poké Balls, 3:TMs & HMs, 4:Berries, 5:Mail, 6:Battle Items, 7:Key Items
+#
+# price: int (default: 0)
+# Buy price. Sell price will be half this value. A value of 0 means the item cannot be sold
+# I know SV uses quarter pricing. I don't care.
+#
+# can_hold: bool (default: true, false if pocket_id=7)
+# Whether the item can be held by a Pokémon
+#
+# can_use_held: bool (default: false)
+# Whether the item can be used by a Pokémon while held
+#
+# use_flags: list (default: [])
+# - "IN_BATTLE": Only during battle
+# - "OVERWORLD": Only outside of battle
+# - "OUTSIDE": Only outside of buildings
+# - "IN_CAVE_OR_DUNGEON": Only inside caves or dungeons
+# 
+# use_type: str (default: "NONE")
+# "DIRECT":Use directly
+# "ON_POKEMON":Select a Pokémon in your party to use it on
+# "ON_FAINTED_POKEMON":Select a fainted Pokémon in your party to use it on
+# "ON_POKEMON_MOVE":Use on a Pokémon's move
+# "NONE":Cannot be used
+#
+# fling: int (default: 0)
+# Fling damage. A value of 0 will cause Fling to fail
+#
+# fossil_species: str (default: "")
+# The species this fossil should revive into
+#
+# callback: list[Any] (default: ["nop"])
+# Item callback. First item is the callback name, extra items are function arguments.
+
+[MASTERBALL]
+name = ["Master Ball", "Master Balls"]
+description = "The very best Poké Ball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail."
+pocket_id = 2
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon", -1.0] # a value of -1 will always succeed
+
+[ULTRABALL]
+name = ["Ultra Ball", "Ultra Balls"]
+description = "An ultra-high-performance Poké Ball that provides a higher success rate for catching Pokémon than a Great Ball."
+pocket_id = 2
+price = 800
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon", 2.0]
+
+[GREATBALL]
+name = ["Great Ball", "Great Balls"]
+description = "A good, high-performance Poké Ball that provides a higher success rate for catching Pokémon than a standard Poké Ball."
+pocket_id = 2
+price = 600
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon", 1.5]
+
+[POKEBALL]
+name = ["Poké Ball", "Poké Balls"]
+description = "A device for catching wild Pokémon. It's thrown like a ball at a Pokémon, comfortably encapsulating its target."
+pocket_id = 2
+price = 200
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon", 1.0]
+
+[SAFARIBALL]
+name = ["Safari Ball", "Safari Balls"]
+description = "A special Poké Ball used in locales such as the Safari Zone in the Kanto region and the Great Marsh in the Sinnoh region."
+pocket_id = 2
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon", 1.0]
+
+[NETBALL]
+name = ["Net Ball", "Net Balls"]
+description = "A somewhat different Poké Ball that is more effective when catching Water- or Bug-type Pokémon."
+pocket_id = 2
+price = 1000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon_type", ["WATER", "BUG"], 3.0, 1.0]
+
+[DIVEBALL]
+name = ["Dive Ball", "Dive Balls"]
+description = "A somewhat different Poké Ball that is more effective when catching Pokémon in or on the water."
+pocket_id = 2
+price = 1000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon_dive_ball"]
+
+[NESTBALL]
+name = ["Nest Ball", "Nest Balls"]
+description = "A somewhat different Poké Ball that becomes more effective the lower the level of the wild Pokémon."
+pocket_id = 2
+price = 1000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon_nest_ball"]
+
+[REPEATBALL]
+name = ["Repeat Ball", "Repeat Balls"]
+description = "A somewhat different Poké Ball that is more effective when catching a Pokémon of a species that you've caught before."
+pocket_id = 2
+price = 1000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon_repeat_ball"]
+
+[TIMERBALL]
+name = ["Timer Ball", "Timer Balls"]
+description = "A somewhat different Poké Ball that becomes more effective at catching Pokémon the more turns that are taken in battle."
+pocket_id = 2
+price = 1000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon_timer_ball"]
+
+[LUXURYBALL]
+name = ["Luxury Ball", "Luxury Balls"]
+description = "A particularly comfortable Poké Ball that makes a wild Pokémon quickly grow friendlier after being caught."
+pocket_id = 2
+price = 3000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+# the friendship stuff is hard coded, see <insert line where the code is>
+callback = ["try_catch_pokemon", 1.0]
+
+[PREMIERBALL]
+name = ["Premier Ball", "Premier Balls"]
+description = "A somewhat rare Poké Ball made to commemorate a special occasion of some sort."
+pocket_id = 2
+price = 10
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon", 1.0]
+
+[DUSKBALL]
+name = ["Dusk Ball", "Dusk Balls"]
+description = "A somewhat different Poké Ball that is more effective when catching Pokémon at night or in dark places, such as caves."
+pocket_id = 2
+price = 1000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon_dusk_ball"]
+
+[HEALBALL]
+name = ["Heal Ball", "Heal Balls"]
+description = "A remedial Poké Ball that restores HP and eliminates status conditions for a Pokémon caught with it."
+pocket_id = 2
+price = 300
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+# The healing is hard coded, see <insert line where the code is>
+callback = ["try_catch_pokemon", 1.0]
+
+[QUICKBALL]
+name = ["Quick Ball", "Quick Balls"]
+description = "A somewhat different Poké Ball that is more effective at catching Pokémon when used first thing in a battle."
+pocket_id = 2
+price = 1000
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["try_catch_pokemon_quick_ball"]
+
+[POTION]
+name = ["Potion", "Potions"]
+description = "A spray-type medicine for treating wounds. It can be used to restore 20 HP to a Pokémon."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_flat", 20]
+
+[ANTIDOTE]
+name = ["Antidote", "Antidotes"]
+description = "A spray-type medicine for treating poisoning. It can be used to lift the effects of being poisoned from a Pokémon."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon", "POISON"]
+
+[BURNHEAL]
+name = ["Burn Heal", "Burn Heals"]
+description = "A spray-type medicine for treating burns. It can be used to cure a Pokémon suffering from a burn."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon", "BURN"]
+
+[ICEHEAL]
+name = ["Burn Heal", "Burn Heals"]
+description = "A spray-type medicine for treating freezing. It can be used to thaw out a Pokémon that has been frozen solid."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon", "FREEZE"]
+
+[AWAKENING]
+name = ["Awakening", "Awakenings"]
+description = "A spray-type medicine to wake the sleeping. It can be used to rouse a Pokémon from the clutches of sleep."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon", "SLEEP"]
+
+[PARALYZEHEAL]
+name = ["Paralyze Heal", "Paralyze Heals"]
+description = "A spray-type medicine for treating paralysis. It can be used to free a Pokémon that has been paralyzed."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon", "PARALYZE"]
+
+[FULLRESTORE]
+name = ["Full Restore", "Full Restores"]
+description = "A medicine that can be used to fully restore the max HP of a Pokémon and cure any status conditions it may have."
+pocket_id = 1
+price = 3000
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["full_restore_pokemon"]
+
+[MAXPOTION]
+name = ["Max Potion", "Max Potions"]
+description = "A spray-type medicine for treating wounds. It can be used to fully restore the max HP of a Pokémon."
+pocket_id = 1
+price = 2500
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_percent", 1.0] # x100
+
+[HYPERPOTION]
+name = ["Hyper Potion", "Hyper Potions"]
+description = "A spray-type medicine for treating wounds. It can be used to restore 120 HP to a Pokémon."
+pocket_id = 1
+price = 1500
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_flat", 120]
+
+[SUPERPOTION]
+name = ["Super Potion", "Super Potions"]
+description = "A spray-type medicine for treating wounds. It can be used to restore 60 HP to a Pokémon."
+pocket_id = 1
+price = 700
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_flat", 60]
+
+[FULLHEAL]
+name = ["Full Heal", "Full Heals"]
+description = "A spray-type medicine that is broadly effective. It can be used to cure any status condition a Pokémon may have."
+pocket_id = 1
+price = 400
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon"] # TOML doesn't support null values (terrible design imo), so just provide no argument and it will cure all statuses
+
+[REVIVE]
+name = ["Revive", "Revives"]
+description = "A medicine that can be used to revive a Pokémon that has fainted. It also restores half the Pokémon's max HP."
+pocket_id = 1
+price = 2000
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_FAINTED_POKEMON"
+callback = ["revive_pokemon", 0.5]
+
+[MAXREVIVE]
+name = ["Max Revive", "Max Revives"]
+description = "A medicine that can be used to revive a Pokémon that has fainted. It also fully restores the Pokémon's max HP."
+pocket_id = 1
+price = 4000
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_FAINTED_POKEMON"
+callback = ["revive_pokemon", 1.0]
+
+[FRESHWATER]
+name = ["Fresh Water", "Fresh Waters"]
+description = "Water with high mineral content. It can be used to restore 30 HP to a Pokémon."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_flat", 30]
+
+[MOOMOOMILK]
+name = ["Moomoo Milk", "Moomoo Milks"]
+description = "A bottle of highly nutritious milk. It can be used to restore 100 HP to a Pokémon."
+pocket_id = 1
+price = 600
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_flat", 100]
+
+[ENERGYPOWDER]
+name = ["Energy Powder", "Energy Powders"]
+description = "A very bitter medicinal powder. It can be used to restore 60 HP to a Pokémon."
+pocket_id = 1
+price = 500
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_flat_bitter", 60] # '_bitter' will lower friendship after use
+
+[ENERGYROOT]
+name = ["Energy Root", "Energy Roots"]
+description = "A very bitter medicinal root. It can be used to restore 120 HP to a Pokémon."
+pocket_id = 1
+price = 500
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["heal_pokemon_flat_bitter", 120]
+
+[HEALPOWDER]
+name = ["Heal Powder", "Heal Powder"]
+description = "A very bitter medicinal powder. It can be used to cure any status condition a Pokémon may have."
+pocket_id = 1
+price = 300
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon_bitter"]
+
+[REVIVALHERB]
+name = ["Revival Herb", "Revival Herbs"]
+description = "A very bitter medicinal herb. It can be used to revive a Pokémon that has fainted. It also fully restores the Pokémon's max HP."
+pocket_id = 1
+price = 2800
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_FAINTED_POKEMON"
+callback = ["revive_pokemon_bitter", 1.0]
+
+[ETHER]
+name = ["Ether", "Ethers"]
+description = "A medicine that can be used to restore 10 PP to a single move that a Pokémon knows."
+pocket_id = 1
+price = 1200
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON_MOVE"
+callback = ["recover_move_pp", 10]
+
+[MAXETHER]
+name = ["Max Ether", "Max Ethers"]
+description = "A medicine that can be used to fully restore the max PP of a single move that a Pokémon knows."
+pocket_id = 1
+price = 2000
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON_MOVE"
+callback = ["recover_move_pp"]
+
+[ELIXIR]
+name = ["Elixir", "Elixirs"]
+description = "A medicine that can be used to restore 10 PP to all four moves that a Pokémon knows."
+pocket_id = 1
+price = 3000
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["recover_all_move_pp", 10]
+
+[MAXELIXIR]
+name = ["Max Elixir", "Max Elixirs"]
+description = "A medicine that can be used to fully restore the max PP of all four moves that a Pokémon knows."
+pocket_id = 1
+price = 4500
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["recover_all_move_pp"]
+
+[LAVACOOKIE]
+name = ["Lava Cookie", "Lava Cookies"]
+description = "Lavaridge Town's local specialty. It can be used to cure any status condition a Pokémon may have."
+pocket_id = 1
+price = 350
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon"]
+
+[BERRYJUICE]
+name = ["Berry Juice", "Berry Juice"]
+description = "A 100 percent pure juice made from Berries. It can be used to restore 20 HP to a Pokémon."
+pocket_id = 1
+price = 100
+fling = 30
+use_flags = ["IN_BATTLE", "OVERWORLD"]
+use_type = "ON_POKEMON"
+can_use_held = true
+callback = ["heal_pokemon_flat", 20]
+
+[SACREDASH]
+name = ["Sacred Ash", "Sacred Ashes"]
+description = "Ash that can be used to revive all party Pokémon that have fainted. It also fully restores the Pokémon's max HP."
+pocket_id = 1
+price = 200
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "DIRECT"
+callback = ["fully_restore_party"]
+
+[HPUP]
+name = ["HP Up", "HP Ups"]
+description = "A nutritious drink for Pokémon. This drink increases base points for a Pokémon's HP stat."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_evs", [10, 0, 0, 0, 0, 0]]
+
+[PROTEIN]
+name = ["Protein", "Proteins"]
+description = "A nutritious drink for Pokémon. This drink increases base points for a Pokémon's Attack stat."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_evs", [0, 10, 0, 0, 0, 0]]
+
+[IRON]
+name = ["Iron", "Irons"]
+description = "A nutritious drink for Pokémon. This drink increases base points for a Pokémon's Defense stat."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_evs", [0, 0, 10, 0, 0, 0]]
+
+[CARBOS]
+name = ["Carbos", "Carbos"]
+description = "A nutritious drink for Pokémon. This drink increases base points for a Pokémon's Speed stat."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_evs", [0, 0, 0, 0, 0, 10]]
+
+[CALCIUM]
+name = ["Calcium", "Calciums"]
+description = "A nutritious drink for Pokémon. This drink increases base points for a Pokémon's Special Attack stat."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_evs", [0, 0, 0, 10, 0, 0]]
+
+[ZINC]
+name = ["Zinc", "Zincs"]
+description = "A nutritious drink for Pokémon. This drink increases base points for a Pokémon's Special Defense stat."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_evs", [0, 0, 0, 0, 10, 0]]
+
+[RARECANDY]
+name = ["Rare Candy", "Rare Candies"]
+description = "A candy that is packed with energy. If consumed, it raises a Pokémon's level by one."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["level_up_pokemon"]
+
+[PPUP]
+name = ["PP Up", "PP Ups"]
+description = "A medicine that can be used to slightly raise the max PP of a single move that a Pokémon knows."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_move_pp", 1]
+
+[PPMAX]
+name = ["PP Max", "PP Maxes"]
+description = "A medicine that can be used to raise the max PP of a single move that a Pokémon knows as high as it can possibly go."
+pocket_id = 1
+price = 10000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["increase_move_pp", 3]
+
+[OLDGATEAU]
+name = ["Old Gateau", "Old Gateaus"]
+description = "A hidden gem found in the Old Chateau. It can be used to cure any status condition a Pokémon may have."
+pocket_id = 1
+price = 350
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["cure_pokemon"]
+
+[GUARDSPEC]
+name = ["Guard Spec.", "Guard Specs."]
+description = "An item that prevents Pokémon on your side from having their stats lowered in battle for five turns."
+pocket_id = 6
+price = 1500
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_ally_field_effect", "MIST"]
+
+[DIREHIT]
+name = ["Dire Hit", "Dire Hits"]
+description = "An item that can be used once to sharply boost the critical-hit ratio of a Pokémon in battle. This effect disappears if the Pokémon leaves the battle."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_critical_stage", 2]
+
+[XATTACK]
+name = ["X Attack", "X Attacks"]
+description = "An item that sharply boosts the Attack stat of a Pokémon in battle. This effect disappears if the Pokémon leaves the battle."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_stat_buff", [0, 2, 0, 0, 0, 0]]
+
+[XDEFEND]
+name = ["X Defend", "X Defends"]
+description = "An item that sharply boosts the Defense stat of a Pokémon in battle. This effect disappears if the Pokémon leaves the battle."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_stat_buff", [0, 0, 2, 0, 0, 0]]
+
+[XSPEED]
+name = ["X Speed", "X Speeds"]
+description = "An item that sharply boosts the Speed stat of a Pokémon in battle. This effect disappears if the Pokémon leaves the battle."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_stat_buff", [0, 0, 0, 0, 0, 2]]
+
+[XACCURACY]
+name = ["X Accuracy", "X Accuracy"]
+description = "An item that sharply boosts a Pokémon's accuracy in battle. This effect disappears if the Pokémon leaves the battle."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_stat_buff", [0, 0, 0, 0, 0, 0, 2]]
+
+[XSPATK]
+name = ["X Sp. Atk", "X Sp. Atk"]
+description = "An item that sharply boosts the Special Attack stat of a Pokémon in battle. This effect disappears if the Pokémon leaves the battle."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_stat_buff", [0, 0, 0, 2, 0, 0]]
+
+[XPSDEF]
+name = ["X Sp. Def", "X Sp. Def"]
+description = "An item that sharply boosts the Special Defense stat of a Pokémon in battle. This effect disappears if the Pokémon leaves the battle."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["add_stat_buff", [0, 0, 0, 0, 2, 0]]
+
+[POKEDOLL]
+name = ["Poké Doll", "Poké Dolls"]
+description = "A doll that attracts the attention of Pokémon. It guarantees escape from any battle with wild Pokémon."
+pocket_id = 6
+price = 1000
+fling = 30
+use_flags = ["IN_BATTLE"]
+use_type = "DIRECT"
+callback = ["force_escape_battle"]
+
+[REPEL]
+name = ["Repel", "Repels"]
+description = "An item that prevents low-level wild Pokémon from jumping out at you for a short time."
+pocket_id = 0
+price = 400
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "DIRECT"
+callback = ["add_repel_steps", 100]
+
+[SUPERREPEL]
+name = ["Super Repel", "Super Repels"]
+description = "An item that prevents low-level wild Pokémon from jumping out at you for a time. It lasts longer than Repel."
+pocket_id = 0
+price = 700
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "DIRECT"
+callback = ["add_repel_steps", 150]
+
+[MAXREPEL]
+name = ["Max Repel", "Max Repels"]
+description = "An item that prevents low-level wild Pokémon from jumping out at you for a time. It lasts longer than Super Repel."
+pocket_id = 0
+price = 900
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "DIRECT"
+callback = ["add_repel_steps", 250]
+
+[ESCAPEROPE]
+name = ["Escape Rope", "Escape Ropes"]
+description = "A long and durable rope. Use it to escape instantly from locations like caves or dungeons. It can be used any number of times."
+pocket_id = 7
+use_flags = ["IN_CAVE_OR_DUNGEON"]
+use_type = "DIRECT"
+callback = ["teleport_out_of_dungeon"]
+
+[SUNSTONE]
+name = ["Sun Stone", "Sun Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It burns as red as the evening sun."
+pocket_id = 0
+price = 3000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[MOONSTONE]
+name = ["Moon Stone", "Moon Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It is dark like the night sky."
+pocket_id = 0
+price = 3000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[FIRESTONE]
+name = ["Fire Stone", "Fire Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It has a fiery orange heart."
+pocket_id = 0
+price = 3000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[THUNDERSTONE]
+name = ["Thunder Stone", "Thunder Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It has a distinct thunderbolt pattern."
+pocket_id = 0
+price = 3000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[WATERSTONE]
+name = ["Water Stone", "Water Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It is the clear blue of a deep pool."
+pocket_id = 0
+price = 3000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[LEAFSTONE]
+name = ["Leaf Stone", "Leaf Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It has an unmistakable leaf pattern."
+pocket_id = 0
+price = 3000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[ICESTONE]
+name = ["Ice Stone", "Ice Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It has a snowflake pattern in it."
+pocket_id = 0
+price = 3000
+fling = 30
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[DAWNSTONE]
+name = ["Dawn Stone", "Dawn Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It sparkles like a glittering eye."
+pocket_id = 0
+price = 3000
+fling = 80
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[DUSKSTONE]
+name = ["Dusk Stone", "Dusk Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It holds dark shadows within it."
+pocket_id = 0
+price = 3000
+fling = 80
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[SHINYSTONE]
+name = ["Shiny Stone", "Shiny Stones"]
+description = "A peculiar stone that can make certain species of Pokémon evolve. It shines with a dazzling light."
+pocket_id = 0
+price = 3000
+fling = 80
+use_flags = ["OVERWORLD"]
+use_type = "ON_POKEMON"
+callback = ["try_evolve_pokemon"]
+
+[TINYMUSHROOM]
+name = ["Tiny Mushroom", "Tiny Mushrooms"]
+description = "A small and rare mushroom. It's quite popular with a certain class of collectors."
+pocket_id = 0
+price = 500
+fling = 30
+
+[BIGMUSHROOM]
+name = ["Big Mushroom", "Big Mushrooms"]
+description = "A large and rare mushroom. It's extremely popular with a certain class of collectors."
+pocket_id = 0
+price = 5000
+fling = 30
+
+[PEARL]
+name = ["Pearl", "Pearls"]
+description = "A rather small pearl that has a nice silvery sheen to it. It can be sold at a low price to shops."
+pocket_id = 0
+price = 2000
+fling = 30
+
+[BIGPEARL]
+name = ["Big Pearl", "Big Pearls"]
+description = "A rather large pearl that has a nice silvery sheen to it. It can be sold at a high price to shops."
+pocket_id = 0
+price = 8000
+fling = 30
+
+[STARDUST]
+name = ["Stardust", "Stardusts"]
+description = "Lovely red sand that flows between the fingers with a loose, silky feel. It can be sold at a low price to shops."
+pocket_id = 0
+price = 3000
+fling = 30
+
+[STARPIECE]
+name = ["Star Piece", "Star Pieces"]
+description = "A small shard of a beautiful gem that gives off a distinctly red sparkle. It can be sold at a high price to shops."
+pocket_id = 0
+price = 12000
+fling = 30
+
+[NUGGET]
+name = ["Nugget", "Nuggets"]
+description = "A nugget of the purest gold that gives off a lustrous gleam in direct light. It can be sold at a high price to shops."
+pocket_id = 0
+price = 10000
+fling = 30
+
+[HEARTSCALE]
+name = ["Heart Scale", "Heart Scales"]
+description = "A pretty, heart-shaped scale that is extremely rare. Certain people are delighted to be given one of these."
+pocket_id = 0
+price = 100
+fling = 30
+
+[HONEY]
+name = ["Honey", "Honey"]
+description = "Honey collected thanks to Pokémon's efforts. It has a sweet aroma and can be sold at a low price to shops."
+pocket_id = 0
+price = 450
+fling = 30
+
+[ROOTFOSSIL]
+name = ["Root Fossil", "Root Fossils"]
+description = "A fossil from a prehistoric Pokémon that once lived in the sea. It looks as if it could be part of a plant's root."
+pocket_id = 0
+price = 7000
+fling = 100
+fossil_species = "LILEEP"
+
+[CLAWFOSSIL]
+name = ["Claw Fossil", "Claw Fossils"]
+description = "A fossil from a prehistoric Pokémon that once lived in the sea. It appears to be a fragment of a claw."
+pocket_id = 0
+price = 7000
+fling = 100
+fossil_species = "ANORITH"
+
+[HELIXFOSSIL]
+name = ["Helix Fossil", "Helix Fossils"]
+description = "A fossil from a prehistoric Pokémon that once lived in the sea. It might be a piece of a seashell."
+pocket_id = 0
+price = 7000
+fling = 100
+fossil_species = "OMANYTE"
+
+[DOMEFOSSIL]
+name = ["Dome Fossil", "Dome Fossils"]
+description = "A fossil from a prehistoric Pokémon that once lived in the sea. It could be a shell or carapace."
+pocket_id = 0
+price = 7000
+fling = 100
+fossil_species = "KABUTO"
+
+[OLDAMBER]
+name = ["Old Amber", "Old Ambers"]
+description = "A piece of amber that still contains the genetic material of a prehistoric Pokémon. It's clear with a tawny, reddish tint."
+pocket_id = 0
+price = 1000
+fling = 100
+fossil_species = "AERODACTYL"
+
+[ARMORFOSSIL]
+name = ["Armor Fossil", "Armor Fossils"]
+description = "A fossil from a prehistoric Pokémon that once lived on the land. It looks to be from some kind of protective collar."
+pocket_id = 0
+price = 7000
+fling = 100
+fossil_species = "SHIELDON"
+
+[SKULLFOSSIL]
+name = ["Skull Fossil", "Skull Fossils"]
+description = "A fossil from a prehistoric Pokémon that once lived on the land. It appears as though it's part of a head."
+pocket_id = 0
+price = 7000
+fling = 100
+fossil_species = "CRANIDOS"
+
+[RAREBONE]
+name = ["Rare Bone", "Rare Bones"]
+description = "A rare bone that is extremely valuable for the study of Pokémon archeology. It can be sold at a high price to shops."
+pocket_id = 0
+price = 5000
+fling = 100
+
+[OVALSTONE]
+name = ["Oval Stone", "Oval Stones"]
+description = "A peculiar stone that can make a certain species of Pokémon evolve. It is round and smooth."
+pocket_id = 0
+price = 1000
+fling = 80
+
+[ODDKEYSTONE]
+name = ["Odd Keystone", "Odd Keystones"]
+description = "A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally."
+pocket_id = 0
+price = 1000
+fling = 80
+
+[GRISEOUSORB]
+name = ["Griseous Orb", "Griseous Orbs"]
+description = "A shining gem to be held by Giratina. It boosts the power of Giratina's Dragon- and Ghost-type moves."
+pocket_id = 0
+fling = 60
+
+[DOUSEDRIVE]
+name = ["Douse Drive", "Douse Drives"]
+description = "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Water type."
+pocket_id = 0
+fling = 70
+
+[SHOCKDRIVE]
+name = ["Shock Drive", "Shock Drives"]
+description = "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Electric type."
+pocket_id = 0
+fling = 70
+
+[BURNDRIVE]
+name = ["Burn Drive", "Burn Drives"]
+description = "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Fire type."
+pocket_id = 0
+fling = 70
+
+[CHILLDRIVE]
+name = ["Chill Drive", "Chill Drives"]
+description = "A cassette to be held by Genesect. It changes Genesect's Techno Blast move so it becomes Ice type."
+pocket_id = 0
+fling = 70
+
+[ADAMANTORB]
+name = ["Adamant Orb", "Adamant Orbs"]
+description = "A brightly shining gem to be held by Dialga. It boosts the power of Dialga's Dragon- and Steel-type moves."
+pocket_id = 0
+fling = 60
+
+[LUSTROUSORB]
+name = ["Lustrous Orb", "Lustrous Orbs"]
+description = "A beautifully shining gem to be held by Palkia. It boosts the power of Palkia's Dragon- and Water-type moves."
+pocket_id = 0
+fling = 60
+

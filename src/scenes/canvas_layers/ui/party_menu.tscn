@@ -1,0 +1,215 @@
+[gd_scene format=3 uid="uid://dfs6tg52ehew7"]
+
+[ext_resource type="Script" uid="uid://3my8ggh64jwo" path="res://src/scripts/scenes/canvas_layers/ui/party_menu.gd" id="1_uiepa"]
+[ext_resource type="Texture2D" uid="uid://xie6042d2vxr" path="res://assets/graphics/ui/party/bg.png" id="2_lugrm"]
+[ext_resource type="PackedScene" uid="uid://csy5e45t062ld" path="res://src/scenes/canvas_layers/ui/party_menu_member.tscn" id="3_7wfov"]
+[ext_resource type="Texture2D" uid="uid://d2iqqraya6h0f" path="res://assets/graphics/ui/party/panels.png" id="3_mmahs"]
+[ext_resource type="Resource" uid="uid://bhd2qkc7uvlal" path="res://src/resources/player/template_bulbasaur.tres" id="5_7wfov"]
+[ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="6_71shy"]
+[ext_resource type="Script" uid="uid://cjuojipencsfj" path="res://src/scripts/scenes/canvas_layers/ui/party_menu_cancel.gd" id="6_yjk4n"]
+[ext_resource type="Theme" uid="uid://cmak7fy66g2ku" path="res://src/resources/party_menu_theme.tres" id="8_rmuts"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmuts"]
+resource_local_to_scene = true
+atlas = ExtResource("3_mmahs")
+region = Rect2(0, 0, 256, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnekp"]
+resource_local_to_scene = true
+atlas = ExtResource("3_mmahs")
+region = Rect2(0, 0, 256, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v55p"]
+resource_local_to_scene = true
+atlas = ExtResource("3_mmahs")
+region = Rect2(0, 0, 256, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqmep"]
+resource_local_to_scene = true
+atlas = ExtResource("3_mmahs")
+region = Rect2(0, 0, 256, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07t0d"]
+resource_local_to_scene = true
+atlas = ExtResource("3_mmahs")
+region = Rect2(0, 0, 256, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw122"]
+resource_local_to_scene = true
+atlas = ExtResource("3_mmahs")
+region = Rect2(0, 0, 256, 98)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7wfov"]
+load_path = "res://.godot/imported/icon_cancel.png-5de7d4747e22543b897d355309a4caf0.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+atlas = SubResource("CompressedTexture2D_7wfov")
+region = Rect2(0, 0, 112, 48)
+
+[node name="PartyMenu" type="CanvasLayer" unique_id=818273869]
+layer = 10
+script = ExtResource("1_uiepa")
+
+[node name="Bg" type="TextureRect" parent="." unique_id=443803962]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lugrm")
+stretch_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1136793391]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="GridContainer" parent="VBox" unique_id=1771356269]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = -2
+columns = 2
+
+[node name="Party1" parent="VBox/Grid" unique_id=1911551420 instance=ExtResource("3_7wfov")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../../HBox/MarginContainer/CancelButton")
+focus_neighbor_top = NodePath("../../HBox/MarginContainer/CancelButton")
+focus_neighbor_right = NodePath("../Party2")
+focus_neighbor_bottom = NodePath("../Party3")
+focus_next = NodePath("../Party2")
+focus_previous = NodePath("../../HBox/MarginContainer/CancelButton")
+texture = SubResource("AtlasTexture_rmuts")
+first = true
+battler = ExtResource("5_7wfov")
+
+[node name="Party2" parent="VBox/Grid" unique_id=211607012 instance=ExtResource("3_7wfov")]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 16)
+focus_neighbor_left = NodePath("../Party1")
+focus_neighbor_top = NodePath("../../HBox/MarginContainer/CancelButton")
+focus_neighbor_right = NodePath("../Party3")
+focus_neighbor_bottom = NodePath("../Party4")
+focus_next = NodePath("../Party3")
+focus_previous = NodePath("../Party1")
+texture = SubResource("AtlasTexture_mnekp")
+
+[node name="Party3" parent="VBox/Grid" unique_id=1005464753 instance=ExtResource("3_7wfov")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../Party2")
+focus_neighbor_top = NodePath("../Party1")
+focus_neighbor_right = NodePath("../Party4")
+focus_neighbor_bottom = NodePath("../Party5")
+focus_next = NodePath("../Party4")
+focus_previous = NodePath("../Party2")
+texture = SubResource("AtlasTexture_7v55p")
+
+[node name="Party4" parent="VBox/Grid" unique_id=2099402741 instance=ExtResource("3_7wfov")]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 16)
+focus_neighbor_left = NodePath("../Party3")
+focus_neighbor_top = NodePath("../Party2")
+focus_neighbor_right = NodePath("../Party5")
+focus_neighbor_bottom = NodePath("../Party6")
+focus_next = NodePath("../Party5")
+focus_previous = NodePath("../Party3")
+texture = SubResource("AtlasTexture_gqmep")
+
+[node name="Party5" parent="VBox/Grid" unique_id=1918053167 instance=ExtResource("3_7wfov")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../Party4")
+focus_neighbor_top = NodePath("../Party3")
+focus_neighbor_right = NodePath("../Party6")
+focus_neighbor_bottom = NodePath("../../HBox/MarginContainer/CancelButton")
+focus_next = NodePath("../Party6")
+focus_previous = NodePath("../Party4")
+texture = SubResource("AtlasTexture_07t0d")
+
+[node name="Party6" parent="VBox/Grid" unique_id=75306795 instance=ExtResource("3_7wfov")]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 16)
+focus_neighbor_left = NodePath("../Party5")
+focus_neighbor_top = NodePath("../Party4")
+focus_neighbor_right = NodePath("../../HBox/MarginContainer/CancelButton")
+focus_neighbor_bottom = NodePath("../../HBox/MarginContainer/CancelButton")
+focus_next = NodePath("../../HBox/MarginContainer/CancelButton")
+focus_previous = NodePath("../Party5")
+texture = SubResource("AtlasTexture_gw122")
+
+[node name="HBox" type="HBoxContainer" parent="VBox" unique_id=1078551622]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBox/HBox" unique_id=491275089]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_71shy")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox/HBox/PanelContainer" unique_id=971620076]
+layout_mode = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBox/HBox/PanelContainer/MarginContainer" unique_id=1159377588]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("6_71shy")
+text = "Choose a Pokémon."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox/HBox" unique_id=820890011]
+layout_mode = 2
+theme_override_constants/margin_right = 2
+
+[node name="CancelButton" type="TextureRect" parent="VBox/HBox/MarginContainer" unique_id=734245074]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../../Grid/Party6")
+focus_neighbor_top = NodePath("../../../Grid/Party6")
+focus_neighbor_right = NodePath("../../../Grid/Party1")
+focus_neighbor_bottom = NodePath("../../../Grid/Party1")
+focus_next = NodePath("../../../Grid/Party1")
+focus_previous = NodePath("../../../Grid/Party6")
+focus_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_g4v7s")
+stretch_mode = 2
+script = ExtResource("6_yjk4n")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox/HBox/MarginContainer/CancelButton" unique_id=1411454260]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="RichTextLabel" parent="VBox/HBox/MarginContainer/CancelButton/MarginContainer" unique_id=535958127]
+layout_mode = 2
+theme = ExtResource("8_rmuts")
+theme_type_variation = &"NameLabel"
+text = "CANCEL"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="VBox/HBox/MarginContainer/CancelButton" to="VBox/HBox/MarginContainer/CancelButton" method="_on_focus_entered"]
+[connection signal="focus_exited" from="VBox/HBox/MarginContainer/CancelButton" to="VBox/HBox/MarginContainer/CancelButton" method="_on_focus_exited"]

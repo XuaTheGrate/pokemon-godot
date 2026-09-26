@@ -1,0 +1,117 @@
+[NORMAL]
+name = "Normal"
+weaknesses = [ "FIGHTING",]
+immunities = [ "GHOST",]
+index = 0
+
+[FIGHTING]
+name = "Fighting"
+weaknesses = [ "FLYING", "PSYCHIC", "FAIRY",]
+resistances = [ "ROCK", "BUG", "DARK",]
+index = 1
+
+[FLYING]
+name = "Flying"
+weaknesses = [ "ROCK", "ELECTRIC", "ICE",]
+resistances = [ "FIGHTING", "BUG", "GRASS",]
+immunities = [ "GROUND",]
+index = 2
+
+[POISON]
+name = "Poison"
+weaknesses = [ "GROUND", "PSYCHIC",]
+resistances = [ "FIGHTING", "POISON", "BUG", "GRASS", "FAIRY",]
+index = 3
+
+[GROUND]
+name = "Ground"
+weaknesses = [ "WATER", "GRASS", "ICE",]
+resistances = [ "POISON", "ROCK",]
+immunities = [ "ELECTRIC",]
+index = 4
+
+[ROCK]
+name = "Rock"
+weaknesses = [ "FIGHTING", "GROUND", "STEEL", "WATER", "GRASS",]
+resistances = [ "NORMAL", "FLYING", "POISON", "FIRE",]
+index = 5
+
+[BUG]
+name = "Bug"
+weaknesses = [ "FLYING", "ROCK", "FIRE",]
+resistances = [ "FIGHTING", "GROUND", "GRASS",]
+index = 6
+
+[GHOST]
+name = "Ghost"
+weaknesses = [ "GHOST", "DARK",]
+resistances = [ "POISON", "BUG",]
+immunities = [ "NORMAL", "FIGHTING",]
+index = 7
+
+[STEEL]
+name = "Steel"
+weaknesses = [ "FIGHTING", "GROUND", "FIRE",]
+resistances = [ "NORMAL", "FLYING", "ROCK", "BUG", "STEEL", "GRASS", "PSYCHIC", "ICE", "DRAGON", "FAIRY",]
+immunities = [ "POISON",]
+index = 8
+
+[QMARKS]
+name = "???"
+index = 9
+
+[FIRE]
+name = "Fire"
+weaknesses = [ "GROUND", "ROCK", "WATER",]
+resistances = [ "BUG", "STEEL", "FIRE", "GRASS", "ICE", "FAIRY",]
+index = 10
+
+[WATER]
+name = "Water"
+weaknesses = [ "GRASS", "ELECTRIC",]
+resistances = [ "STEEL", "FIRE", "WATER", "ICE",]
+index = 11
+
+[GRASS]
+name = "Grass"
+weaknesses = [ "FLYING", "POISON", "BUG", "FIRE", "ICE",]
+resistances = [ "GROUND", "WATER", "GRASS", "ELECTRIC",]
+index = 12
+
+[ELECTRIC]
+name = "Electric"
+weaknesses = [ "GROUND",]
+resistances = [ "FLYING", "STEEL", "ELECTRIC",]
+index = 13
+
+[PSYCHIC]
+name = "Psychic"
+weaknesses = [ "BUG", "GHOST", "DARK",]
+resistances = [ "FIGHTING", "PSYCHIC",]
+index = 14
+
+[ICE]
+name = "Ice"
+weaknesses = [ "FIGHTING", "ROCK", "STEEL", "FIRE",]
+resistances = [ "ICE",]
+index = 15
+
+[DRAGON]
+name = "Dragon"
+weaknesses = [ "ICE", "DRAGON", "FAIRY",]
+resistances = [ "FIRE", "WATER", "GRASS", "ELECTRIC",]
+index = 16
+
+[DARK]
+name = "Dark"
+weaknesses = [ "FIGHTING", "BUG", "FAIRY",]
+resistances = [ "GHOST", "DARK",]
+immunities = [ "PSYCHIC",]
+index = 17
+
+[FAIRY]
+name = "Fairy"
+weaknesses = [ "POISON", "STEEL",]
+resistances = [ "FIGHTING", "BUG", "DARK",]
+immunities = [ "DRAGON",]
+index = 18

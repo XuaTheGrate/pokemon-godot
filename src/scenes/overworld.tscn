@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ctss8n3f0up86"]
+
+[ext_resource type="Script" uid="uid://b8ccw7txns1yj" path="res://src/scripts/scenes/overworld.gd" id="1_n4orj"]
+[ext_resource type="PackedScene" uid="uid://ce46bhe0eoia2" path="res://src/scenes/canvas_layers/ui/overworld_ui_manager.tscn" id="1_n7p1q"]
+[ext_resource type="PackedScene" uid="uid://sdiid5de54iy" path="res://src/scenes/player.tscn" id="2_n7p1q"]
+
+[node name="Overworld" type="Node2D" unique_id=1525459472]
+y_sort_enabled = true
+script = ExtResource("1_n4orj")
+default_map = "uid://c5cvujac6nnut"
+default_position = Vector2(128, 128)
+
+[node name="OverworldUIManager" parent="." unique_id=1419356964 node_paths=PackedStringArray("player") instance=ExtResource("1_n7p1q")]
+player = NodePath("../Player")
+
+[node name="Player" parent="." unique_id=444939784 instance=ExtResource("2_n7p1q")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1353661625 groups=["Cameras"]]
+process_callback = 0
+limit_enabled = false
+
+[connection signal="end_step" from="Player" to="." method="_on_player_end_step"]

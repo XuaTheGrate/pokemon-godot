@@ -1,0 +1,38 @@
+[gd_resource type="Theme" format=3 uid="uid://cmak7fy66g2ku"]
+
+[ext_resource type="FontFile" uid="uid://4f7f257qhct8" path="res://assets/fonts/power green.ttf" id="1_5p5eu"]
+[ext_resource type="FontFile" uid="uid://cb6crh2t5fmvt" path="res://assets/fonts/power green small.ttf" id="2_oq5p5"]
+
+[resource]
+GenderFemale/base_type = &"RichTextLabel"
+GenderFemale/colors/default_color = Color(0.9098039, 0.1254902, 0.0627451, 1)
+GenderFemale/colors/font_shadow_color = Color(0.972549, 0.65882355, 0.72156864, 1)
+GenderFemale/constants/shadow_offset_x = 1
+GenderFemale/constants/shadow_offset_y = 1
+GenderFemale/constants/shadow_outline_size = 4
+GenderFemale/font_sizes/normal_font_size = 24
+GenderFemale/fonts/normal_font = ExtResource("1_5p5eu")
+GenderMale/base_type = &"RichTextLabel"
+GenderMale/colors/default_color = Color(0, 0.4392157, 0.972549, 1)
+GenderMale/colors/font_shadow_color = Color(0.47058824, 0.72156864, 0.9098039, 1)
+GenderMale/constants/shadow_offset_x = 1
+GenderMale/constants/shadow_offset_y = 1
+GenderMale/constants/shadow_outline_size = 4
+GenderMale/font_sizes/normal_font_size = 24
+GenderMale/fonts/normal_font = ExtResource("1_5p5eu")
+LevelLabel/base_type = &"RichTextLabel"
+LevelLabel/colors/default_color = Color(1, 1, 1, 1)
+LevelLabel/colors/font_shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+LevelLabel/constants/shadow_offset_x = 1
+LevelLabel/constants/shadow_offset_y = 1
+LevelLabel/constants/shadow_outline_size = 4
+LevelLabel/font_sizes/normal_font_size = 18
+LevelLabel/fonts/normal_font = ExtResource("2_oq5p5")
+NameLabel/base_type = &"RichTextLabel"
+NameLabel/colors/default_color = Color(1, 1, 1, 1)
+NameLabel/colors/font_shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+NameLabel/constants/shadow_offset_x = 1
+NameLabel/constants/shadow_offset_y = 1
+NameLabel/constants/shadow_outline_size = 4
+NameLabel/font_sizes/normal_font_size = 24
+NameLabel/fonts/normal_font = ExtResource("1_5p5eu")

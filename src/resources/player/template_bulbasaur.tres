@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Battler" format=3 uid="uid://bhd2qkc7uvlal"]
+
+[ext_resource type="Script" uid="uid://lmswah6pen1v" path="res://src/scripts/resources/stats.gd" id="1_0qdqf"]
+[ext_resource type="Script" uid="uid://cc35kntu4g078" path="res://src/scripts/resources/battle/battler.gd" id="1_y3t57"]
+[ext_resource type="Script" uid="uid://dtn6jggqtesjb" path="res://src/scripts/resources/battle/battle_move.gd" id="2_a1y8l"]
+
+[sub_resource type="Resource" id="Resource_a1y8l"]
+script = ExtResource("1_0qdqf")
+metadata/_custom_type_script = "uid://lmswah6pen1v"
+
+[sub_resource type="Resource" id="Resource_0qdqf"]
+script = ExtResource("1_0qdqf")
+metadata/_custom_type_script = "uid://lmswah6pen1v"
+
+[sub_resource type="Resource" id="Resource_i0ooo"]
+script = ExtResource("2_a1y8l")
+move_id = "POUND"
+metadata/_custom_type_script = "uid://dtn6jggqtesjb"
+
+[sub_resource type="Resource" id="Resource_lw0ya"]
+script = ExtResource("2_a1y8l")
+move_id = "SHOCKWAVE"
+metadata/_custom_type_script = "uid://dtn6jggqtesjb"
+
+[sub_resource type="Resource" id="Resource_fhkv1"]
+script = ExtResource("2_a1y8l")
+move_id = "VINEWHIP"
+metadata/_custom_type_script = "uid://dtn6jggqtesjb"
+
+[sub_resource type="Resource" id="Resource_lgnut"]
+script = ExtResource("2_a1y8l")
+move_id = "FLAMETHROWER"
+metadata/_custom_type_script = "uid://dtn6jggqtesjb"
+
+[resource]
+script = ExtResource("1_y3t57")
+species_id = "BULBASAUR"
+moves = Array[ExtResource("2_a1y8l")]([SubResource("Resource_i0ooo"), SubResource("Resource_lw0ya"), SubResource("Resource_fhkv1"), SubResource("Resource_lgnut")])
+level = 20
+nature = "HARDY"
+ivs = SubResource("Resource_0qdqf")
+evs = SubResource("Resource_a1y8l")
+metadata/_custom_type_script = "uid://cc35kntu4g078"

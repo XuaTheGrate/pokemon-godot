@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://6ieesaoekp61"]
+
+[ext_resource type="Script" uid="uid://btvel6os2i4tv" path="res://src/scripts/scenes/canvas_layers/debug_layer.gd" id="1_lqjxq"]
+
+[node name="DebugLayer" type="CanvasLayer" unique_id=267639009]
+process_mode = 3
+layer = 128
+script = ExtResource("1_lqjxq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1701917995]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1723214272]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1170442991]
+layout_mode = 2
+
+[node name="FPS" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=429280]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "FPS: null"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Paused" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=730402971]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "Paused"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="PlayerState" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=1633059798]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "PlayerState: null"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="UIState" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=242715016]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "UIState: null"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="BattleState" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=333120753]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "BattleState: null"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

@@ -1,0 +1,15 @@
+[gd_resource type="Theme" format=3 uid="uid://cyty4wimrsn4n"]
+
+[ext_resource type="FontFile" uid="uid://4f7f257qhct8" path="res://assets/fonts/power green.ttf" id="1_gf8ra"]
+
+[resource]
+GenderFemale/base_type = &"RichTextLabel"
+GenderFemale/colors/default_color = Color(0.972549, 0.34509805, 0.15686275, 1)
+GenderMale/base_type = &"RichTextLabel"
+GenderMale/colors/default_color = Color(0.1882353, 0.3764706, 0.84705883, 1)
+HBoxContainer/constants/separation = 0
+RichTextLabel/colors/default_color = Color(0.28235295, 0.28235295, 0.28235295, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.72156864, 0.72156864, 0.72156864, 1)
+RichTextLabel/constants/shadow_outline_size = 4
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/normal_font = ExtResource("1_gf8ra")

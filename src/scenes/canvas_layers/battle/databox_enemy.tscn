@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://krll6wt1ujdw"]
+
+[ext_resource type="Texture2D" uid="uid://cv0olssswaru" path="res://assets/graphics/ui/battle/databox_normal_foe.png" id="1_1w2ty"]
+[ext_resource type="Script" uid="uid://c5oq27wjq1kfr" path="res://src/scripts/scenes/canvas_layers/battle/databox_enemy.gd" id="2_lf5s5"]
+[ext_resource type="Theme" uid="uid://cyty4wimrsn4n" path="res://src/resources/battle_theme.tres" id="2_whhg6"]
+[ext_resource type="Texture2D" uid="uid://cc7ukphfc40sm" path="res://assets/graphics/ui/battle/overlay_lv.png" id="3_lf5s5"]
+[ext_resource type="Texture2D" uid="uid://bxc3nnwsuet4g" path="res://assets/graphics/ui/battle/icon_numbers.png" id="4_di60o"]
+[ext_resource type="Texture2D" uid="uid://bd77fgfq7mxdh" path="res://assets/graphics/ui/battle/overlay_hp.png" id="5_sr5he"]
+[ext_resource type="Texture2D" uid="uid://0aj3lmqn40n3" path="res://assets/graphics/ui/battle/icon_own.png" id="6_tkkek"]
+[ext_resource type="Texture2D" uid="uid://c4y8nrdag6wua" path="res://assets/graphics/ui/battle/icon_statuses.png" id="7_sfdi5"]
+[ext_resource type="Texture2D" uid="uid://bdyacfyr2sjdj" path="res://assets/graphics/ui/shiny.png" id="8_7qtux"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnckj"]
+atlas = ExtResource("4_di60o")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho3x1"]
+atlas = ExtResource("4_di60o")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61im3"]
+atlas = ExtResource("4_di60o")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf5fn"]
+atlas = ExtResource("5_sr5he")
+region = Rect2(0, 0, 96, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+atlas = ExtResource("7_sfdi5")
+region = Rect2(0, 0, 44, 16)
+
+[node name="DataboxEnemy" type="TextureRect" unique_id=436979408]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_1w2ty")
+stretch_mode = 2
+script = ExtResource("2_lf5s5")
+
+[node name="Name" type="RichTextLabel" parent="." unique_id=1891847969]
+clip_contents = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 4.0
+offset_right = 144.0
+offset_bottom = 30.0
+theme = ExtResource("2_whhg6")
+text = "0000000000"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="GenderMarker" type="RichTextLabel" parent="." unique_id=2100534404]
+clip_contents = false
+layout_mode = 0
+offset_left = 146.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 30.0
+theme = ExtResource("2_whhg6")
+theme_type_variation = &"GenderFemale"
+text = "♀"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Level" type="HBoxContainer" parent="." unique_id=1992684595]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 16.0
+offset_right = 230.0
+offset_bottom = 30.0
+theme = ExtResource("2_whhg6")
+
+[node name="Lv" type="TextureRect" parent="Level" unique_id=1993091513]
+layout_mode = 2
+texture = ExtResource("3_lf5s5")
+stretch_mode = 2
+
+[node name="NumHundred" type="TextureRect" parent="Level" unique_id=464083689]
+layout_mode = 2
+texture = SubResource("AtlasTexture_fnckj")
+stretch_mode = 2
+
+[node name="NumTen" type="TextureRect" parent="Level" unique_id=1214722321]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ho3x1")
+stretch_mode = 2
+
+[node name="NumOne" type="TextureRect" parent="Level" unique_id=1485535896]
+layout_mode = 2
+texture = SubResource("AtlasTexture_61im3")
+stretch_mode = 2
+
+[node name="HPBar" type="TextureProgressBar" parent="." unique_id=434349713]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 40.0
+offset_right = 214.0
+offset_bottom = 46.0
+value = 100.0
+texture_progress = SubResource("AtlasTexture_yf5fn")
+
+[node name="Caught" type="TextureRect" parent="." unique_id=1345472976]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 36.0
+offset_right = 38.0
+offset_bottom = 50.0
+texture = ExtResource("6_tkkek")
+stretch_mode = 2
+
+[node name="Status" type="TextureRect" parent="." unique_id=1908282855]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 36.0
+offset_right = 84.0
+offset_bottom = 52.0
+texture = SubResource("AtlasTexture_g4v7s")
+stretch_mode = 2
+
+[node name="Shiny" type="TextureRect" parent="." unique_id=2096171214]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 36.0
+offset_right = 236.0
+offset_bottom = 52.0
+texture = ExtResource("8_7qtux")
+stretch_mode = 2

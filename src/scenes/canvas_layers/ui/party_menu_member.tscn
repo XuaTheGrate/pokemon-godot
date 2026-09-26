@@ -1,0 +1,255 @@
+[gd_scene format=3 uid="uid://csy5e45t062ld"]
+
+[ext_resource type="Texture2D" uid="uid://d2iqqraya6h0f" path="res://assets/graphics/ui/party/panels.png" id="1_3ri13"]
+[ext_resource type="Script" uid="uid://c7up4l3wprqom" path="res://src/scripts/scenes/canvas_layers/ui/party_menu_member.gd" id="2_2yv40"]
+[ext_resource type="Texture2D" uid="uid://k6o3bwbveel1" path="res://assets/graphics/ui/party/icon_ball.png" id="4_nguy0"]
+[ext_resource type="Theme" uid="uid://cmak7fy66g2ku" path="res://src/resources/party_menu_theme.tres" id="5_b5oqq"]
+[ext_resource type="Texture2D" uid="uid://dt5f7ncdo4a46" path="res://assets/graphics/ui/party/overlay_lv.png" id="6_8ry4u"]
+[ext_resource type="Texture2D" uid="uid://nsus04qjfs3n" path="res://assets/graphics/ui/party/overlay_hp_bg.png" id="7_0stsj"]
+[ext_resource type="Texture2D" uid="uid://d3gga3240jm0p" path="res://assets/graphics/ui/party/overlay_hp.png" id="8_p88qx"]
+[ext_resource type="Texture2D" uid="uid://cv3i610sk06kv" path="res://assets/graphics/pokemon/icons/PIKACHU.png" id="9_2xeoe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmahs"]
+resource_local_to_scene = true
+atlas = ExtResource("1_3ri13")
+region = Rect2(0, 0, 256, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpha0"]
+resource_local_to_scene = true
+atlas = ExtResource("4_nguy0")
+region = Rect2(0, 0, 44, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+resource_local_to_scene = true
+atlas = ExtResource("7_0stsj")
+region = Rect2(0, 0, 138, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57qmd"]
+resource_local_to_scene = true
+atlas = ExtResource("8_p88qx")
+region = Rect2(0, 0, 96, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0u6y"]
+resource_local_to_scene = true
+atlas = ExtResource("9_2xeoe")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="Animation" id="Animation_qj2ki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 64, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_chjk5"]
+resource_name = "default"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(64, 0, 64, 64), Rect2(0, 0, 64, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(28, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_figch"]
+resource_name = "focused"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, -2), Vector2(32, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture:region")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 64, 64), Rect2(64, 0, 64, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuqoi"]
+_data = {
+&"RESET": SubResource("Animation_qj2ki"),
+&"default": SubResource("Animation_chjk5"),
+&"focused": SubResource("Animation_figch")
+}
+
+[node name="Party1" type="TextureRect" unique_id=1911551420]
+focus_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_mmahs")
+stretch_mode = 2
+script = ExtResource("2_2yv40")
+
+[node name="Base" type="Control" parent="." unique_id=1368429748]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ball" type="TextureRect" parent="Base" unique_id=1756396296]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_right = 54.0
+offset_bottom = 56.0
+texture = SubResource("AtlasTexture_dpha0")
+stretch_mode = 2
+
+[node name="NameLabel" type="RichTextLabel" parent="Base" unique_id=1294075918]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 92.0
+offset_top = 10.0
+offset_right = 128.0
+offset_bottom = 50.0
+theme = ExtResource("5_b5oqq")
+theme_type_variation = &"NameLabel"
+text = "asd"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Lv" type="TextureRect" parent="Base" unique_id=979196396]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 42.0
+offset_bottom = 84.0
+size_flags_vertical = 4
+texture = ExtResource("6_8ry4u")
+stretch_mode = 2
+
+[node name="LvNum" type="RichTextLabel" parent="Base" unique_id=1102930657]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 0
+offset_left = 42.0
+offset_top = 60.0
+offset_right = 72.0
+offset_bottom = 82.0
+theme = ExtResource("5_b5oqq")
+theme_type_variation = &"LevelLabel"
+text = "20"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HPBarBack" type="TextureRect" parent="Base" unique_id=712436292]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 90.0
+offset_top = 50.0
+offset_right = 228.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_g4v7s")
+stretch_mode = 2
+
+[node name="HPBar" type="TextureProgressBar" parent="Base" unique_id=1082157790]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 122.0
+offset_top = 52.0
+offset_right = 218.0
+offset_bottom = 60.0
+value = 100.0
+texture_progress = SubResource("AtlasTexture_57qmd")
+
+[node name="HPLabel" type="RichTextLabel" parent="Base" unique_id=388685290]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 0
+offset_left = 122.0
+offset_top = 58.0
+offset_right = 218.0
+offset_bottom = 84.0
+theme = ExtResource("5_b5oqq")
+theme_type_variation = &"NameLabel"
+text = "444 / 444"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="GenderMarker" type="RichTextLabel" parent="Base" unique_id=177801187]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 0
+offset_left = 220.0
+offset_top = 14.0
+offset_right = 232.0
+offset_bottom = 40.0
+theme = ExtResource("5_b5oqq")
+theme_type_variation = &"GenderFemale"
+text = "♀"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Icon" type="TextureRect" parent="Base" unique_id=865643789]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 28.0
+offset_right = 92.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_d0u6y")
+stretch_mode = 2
+
+[node name="IconAnim" type="AnimationPlayer" parent="Base/Icon" unique_id=2139634390]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_fuqoi")
+autoplay = &"default"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ce46bhe0eoia2"]
+
+[ext_resource type="Script" uid="uid://dxlqxvb35s376" path="res://src/scripts/scenes/canvas_layers/ui/overworld_ui_manager.gd" id="1_cnqj4"]
+[ext_resource type="PackedScene" uid="uid://bppo308wxlgju" path="res://src/scenes/canvas_layers/ui/pause_menu.tscn" id="2_7n5ae"]
+[ext_resource type="PackedScene" uid="uid://dfs6tg52ehew7" path="res://src/scenes/canvas_layers/ui/party_menu.tscn" id="3_7n5ae"]
+
+[node name="OverworldUIManager" type="CanvasLayer" unique_id=1419356964]
+process_mode = 3
+script = ExtResource("1_cnqj4")
+
+[node name="PauseMenu" parent="." unique_id=1177538951 node_paths=PackedStringArray("ui_default", "ui_pokemon") instance=ExtResource("2_7n5ae")]
+process_mode = 2
+visible = false
+ui_default = NodePath("..")
+ui_pokemon = NodePath("../PartyMenu")
+
+[node name="PartyMenu" parent="." unique_id=818273869 node_paths=PackedStringArray("return_state") instance=ExtResource("3_7n5ae")]
+process_mode = 2
+visible = false
+return_state = NodePath("../PauseMenu")

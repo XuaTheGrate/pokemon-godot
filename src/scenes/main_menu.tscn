@@ -1,0 +1,425 @@
+[gd_scene format=3 uid="uid://ck728ce2ry2a5"]
+
+[ext_resource type="Texture2D" uid="uid://c8etgvbsmeu21" path="res://assets/graphics/ui/mainmenu/bg.png" id="1_mob6k"]
+[ext_resource type="Script" uid="uid://x26tj6x2x0gm" path="res://src/scripts/scenes/main_menu.gd" id="2_chlrs"]
+[ext_resource type="Texture2D" uid="uid://da8aejck1wkj7" path="res://assets/graphics/ui/mainmenu/panels.png" id="2_rkeyg"]
+[ext_resource type="AudioStream" uid="uid://bq5y8yawapoi8" path="res://assets/audio/sounds/ui_focus.ogg" id="3_1ipax"]
+[ext_resource type="Theme" uid="uid://b8w0b84ksfsf2" path="res://src/resources/main_menu_theme.tres" id="3_iaawh"]
+[ext_resource type="Texture2D" uid="uid://8xg10lkiyghr" path="res://assets/graphics/player/player_m_walk.png" id="4_kp3xf"]
+[ext_resource type="AudioStream" uid="uid://duo7iw3m7g52n" path="res://assets/audio/sounds/ui_select.ogg" id="4_n5k5b"]
+[ext_resource type="Texture2D" uid="uid://cv3i610sk06kv" path="res://assets/graphics/pokemon/icons/PIKACHU.png" id="5_kp3xf"]
+[ext_resource type="Script" uid="uid://7xp4fy6sloyi" path="res://src/scripts/scenes/main_menu_button.gd" id="5_yrdre"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+atlas = ExtResource("2_rkeyg")
+region = Rect2(0, 0, 408, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf5fn"]
+atlas = ExtResource("4_kp3xf")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57qmd"]
+atlas = ExtResource("5_kp3xf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chlrs"]
+atlas = ExtResource("5_kp3xf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrdre"]
+atlas = ExtResource("5_kp3xf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klrpn"]
+atlas = ExtResource("5_kp3xf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ipax"]
+atlas = ExtResource("5_kp3xf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5k5b"]
+atlas = ExtResource("5_kp3xf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubq7q"]
+atlas = ExtResource("2_rkeyg")
+region = Rect2(0, 444, 408, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wcb6"]
+atlas = ExtResource("2_rkeyg")
+region = Rect2(0, 444, 408, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p8af"]
+atlas = ExtResource("2_rkeyg")
+region = Rect2(0, 444, 408, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8qaq"]
+atlas = ExtResource("2_rkeyg")
+region = Rect2(0, 444, 408, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp3xf"]
+atlas = ExtResource("2_rkeyg")
+region = Rect2(0, 444, 408, 46)
+
+[node name="MainMenu" type="Control" unique_id=409294248]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_iaawh")
+script = ExtResource("2_chlrs")
+
+[node name="GUIFocus" type="AudioStreamPlayer" parent="." unique_id=1477292612]
+stream = ExtResource("3_1ipax")
+bus = &"Sound"
+
+[node name="GUISelect" type="AudioStreamPlayer" parent="." unique_id=567936732]
+stream = ExtResource("4_n5k5b")
+bus = &"Sound"
+
+[node name="Bg" type="TextureRect" parent="." unique_id=2032854826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mob6k")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=617807457]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Scroll" type="ScrollContainer" parent="MarginContainer" unique_id=1323542301]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/Scroll" unique_id=1496555168]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 2
+
+[node name="Continue" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer" unique_id=212490175]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitGame")
+focus_neighbor_bottom = NodePath("../NewGame")
+focus_mode = 2
+texture = SubResource("AtlasTexture_g4v7s")
+stretch_mode = 2
+script = ExtResource("5_yrdre")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue" unique_id=444858300]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer" unique_id=1771399138]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer" unique_id=1303793931]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ContinueLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1702492245]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_iaawh")
+text = "Continue"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1180385350]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=675492520]
+layout_mode = 2
+
+[node name="PlayerIcon" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1010880161]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("AtlasTexture_yf5fn")
+stretch_mode = 2
+
+[node name="PlayerName" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1064335079]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"BlueLabel"
+text = "Red"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer" unique_id=211788183]
+layout_mode = 2
+
+[node name="BadgesLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1753291493]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_iaawh")
+text = "Badges:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="BadgesAmount" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2015090878]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("3_iaawh")
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1345949919]
+layout_mode = 2
+
+[node name="PokedexLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1139113539]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_iaawh")
+text = "Pokédex:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="PokedexAmount" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=801075474]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("3_iaawh")
+text = "0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1877473242]
+layout_mode = 2
+
+[node name="TimeLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1867919216]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_iaawh")
+text = "Time:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TimeAmount" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=999094121]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("3_iaawh")
+text = "0s"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer" unique_id=610967156]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer" unique_id=267190968]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+
+[node name="LocationLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1708590724]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_iaawh")
+text = "Lappet Town"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="PartyContainer" type="GridContainer" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer" unique_id=2104514905]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = -4
+theme_override_constants/v_separation = -12
+columns = 2
+
+[node name="Party1" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer/PartyContainer" unique_id=1676541517]
+layout_mode = 2
+texture = SubResource("AtlasTexture_57qmd")
+stretch_mode = 2
+
+[node name="Party2" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer/PartyContainer" unique_id=711292699]
+layout_mode = 2
+texture = SubResource("AtlasTexture_chlrs")
+stretch_mode = 2
+
+[node name="Party3" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer/PartyContainer" unique_id=222949886]
+layout_mode = 2
+texture = SubResource("AtlasTexture_yrdre")
+stretch_mode = 2
+
+[node name="Party4" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer/PartyContainer" unique_id=1703836154]
+layout_mode = 2
+texture = SubResource("AtlasTexture_klrpn")
+stretch_mode = 2
+
+[node name="Party5" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer/PartyContainer" unique_id=1719814024]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1ipax")
+stretch_mode = 2
+
+[node name="Party6" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer/Continue/HBoxContainer/VBoxContainer/PartyContainer" unique_id=657988342]
+layout_mode = 2
+texture = SubResource("AtlasTexture_n5k5b")
+stretch_mode = 2
+
+[node name="NewGame" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer" unique_id=472937904]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../SaveFiles")
+focus_mode = 2
+texture = SubResource("AtlasTexture_ubq7q")
+stretch_mode = 2
+script = ExtResource("5_yrdre")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/NewGame" unique_id=540407594]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/NewGame/MarginContainer" unique_id=529528654]
+layout_mode = 2
+text = "New Game"
+
+[node name="SaveFiles" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer" unique_id=2099936636]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../NewGame")
+focus_neighbor_bottom = NodePath("../Options")
+focus_mode = 2
+texture = SubResource("AtlasTexture_6wcb6")
+stretch_mode = 2
+script = ExtResource("5_yrdre")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/SaveFiles" unique_id=1821596253]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/SaveFiles/MarginContainer" unique_id=1399540904]
+layout_mode = 2
+text = "Save Files"
+
+[node name="Options" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer" unique_id=167921511]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../SaveFiles")
+focus_neighbor_bottom = NodePath("../Debug")
+focus_mode = 2
+texture = SubResource("AtlasTexture_2p8af")
+stretch_mode = 2
+script = ExtResource("5_yrdre")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/Options" unique_id=1948336098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Options/MarginContainer" unique_id=388668442]
+layout_mode = 2
+text = "Options"
+
+[node name="Debug" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer" unique_id=3717277]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../Options")
+focus_neighbor_bottom = NodePath("../QuitGame")
+focus_mode = 2
+texture = SubResource("AtlasTexture_v8qaq")
+stretch_mode = 2
+script = ExtResource("5_yrdre")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/Debug" unique_id=542846766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/Debug/MarginContainer" unique_id=1225140732]
+layout_mode = 2
+text = "Debug"
+
+[node name="QuitGame" type="TextureRect" parent="MarginContainer/Scroll/ButtonContainer" unique_id=534591076]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../Debug")
+focus_neighbor_bottom = NodePath("../Continue")
+focus_mode = 2
+texture = SubResource("AtlasTexture_kp3xf")
+stretch_mode = 2
+script = ExtResource("5_yrdre")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Scroll/ButtonContainer/QuitGame" unique_id=1760759407]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Scroll/ButtonContainer/QuitGame/MarginContainer" unique_id=650814411]
+layout_mode = 2
+text = "Quit Game"

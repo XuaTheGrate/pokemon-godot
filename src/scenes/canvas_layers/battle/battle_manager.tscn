@@ -1,0 +1,481 @@
+[gd_scene format=3 uid="uid://buuxenlnp44sq"]
+
+[ext_resource type="Script" uid="uid://chrm3r16bro8x" path="res://src/scripts/scenes/canvas_layers/battle/battle_manager.gd" id="1_lpay1"]
+[ext_resource type="Script" uid="uid://cquvw1kahw4ai" path="res://src/scripts/scenes/canvas_layers/battle/state_manager.gd" id="2_5bvh4"]
+[ext_resource type="Texture2D" uid="uid://c7an1vkcn872f" path="res://assets/graphics/battle/field_bg.png" id="2_ukqhs"]
+[ext_resource type="Script" uid="uid://dv1tekiil80qh" path="res://src/scripts/scenes/canvas_layers/battle/state_default.gd" id="3_4qv64"]
+[ext_resource type="Texture2D" uid="uid://dg34qfbvwlmmh" path="res://assets/graphics/battle/field_message.png" id="3_g4khm"]
+[ext_resource type="Script" uid="uid://dfnwmnvhk2wrs" path="res://src/scripts/scenes/canvas_layers/battle/state_intro.gd" id="4_btrv1"]
+[ext_resource type="PackedScene" uid="uid://cfkdpk862sow1" path="res://src/scenes/canvas_layers/battle/databox_ally.tscn" id="4_ukqhs"]
+[ext_resource type="Script" uid="uid://k24t4bykikyd" path="res://src/scripts/scenes/canvas_layers/battle/state_command.gd" id="5_gwgno"]
+[ext_resource type="Texture2D" uid="uid://gp3h03xutrm0" path="res://assets/graphics/ui/battle/overlay_message.png" id="5_rweda"]
+[ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="6_5bvh4"]
+[ext_resource type="Script" uid="uid://dh4ovsy5md6cu" path="res://src/scripts/scenes/canvas_layers/battle/state_fight.gd" id="6_lw0ya"]
+[ext_resource type="Theme" uid="uid://cyty4wimrsn4n" path="res://src/resources/battle_theme.tres" id="6_yw0wr"]
+[ext_resource type="Script" uid="uid://cvawlwj0wfbmx" path="res://src/scripts/scenes/canvas_layers/battle/state_waiting.gd" id="7_fhkv1"]
+[ext_resource type="Script" uid="uid://dauvknvpragcj" path="res://src/scripts/scenes/canvas_layers/battle/state_messages.gd" id="8_lgnut"]
+[ext_resource type="Script" uid="uid://dknkoc6oglkvv" path="res://src/scripts/scenes/canvas_layers/battle/state_wait_foe_switch.gd" id="9_6gdfe"]
+[ext_resource type="Texture2D" uid="uid://b6e68mnilaura" path="res://assets/graphics/pokemon/shadows/1.png" id="9_ag8v5"]
+[ext_resource type="Texture2D" uid="uid://clpj5x06kv0it" path="res://assets/graphics/battle/field_ally.png" id="9_nyr31"]
+[ext_resource type="PackedScene" uid="uid://krll6wt1ujdw" path="res://src/scenes/canvas_layers/battle/databox_enemy.tscn" id="9_ticj2"]
+[ext_resource type="Script" uid="uid://bn72in1g4urk8" path="res://src/scripts/scenes/canvas_layers/battle/state_force_switch.gd" id="10_ixe8a"]
+[ext_resource type="Texture2D" uid="uid://eg34fnf0ma53" path="res://assets/graphics/pokemon/front/RATTATA.png" id="10_ovpb7"]
+[ext_resource type="Script" uid="uid://btmoicypp6jsy" path="res://src/scripts/scenes/canvas_layers/battle/state_end_battle.gd" id="11_ngwlr"]
+[ext_resource type="Texture2D" uid="uid://vrtnycrpxts8" path="res://assets/graphics/battle/field_enemy.png" id="11_owq1r"]
+[ext_resource type="Texture2D" uid="uid://dte64poak8rea" path="res://assets/graphics/ui/battle/overlay_command.png" id="11_ticj2"]
+[ext_resource type="Texture2D" uid="uid://qonoowsu5c8d" path="res://assets/graphics/pokemon/back/PIKACHU.png" id="12_8qdqw"]
+[ext_resource type="Texture2D" uid="uid://bqhr1ebhqbucl" path="res://assets/graphics/ui/battle/cursor_command.png" id="12_yw0wr"]
+[ext_resource type="Texture2D" uid="uid://bk273jseisd4i" path="res://assets/graphics/ui/battle/overlay_fight.png" id="21_fhkv1"]
+[ext_resource type="Texture2D" uid="uid://bw81uwr4g0q1f" path="res://assets/graphics/ui/battle/cursor_fight.png" id="22_lgnut"]
+[ext_resource type="Texture2D" uid="uid://bfconyoimhtqi" path="res://assets/graphics/ui/types.png" id="23_6gdfe"]
+[ext_resource type="FontFile" uid="uid://f810jv2keqjl" path="res://assets/fonts/power green narrow.ttf" id="24_ixe8a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owq1r"]
+atlas = ExtResource("12_yw0wr")
+region = Rect2(0, 0, 130, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyr31"]
+atlas = ExtResource("12_yw0wr")
+region = Rect2(0, 92, 130, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_681co"]
+atlas = ExtResource("12_yw0wr")
+region = Rect2(0, 46, 130, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+atlas = ExtResource("12_yw0wr")
+region = Rect2(0, 138, 130, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw0ya"]
+atlas = ExtResource("22_lgnut")
+region = Rect2(0, 0, 192, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhkv1"]
+atlas = ExtResource("22_lgnut")
+region = Rect2(0, 0, 192, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgnut"]
+atlas = ExtResource("22_lgnut")
+region = Rect2(0, 0, 192, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf5fn"]
+atlas = ExtResource("22_lgnut")
+region = Rect2(0, 0, 192, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57qmd"]
+atlas = ExtResource("23_6gdfe")
+region = Rect2(0, 252, 64, 28)
+
+[node name="BattleManager" type="CanvasLayer" unique_id=2128692339 groups=["BattleManager"]]
+script = ExtResource("1_lpay1")
+
+[node name="StateManager" type="Node" parent="." unique_id=114323333 node_paths=PackedStringArray("default_state")]
+script = ExtResource("2_5bvh4")
+default_state = NodePath("noop")
+
+[node name="noop" type="Node" parent="StateManager" unique_id=176794331]
+script = ExtResource("3_4qv64")
+
+[node name="Intro" type="Node" parent="StateManager" unique_id=1466073217 node_paths=PackedStringArray("command_state")]
+script = ExtResource("4_btrv1")
+command_state = NodePath("../Command")
+
+[node name="Command" type="Node" parent="StateManager" unique_id=717626941 node_paths=PackedStringArray("fight_state")]
+script = ExtResource("5_gwgno")
+fight_state = NodePath("../Fight")
+
+[node name="Fight" type="Node" parent="StateManager" unique_id=1565178510 node_paths=PackedStringArray("waiting_state", "command_state")]
+script = ExtResource("6_lw0ya")
+waiting_state = NodePath("../Waiting")
+command_state = NodePath("../Command")
+
+[node name="TargetSelect" type="Node" parent="StateManager" unique_id=519949796]
+
+[node name="Bag" type="Node" parent="StateManager" unique_id=1086181182]
+
+[node name="Switch" type="Node" parent="StateManager" unique_id=1026841177]
+
+[node name="Waiting" type="Node" parent="StateManager" unique_id=670106901 node_paths=PackedStringArray("messages_state")]
+script = ExtResource("7_fhkv1")
+messages_state = NodePath("../Messages")
+
+[node name="Messages" type="Node" parent="StateManager" unique_id=1898942049 node_paths=PackedStringArray("command_state", "wait_foe_switch_state", "force_switch_state", "end_battle_state")]
+script = ExtResource("8_lgnut")
+command_state = NodePath("../Command")
+wait_foe_switch_state = NodePath("../WaitFoeSwitch")
+force_switch_state = NodePath("../ForceSwitch")
+end_battle_state = NodePath("../EndBattle")
+
+[node name="WaitFoeSwitch" type="Node" parent="StateManager" unique_id=756603571 node_paths=PackedStringArray("command_state", "end_battle_state")]
+script = ExtResource("9_6gdfe")
+command_state = NodePath("../Command")
+end_battle_state = NodePath("../EndBattle")
+
+[node name="ForceSwitch" type="Node" parent="StateManager" unique_id=1044862312 node_paths=PackedStringArray("command_state", "end_battle_state")]
+script = ExtResource("10_ixe8a")
+command_state = NodePath("../Command")
+end_battle_state = NodePath("../EndBattle")
+
+[node name="EndBattle" type="Node" parent="StateManager" unique_id=1587160435]
+script = ExtResource("11_ngwlr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=619539125]
+offset_left = -512.0
+offset_right = 512.0
+offset_bottom = 288.0
+theme = ExtResource("6_yw0wr")
+
+[node name="Bg" type="TextureRect" parent="HBoxContainer" unique_id=250642913]
+layout_mode = 2
+texture = ExtResource("2_ukqhs")
+stretch_mode = 2
+flip_h = true
+
+[node name="Bg2" type="TextureRect" parent="HBoxContainer" unique_id=1933623735]
+layout_mode = 2
+texture = ExtResource("2_ukqhs")
+stretch_mode = 2
+
+[node name="FieldEnemy" type="TextureRect" parent="." unique_id=97867201]
+offset_left = 256.0
+offset_top = 112.0
+offset_right = 512.0
+offset_bottom = 240.0
+texture = ExtResource("11_owq1r")
+stretch_mode = 2
+
+[node name="Shadow" type="TextureRect" parent="FieldEnemy" unique_id=1448522865]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -8.0
+offset_right = 26.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_ag8v5")
+stretch_mode = 2
+
+[node name="EnemySprite" type="TextureRect" parent="FieldEnemy" unique_id=36537105]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -160.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_ovpb7")
+stretch_mode = 2
+
+[node name="FieldAlly" type="TextureRect" parent="." unique_id=1313723496]
+offset_left = -142.0
+offset_top = 234.0
+offset_right = 370.0
+offset_bottom = 298.0
+texture = ExtResource("9_nyr31")
+stretch_mode = 2
+
+[node name="AllySprite" type="TextureRect" parent="FieldAlly" unique_id=1536495448]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -160.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("12_8qdqw")
+stretch_mode = 2
+
+[node name="MessageBg" type="TextureRect" parent="." unique_id=472633143]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_g4khm")
+stretch_mode = 2
+
+[node name="MessageBox" type="TextureRect" parent="MessageBg" unique_id=1150125243]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -96.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_rweda")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="MessageBg/MessageBox" unique_id=581112028]
+clip_contents = false
+layout_mode = 0
+offset_left = 26.0
+offset_top = 16.0
+offset_right = 486.0
+offset_bottom = 84.0
+theme = ExtResource("6_5bvh4")
+theme_override_constants/line_separation = 8
+text = "Hello, world!
+This is on the second line!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="DataboxAlly" parent="." unique_id=355662785 instance=ExtResource("4_ukqhs")]
+unique_name_in_owner = true
+offset_left = 268.0
+offset_top = 184.0
+offset_right = 528.0
+offset_bottom = 268.0
+
+[node name="DataboxEnemy" parent="." unique_id=436979408 instance=ExtResource("9_ticj2")]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_top = 36.0
+offset_right = 244.0
+offset_bottom = 98.0
+
+[node name="CommandBox" type="TextureRect" parent="." unique_id=2015031492]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("11_ticj2")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="CommandBox" unique_id=835184432]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 16.0
+offset_right = 226.0
+offset_bottom = 84.0
+theme = ExtResource("6_5bvh4")
+theme_override_constants/line_separation = 8
+text = "What will 0000000000 do?"
+fit_content = true
+scroll_active = false
+
+[node name="CommandGrid" type="GridContainer" parent="CommandBox" unique_id=1587295261]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 6.0
+offset_right = -4.0
+offset_bottom = 94.0
+grow_horizontal = 0
+theme_override_constants/h_separation = -4
+theme_override_constants/v_separation = -4
+columns = 2
+
+[node name="Fight" type="TextureRect" parent="CommandBox/CommandGrid" unique_id=1109680889]
+layout_mode = 2
+texture = SubResource("AtlasTexture_owq1r")
+stretch_mode = 2
+
+[node name="Bag" type="TextureRect" parent="CommandBox/CommandGrid" unique_id=625581347]
+layout_mode = 2
+texture = SubResource("AtlasTexture_nyr31")
+stretch_mode = 2
+
+[node name="Pokemon" type="TextureRect" parent="CommandBox/CommandGrid" unique_id=603973664]
+layout_mode = 2
+texture = SubResource("AtlasTexture_681co")
+stretch_mode = 2
+
+[node name="Run" type="TextureRect" parent="CommandBox/CommandGrid" unique_id=1116311493]
+layout_mode = 2
+texture = SubResource("AtlasTexture_g4v7s")
+stretch_mode = 2
+
+[node name="FightBox" type="TextureRect" parent="." unique_id=923872623]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -96.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("21_fhkv1")
+stretch_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FightBox" unique_id=709684764]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FightBox/HBoxContainer" unique_id=1950430769]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 6
+
+[node name="MovesContainer" type="GridContainer" parent="FightBox/HBoxContainer/MarginContainer" unique_id=1157305756]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 90)
+layout_mode = 2
+theme_override_constants/h_separation = -4
+theme_override_constants/v_separation = -4
+columns = 2
+
+[node name="Move1" type="TextureRect" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer" unique_id=550840009]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_lw0ya")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move1" unique_id=829039919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move1/MarginContainer" unique_id=1878262491]
+layout_mode = 2
+theme = ExtResource("6_yw0wr")
+text = "Pound"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="Move2" type="TextureRect" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer" unique_id=1006979019]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_fhkv1")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move2" unique_id=1626173419]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move2/MarginContainer" unique_id=1850365261]
+layout_mode = 2
+theme = ExtResource("6_yw0wr")
+text = "Pound"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="Move3" type="TextureRect" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer" unique_id=572464917]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_lgnut")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move3" unique_id=2104732848]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move3/MarginContainer" unique_id=1662286014]
+layout_mode = 2
+theme = ExtResource("6_yw0wr")
+text = "Pound"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="Move4" type="TextureRect" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer" unique_id=1286833787]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_yf5fn")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move4" unique_id=656295567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FightBox/HBoxContainer/MarginContainer/MovesContainer/Move4/MarginContainer" unique_id=1279445197]
+layout_mode = 2
+theme = ExtResource("6_yw0wr")
+text = "Pound"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FightBox/HBoxContainer" unique_id=296644284]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="MoveType" type="TextureRect" parent="FightBox/HBoxContainer/VBoxContainer" unique_id=2140096767]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+texture = SubResource("AtlasTexture_57qmd")
+stretch_mode = 2
+
+[node name="MovePP" type="RichTextLabel" parent="FightBox/HBoxContainer/VBoxContainer" unique_id=2112682829]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = ExtResource("6_yw0wr")
+theme_override_fonts/normal_font = ExtResource("24_ixe8a")
+text = "PP: 64/64"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="foe_command_submitted" from="." to="StateManager/Waiting" method="_on_battle_manager_foe_command_submitted"]

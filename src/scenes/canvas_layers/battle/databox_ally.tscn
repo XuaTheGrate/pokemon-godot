@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://cfkdpk862sow1"]
+
+[ext_resource type="Texture2D" uid="uid://b5ipuug4nktx1" path="res://assets/graphics/ui/battle/databox_normal.png" id="1_hvj2p"]
+[ext_resource type="Theme" uid="uid://cyty4wimrsn4n" path="res://src/resources/battle_theme.tres" id="2_tkh6j"]
+[ext_resource type="Script" uid="uid://dardwgvfffu0r" path="res://src/scripts/scenes/canvas_layers/battle/databox_ally.gd" id="2_vu3de"]
+[ext_resource type="Texture2D" uid="uid://cc7ukphfc40sm" path="res://assets/graphics/ui/battle/overlay_lv.png" id="3_7cdei"]
+[ext_resource type="Texture2D" uid="uid://bxc3nnwsuet4g" path="res://assets/graphics/ui/battle/icon_numbers.png" id="4_yfrdv"]
+[ext_resource type="Texture2D" uid="uid://c4y8nrdag6wua" path="res://assets/graphics/ui/battle/icon_statuses.png" id="5_hh131"]
+[ext_resource type="Texture2D" uid="uid://bd77fgfq7mxdh" path="res://assets/graphics/ui/battle/overlay_hp.png" id="5_y1i14"]
+[ext_resource type="Texture2D" uid="uid://c15lvevl4uucb" path="res://assets/graphics/ui/battle/overlay_exp.png" id="6_vu3de"]
+[ext_resource type="Texture2D" uid="uid://bdyacfyr2sjdj" path="res://assets/graphics/ui/shiny.png" id="8_klck6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1i14"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vu3de"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf5fn"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klck6"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0i8u"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in41j"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(160, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cumga"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1rih"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afohd"]
+atlas = ExtResource("4_yfrdv")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gngh"]
+atlas = ExtResource("5_y1i14")
+region = Rect2(0, 0, 96, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57qmd"]
+atlas = ExtResource("5_hh131")
+region = Rect2(0, 0, 44, 16)
+
+[node name="DataboxAlly" type="TextureRect" unique_id=355662785]
+texture = ExtResource("1_hvj2p")
+stretch_mode = 2
+script = ExtResource("2_vu3de")
+
+[node name="Name" type="RichTextLabel" parent="." unique_id=1387750754]
+clip_contents = false
+layout_mode = 0
+offset_left = 38.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 30.0
+theme = ExtResource("2_tkh6j")
+text = "0000000000"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="GenderMarker" type="RichTextLabel" parent="." unique_id=1464092223]
+clip_contents = false
+layout_mode = 0
+offset_left = 160.0
+offset_top = 4.0
+offset_right = 172.0
+offset_bottom = 30.0
+theme = ExtResource("2_tkh6j")
+theme_type_variation = &"GenderMale"
+text = "♂"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Level" type="HBoxContainer" parent="." unique_id=788837058]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 16.0
+offset_right = 244.0
+offset_bottom = 30.0
+theme = ExtResource("2_tkh6j")
+
+[node name="Lv" type="TextureRect" parent="Level" unique_id=76422463]
+layout_mode = 2
+texture = ExtResource("3_7cdei")
+stretch_mode = 2
+
+[node name="NumHundred" type="TextureRect" parent="Level" unique_id=1625550235]
+layout_mode = 2
+texture = SubResource("AtlasTexture_g4v7s")
+stretch_mode = 2
+
+[node name="NumTen" type="TextureRect" parent="Level" unique_id=801268379]
+layout_mode = 2
+texture = SubResource("AtlasTexture_y1i14")
+stretch_mode = 2
+
+[node name="NumOne" type="TextureRect" parent="Level" unique_id=1381177524]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vu3de")
+stretch_mode = 2
+
+[node name="HP" type="HBoxContainer" parent="." unique_id=2090537267]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 54.0
+offset_right = 232.0
+offset_bottom = 68.0
+theme = ExtResource("2_tkh6j")
+alignment = 2
+
+[node name="CurrentHundred" type="TextureRect" parent="HP" unique_id=925003424]
+layout_mode = 2
+texture = SubResource("AtlasTexture_yf5fn")
+stretch_mode = 2
+
+[node name="CurrentTen" type="TextureRect" parent="HP" unique_id=1134462153]
+layout_mode = 2
+texture = SubResource("AtlasTexture_klck6")
+stretch_mode = 2
+
+[node name="CurrentOne" type="TextureRect" parent="HP" unique_id=58043496]
+layout_mode = 2
+texture = SubResource("AtlasTexture_e0i8u")
+stretch_mode = 2
+
+[node name="Slash" type="TextureRect" parent="HP" unique_id=892883572]
+layout_mode = 2
+texture = SubResource("AtlasTexture_in41j")
+stretch_mode = 2
+
+[node name="MaxHundred" type="TextureRect" parent="HP" unique_id=1042197060]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cumga")
+stretch_mode = 2
+
+[node name="MaxTen" type="TextureRect" parent="HP" unique_id=801493232]
+layout_mode = 2
+texture = SubResource("AtlasTexture_x1rih")
+stretch_mode = 2
+
+[node name="MaxOne" type="TextureRect" parent="HP" unique_id=2068276713]
+layout_mode = 2
+texture = SubResource("AtlasTexture_afohd")
+stretch_mode = 2
+
+[node name="HPBar" type="TextureProgressBar" parent="." unique_id=1885516613]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 40.0
+offset_right = 232.0
+offset_bottom = 46.0
+value = 100.0
+texture_progress = SubResource("AtlasTexture_3gngh")
+
+[node name="ExpBar" type="TextureProgressBar" parent="." unique_id=1702357967]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 74.0
+offset_right = 232.0
+offset_bottom = 78.0
+value = 100.0
+texture_progress = ExtResource("6_vu3de")
+
+[node name="Status" type="TextureRect" parent="." unique_id=1163825554]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 36.0
+offset_right = 102.0
+offset_bottom = 52.0
+texture = SubResource("AtlasTexture_57qmd")
+stretch_mode = 2
+
+[node name="Shiny" type="TextureRect" parent="." unique_id=1022438728]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 36.0
+offset_right = 42.0
+offset_bottom = 52.0
+texture = ExtResource("8_klck6")
+stretch_mode = 2

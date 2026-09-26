@@ -1,0 +1,20 @@
+[gd_resource type="Theme" format=3 uid="uid://cm5xjdbtassus"]
+
+[ext_resource type="Texture2D" uid="uid://beyccjccc6xx1" path="res://assets/graphics/ui/speech/speech hgss 1.png" id="1_d4c8c"]
+[ext_resource type="FontFile" uid="uid://4f7f257qhct8" path="res://assets/fonts/power green.ttf" id="2_q1f20"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yf5fn"]
+texture = ExtResource("1_d4c8c")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 44.0
+texture_margin_bottom = 16.0
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_yf5fn")
+RichTextLabel/colors/default_color = Color(0.3137255, 0.3137255, 0.34509805, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.627451, 0.627451, 0.65882355, 1)
+RichTextLabel/constants/line_separation = 4
+RichTextLabel/constants/shadow_outline_size = 4
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/normal_font = ExtResource("2_q1f20")

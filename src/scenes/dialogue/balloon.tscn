@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://dwm15x87pe"]
+
+[ext_resource type="Script" uid="uid://bpywd0vmmtyhm" path="res://src/scenes/dialogue/balloon.gd" id="1_36de5"]
+[ext_resource type="Theme" uid="uid://cm5xjdbtassus" path="res://src/resources/speech_theme.tres" id="2_5jk4f"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="3_72ixx"]
+[ext_resource type="Texture2D" uid="uid://dfpc0edsqg5dj" path="res://assets/graphics/ui/pause_arrow.png" id="4_0o01s"]
+[ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="5_6fhbb"]
+[ext_resource type="Texture2D" uid="uid://bigpbdu8vgb6c" path="res://assets/graphics/ui/sel_arrow.png" id="7_tr6aj"]
+[ext_resource type="Script" uid="uid://beqjfptakl6g7" path="res://src/scenes/dialogue/response.gd" id="7_vkimd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njdpu"]
+atlas = ExtResource("4_0o01s")
+region = Rect2(0, 0, 20, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fhbb"]
+atlas = ExtResource("4_0o01s")
+region = Rect2(20, 0, 20, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr6aj"]
+atlas = ExtResource("4_0o01s")
+region = Rect2(40, 0, 20, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkimd"]
+atlas = ExtResource("4_0o01s")
+region = Rect2(60, 0, 20, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njdpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fhbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr6aj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkimd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 7.5
+}]
+
+[node name="ExampleBalloon" type="CanvasLayer" unique_id=38036521]
+process_mode = 3
+layer = 100
+script = ExtResource("1_36de5")
+next_action = &"Accept"
+skip_action = &"Cancel"
+
+[node name="Balloon" type="Control" parent="." unique_id=154399927]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_5jk4f")
+
+[node name="MarginContainer" type="MarginContainer" parent="Balloon" unique_id=1302081376]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Balloon/MarginContainer" unique_id=2145270309]
+clip_children = 2
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Balloon/MarginContainer/PanelContainer" unique_id=903640783]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer" unique_id=1685890612]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1890134056]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1301798052 instance=ExtResource("2_a8ve6")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(414, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Dialogue..."
+
+[node name="Control" type="Control" parent="Balloon" unique_id=418507161]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -44.0
+offset_right = -14.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Progress" type="AnimatedSprite2D" parent="Balloon/Control" unique_id=1401413956]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+centered = false
+
+[node name="PanelContainer" type="PanelContainer" parent="Balloon" unique_id=1065867213]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -122.0
+offset_bottom = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("5_6fhbb")
+
+[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/PanelContainer" unique_id=1801308483 node_paths=PackedStringArray("response_template")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 2
+alignment = 1
+script = ExtResource("3_72ixx")
+response_template = NodePath("ExampleResponse")
+
+[node name="ExampleResponse" type="HBoxContainer" parent="Balloon/PanelContainer/ResponsesMenu" unique_id=766680908]
+layout_mode = 2
+script = ExtResource("7_vkimd")
+
+[node name="Cursor" type="TextureRect" parent="Balloon/PanelContainer/ResponsesMenu/ExampleResponse" unique_id=163560667]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("7_tr6aj")
+stretch_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Balloon/PanelContainer/ResponsesMenu/ExampleResponse" unique_id=1133052611]
+clip_contents = false
+layout_mode = 2
+text = "Example"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1162558754]
+unique_name_in_owner = true
+
+[node name="CharacterLabel" type="RichTextLabel" parent="." unique_id=1280088182]
+unique_name_in_owner = true
+offset_right = 1.0
+offset_bottom = 40.0
+
+[connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="response_selected" from="Balloon/PanelContainer/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
+[connection signal="focus_entered" from="Balloon/PanelContainer/ResponsesMenu/ExampleResponse" to="Balloon/PanelContainer/ResponsesMenu/ExampleResponse" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Balloon/PanelContainer/ResponsesMenu/ExampleResponse" to="Balloon/PanelContainer/ResponsesMenu/ExampleResponse" method="_on_focus_exited"]

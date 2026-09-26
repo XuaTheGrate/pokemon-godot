@@ -1,0 +1,16 @@
+[gd_resource type="Theme" format=3 uid="uid://b8w0b84ksfsf2"]
+
+[ext_resource type="FontFile" uid="uid://4f7f257qhct8" path="res://assets/fonts/power green.ttf" id="1_qg4rl"]
+
+[resource]
+BlueLabel/base_type = &"RichTextLabel"
+BlueLabel/colors/default_color = Color(0.21960784, 0.627451, 0.972549, 1)
+BlueLabel/colors/font_shadow_color = Color(0.21960784, 0.40784314, 0.65882355, 1)
+RedLabel/base_type = &"RichTextLabel"
+RedLabel/colors/default_color = Color(0.9411765, 0.28235295, 0.34509805, 1)
+RedLabel/colors/font_shadow_color = Color(0.627451, 0.2509804, 0.2509804, 1)
+RichTextLabel/colors/default_color = Color(0.9098039, 0.9098039, 0.9098039, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+RichTextLabel/constants/shadow_outline_size = 4
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/normal_font = ExtResource("1_qg4rl")

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://sdiid5de54iy"]
+
+[ext_resource type="SpriteFrames" uid="uid://clr1mn8he7uwv" path="res://src/resources/player/sprite_frames_m.tres" id="1_cusn3"]
+[ext_resource type="Script" uid="uid://cbt56i628mrjn" path="res://src/scripts/scenes/player/player.gd" id="1_hwyk6"]
+[ext_resource type="Script" uid="uid://cok4ar3ahv7ax" path="res://src/scripts/scenes/player/player_state_machine.gd" id="3_l2v1k"]
+[ext_resource type="Script" uid="uid://bu481d6qkc6gi" path="res://src/scripts/scenes/player/player_state_idle.gd" id="4_l2v1k"]
+[ext_resource type="Script" uid="uid://0ehypd41imc0" path="res://src/scripts/scenes/player/player_state_walk.gd" id="5_ya6j6"]
+
+[sub_resource type="Gradient" id="Gradient_ya6j6"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_33x8s"]
+gradient = SubResource("Gradient_ya6j6")
+
+[sub_resource type="SphereMesh" id="SphereMesh_57qmd"]
+radius = 14.0
+height = 12.0
+radial_segments = 4
+
+[sub_resource type="MeshTexture" id="MeshTexture_yf5fn"]
+mesh = SubResource("SphereMesh_57qmd")
+base_texture = SubResource("GradientTexture1D_33x8s")
+image_size = Vector2(1, 1)
+
+[node name="Player" type="Node2D" unique_id=444939784 groups=["Player"]]
+y_sort_enabled = true
+script = ExtResource("1_hwyk6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=848917796]
+sprite_frames = ExtResource("1_cusn3")
+autoplay = "default"
+centered = false
+offset = Vector2(0, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=348116289]
+self_modulate = Color(0, 0, 0, 0.23137255)
+y_sort_enabled = true
+position = Vector2(0, -1)
+texture = SubResource("MeshTexture_yf5fn")
+centered = false
+offset = Vector2(16, 28)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1400959680]
+position = Vector2(16, 16)
+target_position = Vector2(0, 32)
+
+[node name="State" type="Node" parent="." unique_id=55299275 node_paths=PackedStringArray("default_state")]
+script = ExtResource("3_l2v1k")
+default_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="State" unique_id=137724285 node_paths=PackedStringArray("walk_state")]
+script = ExtResource("4_l2v1k")
+walk_state = NodePath("../Walk")
+
+[node name="Walk" type="Node" parent="State" unique_id=1147859763 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("5_ya6j6")
+idle_state = NodePath("../Idle")
