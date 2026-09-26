@@ -41,7 +41,7 @@ var rand: RandomNumberGenerator
 
 #region Trainer Info
 var trainer_gender := 0
-var trainer_name := "PLACEHOLDER"
+var trainer_name := "PLACEHOLDE"
 var trainer_party: Array[Battler] = []
 var trainer_money: int = 0
 var save_playtime: int = 0
@@ -62,9 +62,6 @@ func has_valid_switch_target() -> bool:
 
 func _ready() -> void:
 	rand = RandomNumberGenerator.new()
-	
-	if OS.has_feature("editor") and trainer_party.is_empty():
-		trainer_party.assign(template_party)
 	
 	var _recompile := TypesManager.flag_recompile \
 		or MovesManager.flag_recompile \

@@ -49,7 +49,7 @@ func _handle_selection(node: Control) -> void:
 	prints("HANDLE", node)
 	match node.name:
 		"Continue": _handle_continue()
-		"NewGame": pass
+		"NewGame": _new_game()
 		"SaveFiles": pass
 		"Options": pass
 		"Debug": pass
@@ -60,6 +60,17 @@ func _handle_selection(node: Control) -> void:
 func _handle_continue() -> void:
 	TransitionManager.fade_in()
 	await TransitionManager.animation_finished
+	
+	GameData.trainer_name = _temp_save_file.trainer_name
+	GameData.trainer_gender = _temp_save_file.trainer_gender
+	GameData.trainer_money = _temp_save_file.money
+	GameData.trainer_party.assign(_temp_save_file.party)
+	
 	var ow: OverworldManager = load(overworld).instantiate()
 	ow.set_continue_map_data(_temp_save_file.map_id, _temp_save_file.map_position)
-	get_tree().change_scene_to_node(ow)
+	get_tree().change_scene_to_node.call_deferred(ow)
+
+func _new_game() -> void:
+	TransitionManager.fade_in()
+	await TransitionManager.animation_finished
+	get_tree().change_scene_to_file.call_deferred("res://src/scenes/trainer_setup.tscn")

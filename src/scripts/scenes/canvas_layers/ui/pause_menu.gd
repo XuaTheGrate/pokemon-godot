@@ -24,7 +24,10 @@ var current: HBoxContainer:
 
 func enter(default := false) -> void:
 	# TODO: make certain options appear/disappear
+	%Pokemon.visible = GameData.trainer_party.size() > 0
 	%Debug.visible = OS.has_feature("editor")
+	%TrainerCard/Label.text = GameData.trainer_name
+	
 	update()
 	visible = true
 	if default:

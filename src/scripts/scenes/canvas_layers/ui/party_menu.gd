@@ -4,6 +4,18 @@ extends UIState
 @export var return_state: UIState
 
 func enter(_default := false) -> void:
+	for i in 6:
+		var battler: Battler
+		
+		if i >= GameData.trainer_party.size():
+			battler = null
+		else:
+			battler = GameData.trainer_party[i]
+			
+		var node := %PartyGrid.get_child(i)
+		node.battler = battler
+		node.update()
+	
 	%Party1.grab_focus()
 	visible = true
 	if TransitionManager.transitioned_in:

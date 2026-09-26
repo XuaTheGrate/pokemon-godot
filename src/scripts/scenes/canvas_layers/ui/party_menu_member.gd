@@ -3,7 +3,7 @@ extends TextureRect
 @export var first := false
 @export var battler: Battler
 
-func _ready() -> void:
+func update() -> void:
 	if not first:
 		texture.region.position.x = 256.0
 	
@@ -11,11 +11,11 @@ func _ready() -> void:
 		texture.region.position.x = 512.0
 		$Base.visible = false
 		focus_mode = Control.FOCUS_NONE
+		return
 	
-	update()
-
-func update() -> void:
-	if battler == null: return
+	$Base.visible = true
+	focus_mode = Control.FOCUS_ALL
+	texture.region.position.x = 0.0
 	%NameLabel.text = battler.display_name
 	%LvNum.text = str(battler.level)
 	%HPBar.max_value = battler.stats.hp
