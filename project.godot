@@ -120,8 +120,5 @@ locale/translations_pot_files=PackedStringArray("res://src/resources/dialogue/ge
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/anisotropic_filtering_level=0
 textures/decals/filter=0
