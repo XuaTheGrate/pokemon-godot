@@ -52,8 +52,12 @@ func commit_save() -> void:
 	save.playtime = GameData.save_playtime
 	
 	save.map_id = OverworldManager.instance.get_map_uid(OverworldManager.instance.get_current_map())
-	# TODO: this might be offset based on loaded map chunks
-	save.map_position = OverworldManager.instance.player.global_position
+	
+	var offset_pos: Vector2 = Vector2(
+		OverworldManager.instance.player.global_position.x + (-OverworldManager.instance.get_current_map().global_position.x),
+		OverworldManager.instance.player.global_position.y + (-OverworldManager.instance.get_current_map().global_position.y)
+	)
+	save.map_position = offset_pos
 	
 	# TODO
 	# save.bag
