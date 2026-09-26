@@ -1,0 +1,58 @@
+~ start
+Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => start
+- End the conversation => END
+Nathan: For more information see the online documentation.
+=> END
+
+~ setup_start
+Oak: Hello! Sorry to keep you waiting!
+Oak: Welcome to the world of Pokémon.
+Oak: My name is Oak.
+Oak: People call me the Pokémon Professor.
+=> setup_help
+
+~ setup_help
+Oak: If you need help, I am certainly capable of giving it.
+- Controls
+	Oak: TODO
+	=> setup_help
+- Adventure
+	Oak: TODO
+	=> setup_help
+- No info needed
+$> Setup.show_marill()
+Oak: This world is inhabited by creatures we call Pokémon.
+Oak: People and Pokémon live together by supporting each other.
+Oak: Some people play with Pokémon, some battle with them.
+$> Setup.show_oak()
+Oak: But we don't know everything about Pokémon yet.
+Oak: There are still many mysteries to solve.
+Oak: That's why I study Pokémon every day.
+$> Setup.hide_all()
+Oak: Are you a boy or a girl?
+- Boy
+	$> Setup.show_boy()
+- Girl
+	$> Setup.show_girl()
+Oak: Now what did you say your name was?
+=> name_input
+
+~ name_input
+$> Setup.get_name_input()
+Oak: So you're {{Setup.temp_name}}?
+- Yes
+- No
+	Oak: What is your name?
+	=> name_input
+Oak: {{Setup.temp_name}}, are you ready?
+Oak: Your very own Pokémon story is about to unfold.
+Oak: You'll face fun times and tough challenges.
+Oak: A world full of dreams and adventures with Pokémon awaits! Let's go!
+$>> Setup.finalize()
+=> END

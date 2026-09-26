@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bhed5ebenwxpc"
+path="res://.godot/imported/trainer_setup.dialogue-9fd761acb044fdec804590da14558818.tres"
+
+[deps]
+
+source_file="res://src/resources/dialogue/trainer_setup.dialogue"
+dest_files=["res://.godot/imported/trainer_setup.dialogue-9fd761acb044fdec804590da14558818.tres"]
+
+[params]
+
+defaults=true

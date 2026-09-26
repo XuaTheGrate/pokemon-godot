@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://dplajjbay0o8u"]
+
+[ext_resource type="Texture2D" uid="uid://c67pt2qk78wkg" path="res://assets/graphics/trainer_setup/introbg.png" id="1_crxep"]
+[ext_resource type="Script" uid="uid://bkyne0lfoosv7" path="res://src/scripts/scenes/trainer_setup.gd" id="1_y0os5"]
+[ext_resource type="Texture2D" uid="uid://bhxblbgwhxjbb" path="res://assets/graphics/trainer_setup/introbase.png" id="2_yd70d"]
+[ext_resource type="Texture2D" uid="uid://l4uyrtjqe377" path="res://assets/graphics/trainer_setup/introOak.png" id="3_y0os5"]
+[ext_resource type="Texture2D" uid="uid://bfk25l27ha1ry" path="res://assets/graphics/trainer_setup/introMarill.png" id="4_aybba"]
+[ext_resource type="Texture2D" uid="uid://h8455aj066vq" path="res://assets/graphics/trainer_setup/introBoy.png" id="5_vdjki"]
+[ext_resource type="Texture2D" uid="uid://cx6q7n25aqgbi" path="res://assets/graphics/trainer_setup/introGirl.png" id="6_5v0gi"]
+
+[node name="TrainerSetup" type="Control" unique_id=1791798911]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_y0os5")
+start_map = "uid://c5cvujac6nnut"
+start_position = Vector2(160, 160)
+
+[node name="Bg" type="TextureRect" parent="." unique_id=152783100]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_crxep")
+stretch_mode = 2
+
+[node name="Base" type="TextureRect" parent="." unique_id=350302368]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 64)
+mouse_filter = 2
+texture = ExtResource("2_yd70d")
+stretch_mode = 3
+
+[node name="Oak" type="TextureRect" parent="." unique_id=1741392606]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-1, -20)
+mouse_filter = 2
+texture = ExtResource("3_y0os5")
+stretch_mode = 3
+
+[node name="Marill" type="TextureRect" parent="." unique_id=1429747094]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 28)
+mouse_filter = 2
+texture = ExtResource("4_aybba")
+stretch_mode = 3
+
+[node name="Boy" type="TextureRect" parent="." unique_id=456923958]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -14)
+mouse_filter = 2
+texture = ExtResource("5_vdjki")
+stretch_mode = 3
+
+[node name="Girl" type="TextureRect" parent="." unique_id=1968542450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -14)
+mouse_filter = 2
+texture = ExtResource("6_5v0gi")
+stretch_mode = 3
+
+[node name="NameInput" type="LineEdit" parent="." unique_id=2055640509]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -15.5
+offset_right = 90.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+focus_behavior_recursive = 2
+mouse_behavior_recursive = 2
+placeholder_text = "Name"
+max_length = 10
+context_menu_enabled = false
+emoji_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+caret_blink = true
