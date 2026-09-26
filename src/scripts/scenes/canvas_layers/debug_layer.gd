@@ -20,10 +20,8 @@ func _physics_process(_delta: float) -> void:
 	%FPS.text = "[color=#%s]FPS: %s[/color]" % [color.to_html(), Engine.get_frames_per_second()]
 	
 	if get_tree().paused:
-		$HBoxContainer.alignment = BoxContainer.ALIGNMENT_BEGIN
 		%Paused.text = "[color=red]Paused[/color]"
 	else:
-		$HBoxContainer.alignment = BoxContainer.ALIGNMENT_END
 		%Paused.text = "[color=green]Unpaused[/color]"
 	
 	var player: Player = get_tree().get_first_node_in_group(&"Player")
@@ -42,6 +40,7 @@ func _physics_process(_delta: float) -> void:
 		var state: UIState = owui.current_state
 		if state != null:
 			%UIState.text = "UIState: %s" % state.name
+			$HBoxContainer.alignment = HBoxContainer.ALIGNMENT_BEGIN if state.name == "PauseMenu" else HBoxContainer.ALIGNMENT_END
 		else:
 			%UIState.text = "[color=red]UIState: null[/color]"
 	else:
