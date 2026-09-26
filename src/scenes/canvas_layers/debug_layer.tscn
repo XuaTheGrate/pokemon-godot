@@ -13,18 +13,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1723214272]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1170442991]
 layout_mode = 2
+mouse_filter = 2
 alignment = 2
 
 [node name="FPS" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=429280]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "FPS: null"
@@ -36,6 +40,7 @@ horizontal_alignment = 2
 [node name="Paused" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=730402971]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "Paused"
@@ -47,6 +52,7 @@ horizontal_alignment = 2
 [node name="PlayerState" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=1633059798]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "PlayerState: null"
@@ -58,6 +64,7 @@ horizontal_alignment = 2
 [node name="UIState" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=242715016]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "UIState: null"
@@ -69,6 +76,7 @@ horizontal_alignment = 2
 [node name="BattleState" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=333120753]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "BattleState: null"
