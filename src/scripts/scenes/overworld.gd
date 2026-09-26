@@ -24,12 +24,10 @@ func _init() -> void:
 	instance = self
 
 func _ready() -> void:
-	if get_tree().root == get_parent():
-		player.global_position = default_position
-		load_map_connected(default_map)
+	if _temp_map_id != "":
+		load_map_connected(_temp_map_id, _temp_map_pos)
 	else:
-		if _temp_map_id != "":
-			load_map_connected(_temp_map_id, _temp_map_pos)
+		load_map_connected(default_map, default_position)
 	TransitionManager.fade_out()
 
 func get_current_map() -> Map:
@@ -49,13 +47,13 @@ func load_map_connected(map: String, player_position: Variant = null) -> void:
 	
 	var new_map: Map
 	if _loaded_maps.has(map):
-		prints("Map", map, "already loaded")
 		new_map = _loaded_maps[map]
+		prints("Map", new_map.map_name, "already loaded")
 	else:
 		new_map = load(map).instantiate()
 		add_child(new_map)
 		_loaded_maps[map] = new_map
-		prints("Loading new map", map)
+		prints("Loading new map", new_map.map_name)
 	
 	var keep_maps: Array[String] = []
 	for i in new_map.map_connections:
@@ -66,7 +64,7 @@ func load_map_connected(map: String, player_position: Variant = null) -> void:
 		if c is Map:
 			var uid := get_map_uid(c)
 			if not keep_maps.has(uid) and uid != map:
-				prints("Queueing", uid, "for deletion")
+				prints("Queueing", c.map_name, "for deletion")
 				c.queue_free()
 				_loaded_maps.erase(uid)
 	
@@ -76,7 +74,7 @@ func load_map_connected(map: String, player_position: Variant = null) -> void:
 			connected_map.global_position = new_map.global_position + i.offset
 			add_child(connected_map)
 			_loaded_maps[i.map] = connected_map
-			prints("Loading connected map", i.map)
+			prints("Loading connected map", connected_map.map_name)
 	
 	_map_bounds = new_map.get_bounds()
 	if player_position != null and typeof(player_position) == TYPE_VECTOR2:
