@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://bu481d6qkc6gi" path="res://src/scripts/scenes/player/player_state_idle.gd" id="4_l2v1k"]
 [ext_resource type="Script" uid="uid://0ehypd41imc0" path="res://src/scripts/scenes/player/player_state_walk.gd" id="5_ya6j6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(31, 31)
+
 [node name="Player" type="Node2D" unique_id=444939784 groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_hwyk6")
@@ -16,8 +19,9 @@ autoplay = "default"
 centered = false
 offset = Vector2(0, -16)
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1400959680]
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1655715628]
 position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_g4v7s")
 target_position = Vector2(0, 32)
 
 [node name="State" type="Node" parent="." unique_id=55299275 node_paths=PackedStringArray("default_state")]

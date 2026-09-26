@@ -7,16 +7,16 @@ extends Node2D
 var current_direction := Vector2.DOWN:
 	set(value):
 		current_direction = value
-		raycast.target_position = Vector2(32.0, 32.0) * value
+		shapecast.target_position = Vector2(32.0, 32.0) * value
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var raycast: RayCast2D = $RayCast2D
+@onready var shapecast: ShapeCast2D = $ShapeCast2D
 
 signal end_step
 
 func is_blocked() -> bool:
-	raycast.force_raycast_update()
-	return raycast.is_colliding()
+	shapecast.force_shapecast_update()
+	return shapecast.is_colliding()
 
 func is_moving() -> bool:
 	# TODO: support surfing
