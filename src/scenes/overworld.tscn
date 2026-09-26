@@ -59,6 +59,7 @@ process_callback = 0
 limit_enabled = false
 
 [node name="TownPopup" type="CanvasLayer" parent="." unique_id=1253430389 node_paths=PackedStringArray("label")]
+process_mode = 3
 script = ExtResource("4_n3ksd")
 label = NodePath("PanelContainer/MarginContainer/RichTextLabel")
 
