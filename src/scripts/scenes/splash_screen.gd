@@ -6,6 +6,10 @@ var _can_skip := false
 var _current_splash := 0
 
 func _ready() -> void:
+	if OS.has_feature("editor"):
+		_goto_main(false)
+		return
+	
 	$Splash1.visible = true
 	$Splash2.visible = false
 	$Title.visible = false
@@ -45,4 +49,4 @@ func _on_fade_complete(out: bool) -> void:
 	TransitionManager.fade_out()
 
 func _goto_main(_out: bool):
-	get_tree().change_scene_to_file(main_menu)
+	get_tree().change_scene_to_file.call_deferred(main_menu)
