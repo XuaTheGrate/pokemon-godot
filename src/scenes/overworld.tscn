@@ -3,6 +3,45 @@
 [ext_resource type="Script" uid="uid://b8ccw7txns1yj" path="res://src/scripts/scenes/overworld.gd" id="1_n4orj"]
 [ext_resource type="PackedScene" uid="uid://ce46bhe0eoia2" path="res://src/scenes/canvas_layers/ui/overworld_ui_manager.tscn" id="1_n7p1q"]
 [ext_resource type="PackedScene" uid="uid://sdiid5de54iy" path="res://src/scenes/player.tscn" id="2_n7p1q"]
+[ext_resource type="Script" uid="uid://bitv2g7to2osh" path="res://src/scripts/scenes/town_popup.gd" id="4_n3ksd"]
+[ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="5_dx8gg"]
+
+[sub_resource type="Animation" id="Animation_qnbe8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4h4xt"]
+resource_name = "show"
+length = 2.5000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 62), Vector2(0, 62), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_trush"]
+_data = {
+&"RESET": SubResource("Animation_qnbe8"),
+&"show": SubResource("Animation_4h4xt")
+}
 
 [node name="Overworld" type="Node2D" unique_id=1525459472]
 y_sort_enabled = true
@@ -18,5 +57,30 @@ player = NodePath("../Player")
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1353661625 groups=["Cameras"]]
 process_callback = 0
 limit_enabled = false
+
+[node name="TownPopup" type="CanvasLayer" parent="." unique_id=1253430389 node_paths=PackedStringArray("label")]
+script = ExtResource("4_n3ksd")
+label = NodePath("PanelContainer/MarginContainer/RichTextLabel")
+
+[node name="PanelContainer" type="PanelContainer" parent="TownPopup" unique_id=261548432]
+offset_top = -62.0
+offset_right = 44.0
+offset_transform_enabled = true
+theme = ExtResource("5_dx8gg")
+
+[node name="MarginContainer" type="MarginContainer" parent="TownPopup/PanelContainer" unique_id=1945541859]
+layout_mode = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TownPopup/PanelContainer/MarginContainer" unique_id=1176199867]
+clip_contents = false
+layout_mode = 2
+text = "?"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TownPopup" unique_id=325866774]
+libraries/ = SubResource("AnimationLibrary_trush")
 
 [connection signal="end_step" from="Player" to="." method="_on_player_end_step"]

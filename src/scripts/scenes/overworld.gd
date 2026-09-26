@@ -70,6 +70,9 @@ func load_map_connected(map: String, player_position: Variant = null) -> void:
 	_map_bounds = new_map.get_bounds()
 	if player_position != null and typeof(player_position) == TYPE_VECTOR2:
 		player.global_position = player_position
+	
+	if new_map.show_name_popup:
+		$TownPopup.show_text(new_map.map_name)
 
 func _on_player_end_step() -> void:
 	if _map_bounds.has_point(player.global_position): return
