@@ -1,12 +1,26 @@
 [gd_scene format=4 uid="uid://c007pe4o6exnd"]
 
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_8f17a"]
+[ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_nyt4n"]
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="2_o8aiv"]
+
+[sub_resource type="Resource" id="Resource_g4v7s"]
+script = ExtResource("2_nyt4n")
+map = "uid://clv1vrijjq4n4"
+offset = Vector2(-1248, 32)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
+
+[sub_resource type="Resource" id="Resource_yf5fn"]
+script = ExtResource("2_nyt4n")
+map = "uid://w0ys2admxk2a"
+offset = Vector2(-1024, -2208)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
 [node name="LeruceanTown" type="Node2D" unique_id=451762384]
 y_sort_enabled = true
 script = ExtResource("1_8f17a")
 map_name = "Lerucean Town"
+map_connections = Array[ExtResource("2_nyt4n")]([SubResource("Resource_g4v7s"), SubResource("Resource_yf5fn")])
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=905178043]
 y_sort_enabled = true

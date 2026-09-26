@@ -2,12 +2,26 @@
 
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="1_nye1j"]
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_s3ele"]
+[ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_tg8u1"]
+
+[sub_resource type="Resource" id="Resource_vm0rn"]
+script = ExtResource("2_tg8u1")
+map = "uid://w0ys2admxk2a"
+offset = Vector2(1120, 320)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
+
+[sub_resource type="Resource" id="Resource_lyu1j"]
+script = ExtResource("2_tg8u1")
+map = "uid://beaog6n72n0km"
+offset = Vector2(-1408, 352)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
 [node name="IngodotPlateau" type="Node2D" unique_id=1340712031]
 editor_description = "In Pokemon Essentials, it's labelled \"Ingidot Plateau\", which \"gidot\" sounds like \"Godot\" in my head."
 y_sort_enabled = true
 script = ExtResource("1_s3ele")
 map_name = "Ingodot Plateau"
+map_connections = Array[ExtResource("2_tg8u1")]([SubResource("Resource_vm0rn"), SubResource("Resource_lyu1j")])
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=753174062]
 y_sort_enabled = true

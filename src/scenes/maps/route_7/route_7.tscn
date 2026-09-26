@@ -2,11 +2,25 @@
 
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_nnadk"]
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="2_grpfm"]
+[ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_r8giw"]
+
+[sub_resource type="Resource" id="Resource_wf4y1"]
+script = ExtResource("2_r8giw")
+map = "uid://debw8e2l12pa6"
+offset = Vector2(-1920, 0)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
+
+[sub_resource type="Resource" id="Resource_5axsh"]
+script = ExtResource("2_r8giw")
+map = "uid://cduigm3s0xk0p"
+offset = Vector2(2240, 256)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
 [node name="Route7" type="Node2D" unique_id=1121946406]
 y_sort_enabled = true
 script = ExtResource("1_nnadk")
 map_name = "Route 7"
+map_connections = Array[ExtResource("2_r8giw")]([SubResource("Resource_wf4y1"), SubResource("Resource_5axsh")])
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=717471723]
 y_sort_enabled = true

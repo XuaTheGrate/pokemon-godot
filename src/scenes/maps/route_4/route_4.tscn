@@ -2,11 +2,19 @@
 
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="1_j6jdn"]
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_yev3n"]
+[ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_j353i"]
+
+[sub_resource type="Resource" id="Resource_ki7b8"]
+script = ExtResource("2_j353i")
+map = "uid://br1hysesur16u"
+offset = Vector2(1408, -352)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
 [node name="Route4" type="Node2D" unique_id=1585253718]
 y_sort_enabled = true
 script = ExtResource("1_yev3n")
 map_name = "Route 4"
+map_connections = Array[ExtResource("2_j353i")]([SubResource("Resource_ki7b8")])
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=520771982]
 y_sort_enabled = true

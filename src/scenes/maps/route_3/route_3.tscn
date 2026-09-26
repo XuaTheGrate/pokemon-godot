@@ -2,11 +2,25 @@
 
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_nc1so"]
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="2_1up84"]
+[ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_qcgrx"]
+
+[sub_resource type="Resource" id="Resource_76hoe"]
+script = ExtResource("2_qcgrx")
+map = "uid://c007pe4o6exnd"
+offset = Vector2(1024, 2208)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
+
+[sub_resource type="Resource" id="Resource_svjaa"]
+script = ExtResource("2_qcgrx")
+map = "uid://br1hysesur16u"
+offset = Vector2(-1120, -320)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
 [node name="Route3" type="Node2D" unique_id=1332030903]
 y_sort_enabled = true
 script = ExtResource("1_nc1so")
 map_name = "Route 3"
+map_connections = Array[ExtResource("2_qcgrx")]([SubResource("Resource_76hoe"), SubResource("Resource_svjaa")])
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1045383766]
 z_index = 1
