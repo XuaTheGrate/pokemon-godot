@@ -1,5 +1,7 @@
 extends Control
 
+@export_file("*.tscn") var overworld: String
+
 var _temp_save_file: SaveFile = null
 
 func _ready() -> void:
@@ -7,11 +9,11 @@ func _ready() -> void:
 	%Debug.visible = OS.has_feature("editor")
 	TransitionManager.fade_out()
 
-func _gui_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if TransitionManager.fading: return
 	
 	if event.is_action_pressed(&"Down") or event.is_action_pressed(&"Up"):
-		accept_event()
+		#accept_event()
 		$GUIFocus.play()
 	if event.is_action_pressed(&"Accept"):
 		accept_event()
@@ -44,8 +46,9 @@ func _setup_continue() -> void:
 			%LocationLabel.text = state.get_node_property_value(0, i)
 
 func _handle_selection(node: Control) -> void:
+	prints("HANDLE", node)
 	match node.name:
-		"Continue": pass
+		"Continue": _handle_continue()
 		"NewGame": pass
 		"SaveFiles": pass
 		"Options": pass
@@ -53,3 +56,10 @@ func _handle_selection(node: Control) -> void:
 		"QuitGame":
 			get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 			get_tree().quit(0)
+
+func _handle_continue() -> void:
+	TransitionManager.fade_in()
+	await TransitionManager.animation_finished
+	var ow: OverworldManager = load(overworld).instantiate()
+	ow.set_continue_map_data(_temp_save_file.map_id, _temp_save_file.map_position)
+	get_tree().change_scene_to_node(ow)

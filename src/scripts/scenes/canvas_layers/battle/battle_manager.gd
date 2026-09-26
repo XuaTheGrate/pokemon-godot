@@ -57,7 +57,7 @@ var victory := false
 var wild_battle := true
 
 var _message_paused := false
-var _template_wild: Battler = preload("res://src/resources/player/template_bulbasaur.tres")
+var _template_wild: Battler = preload("uid://bhd2qkc7uvlal")
 
 func _ready() -> void:
 	if get_parent() == get_tree().root:

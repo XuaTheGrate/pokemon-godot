@@ -12,6 +12,9 @@ var _current_map: String
 var _loaded_maps: Dictionary[String, Map]
 var _map_bounds := Rect2(Vector2.ZERO, Vector2.ZERO)
 
+var _temp_map_id: String
+var _temp_map_pos := Vector2.ZERO
+
 func _init() -> void:
 	if instance != null and is_instance_valid(instance):
 		GameData.display_error("OverworldManager already instanced", "OverworldManager")
@@ -24,6 +27,10 @@ func _ready() -> void:
 	if get_tree().root == get_parent():
 		player.global_position = default_position
 		load_map_connected(default_map)
+	else:
+		if _temp_map_id != "":
+			load_map_connected(_temp_map_id, _temp_map_pos)
+	TransitionManager.fade_out()
 
 func get_current_map() -> Map:
 	return _loaded_maps[_current_map]
@@ -32,6 +39,10 @@ func get_map_uid(map: Map) -> String:
 	var path := map.scene_file_path
 	var uid := ResourceLoader.get_resource_uid(path)
 	return ResourceUID.id_to_text(uid)
+
+func set_continue_map_data(map_id: String, pos := Vector2.ZERO) -> void:
+	_temp_map_id = map_id
+	_temp_map_pos = pos
 
 func load_map_connected(map: String, player_position: Variant = null) -> void:
 	_current_map = map

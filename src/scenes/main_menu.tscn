@@ -71,6 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_iaawh")
 script = ExtResource("2_chlrs")
+overworld = "uid://ctss8n3f0up86"
 
 [node name="GUIFocus" type="AudioStreamPlayer" parent="." unique_id=1477292612]
 stream = ExtResource("3_1ipax")
