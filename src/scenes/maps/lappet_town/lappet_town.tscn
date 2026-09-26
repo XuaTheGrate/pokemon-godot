@@ -20,7 +20,7 @@ metadata/_custom_type_script = "uid://6mruxjtdgbno"
 [sub_resource type="Resource" id="Resource_p8sst"]
 script = ExtResource("3_p8sst")
 map = "uid://ldl5l7tul04j"
-offset = Vector2(-704, 2)
+offset = Vector2(-704, 0)
 metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
 [node name="LappetTown" type="Node2D" unique_id=144748096]

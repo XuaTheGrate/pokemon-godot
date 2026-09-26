@@ -2,11 +2,19 @@
 
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="1_6acwg"]
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_sfu8u"]
+[ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_c1ii1"]
+
+[sub_resource type="Resource" id="Resource_n3ksd"]
+script = ExtResource("2_c1ii1")
+map = "uid://dc7vhyd366olp"
+offset = Vector2(-2240, -256)
+metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
 [node name="BattleFrontier" type="Node2D" unique_id=257682999]
 y_sort_enabled = true
 script = ExtResource("1_sfu8u")
 map_name = "Battle Frontier"
+map_connections = Array[ExtResource("2_c1ii1")]([SubResource("Resource_n3ksd")])
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=563584204]
 y_sort_enabled = true
