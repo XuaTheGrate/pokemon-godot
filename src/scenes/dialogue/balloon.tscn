@@ -91,6 +91,7 @@ size_flags_horizontal = 3
 [node name="DialogueLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1301798052 instance=ExtResource("2_a8ve6")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(414, 60)
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 text = "Dialogue..."
