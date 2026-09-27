@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dopdwg0wf01em"]
 
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_3e25j"]
+[ext_resource type="AudioStream" uid="uid://pkkdm5ikd2f5" path="res://assets/audio/music/pallet_town.ogg" id="2_7styl"]
 [ext_resource type="TileSet" uid="uid://dmbscnq3246ma" path="res://src/resources/tileset_inside.tres" id="2_fxr2h"]
 [ext_resource type="Script" uid="uid://7en4orcwg0o2" path="res://src/scripts/scenes/maps/interaction.gd" id="3_84dcv"]
 [ext_resource type="Script" uid="uid://1ff82eijjdff" path="res://src/scripts/scenes/maps/map_transfer_interaction.gd" id="4_jsss6"]
@@ -83,6 +84,7 @@ y_sort_enabled = true
 script = ExtResource("1_3e25j")
 map_name = "Player's House"
 show_name_popup = false
+track = ExtResource("2_7styl")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=142354539]
 

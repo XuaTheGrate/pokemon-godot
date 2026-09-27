@@ -10,6 +10,10 @@
 [ext_resource type="Script" uid="uid://c4kx5vkd1d6up" path="res://src/scripts/scenes/maps/move_player_interaction.gd" id="8_dq4n3"]
 [ext_resource type="Script" uid="uid://dr0a1rewwfon7" path="res://src/scripts/scenes/maps/hide_player_interaction.gd" id="9_nn2hi"]
 [ext_resource type="Script" uid="uid://1ff82eijjdff" path="res://src/scripts/scenes/maps/map_transfer_interaction.gd" id="10_6e22o"]
+[ext_resource type="Texture2D" uid="uid://cleh7viyjhnk1" path="res://assets/graphics/characters/npc_01.png" id="11_e5bsb"]
+[ext_resource type="Script" uid="uid://bde2jtuqcgisn" path="res://src/scripts/scenes/maps/look_at_player_interaction.gd" id="12_o0l2y"]
+[ext_resource type="Script" uid="uid://c5lovjds6u1xn" path="res://src/scripts/scenes/maps/dialogue_interaction.gd" id="13_xcjm0"]
+[ext_resource type="Resource" uid="uid://c68mf0gahxeqv" path="res://src/resources/dialogue/lappet_town.dialogue" id="14_ob2ge"]
 
 [sub_resource type="Resource" id="Resource_n4orj"]
 script = ExtResource("3_p8sst")
@@ -125,6 +129,68 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaeeo"]
+atlas = ExtResource("11_e5bsb")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twp8t"]
+atlas = ExtResource("11_e5bsb")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r3fe"]
+atlas = ExtResource("11_e5bsb")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpmom"]
+atlas = ExtResource("11_e5bsb")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaeeo")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaeeo")
+}],
+"loop": 0,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twp8t")
+}],
+"loop": 0,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r3fe")
+}],
+"loop": 0,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpmom")
+}],
+"loop": 0,
+"name": &"idle_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcjm0"]
+size = Vector2(32, 32)
+
 [node name="LappetTown" type="Node2D" unique_id=144748096]
 y_sort_enabled = true
 script = ExtResource("1_8q6cj")
@@ -194,3 +260,29 @@ script = ExtResource("10_6e22o")
 map = "uid://dopdwg0wf01em"
 player_position = Vector2(96, 256)
 player_rotation = Vector2(0, -1)
+
+[node name="NPC" type="Area2D" parent="Interactions" unique_id=302966970]
+position = Vector2(384, 224)
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("5_0u3am")
+button = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Interactions/NPC" unique_id=1297795307]
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+autoplay = "default"
+centered = false
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/NPC" unique_id=254738068]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_xcjm0")
+
+[node name="LookAtPlayerInteraction" type="Node" parent="Interactions/NPC" unique_id=368843274 node_paths=PackedStringArray("sprite")]
+script = ExtResource("12_o0l2y")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="DialogueInteraction" type="Node" parent="Interactions/NPC" unique_id=1820962866]
+script = ExtResource("13_xcjm0")
+dialogue_resource = ExtResource("14_ob2ge")
+dialogue_cue = "event_explainer"

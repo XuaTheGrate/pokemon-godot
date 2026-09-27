@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://c68mf0gahxeqv"
+path="res://.godot/imported/lappet_town.dialogue-5a484fdc882edef29b249f5a449d69cd.tres"
+
+[deps]
+
+source_file="res://src/resources/dialogue/lappet_town.dialogue"
+dest_files=["res://.godot/imported/lappet_town.dialogue-5a484fdc882edef29b249f5a449d69cd.tres"]
+
+[params]
+
+defaults=true

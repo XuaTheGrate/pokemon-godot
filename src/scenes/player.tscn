@@ -19,7 +19,6 @@ script = ExtResource("1_hwyk6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=848917796]
 sprite_frames = ExtResource("2_ya6j6")
-animation = &"walk_up"
 autoplay = "default"
 centered = false
 offset = Vector2(0, -16)

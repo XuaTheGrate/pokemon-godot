@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://dhc56fhaga4cw"
 
 TransitionManager="*uid://sv27jl0ops55"
 GameData="*uid://bh7tur0ewgvsd"
+MusicPlayer="*uid://b46hfsftxc8yp"
 TypesManager="*uid://dwjlesyj614p5"
 MovesManager="*uid://bwi5bj2lw36yb"
 SpeciesManager="*uid://jgt41ukcq5s8"
@@ -34,6 +35,7 @@ DialogueManager="*uid://c3rodes2l3gxb"
 [dialogue_manager]
 
 runtime/balloon_path="res://src/scenes/dialogue/balloon.tscn"
+editor/advanced/dialogue_processor_path="uid://dee4yv3hhnyjb"
 
 [display]
 
@@ -91,22 +93,26 @@ Right={
 Accept={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
 Cancel={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194308,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 Pause={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"location":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://src/resources/dialogue/generic.dialogue", "res://src/resources/dialogue/trainer_setup.dialogue", "res://src/resources/dialogue/reds_house.dialogue")
+locale/translations_pot_files=PackedStringArray("res://src/resources/dialogue/generic.dialogue", "res://src/resources/dialogue/trainer_setup.dialogue", "res://src/resources/dialogue/reds_house.dialogue", "res://src/resources/dialogue/lappet_town.dialogue")
 
 [layer_names]
 

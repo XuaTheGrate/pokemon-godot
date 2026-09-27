@@ -1,0 +1,5 @@
+~ event_explainer
+# [m] and [f] get automatically replaced with their respective colour.
+[m]When creating events, make sure to set the collision layers correctly.
+[m]Interactions should be on layer 3.
+=> END

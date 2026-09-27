@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bo4nrih5yf480"
+path="res://.godot/imported/reds_house.dialogue-42a8bb4f96a2198ce6dc3c63bac3b270.tres"
+
+[deps]
+
+source_file="res://src/resources/dialogue/reds_house.dialogue"
+dest_files=["res://.godot/imported/reds_house.dialogue-42a8bb4f96a2198ce6dc3c63bac3b270.tres"]
+
+[params]
+
+defaults=true
