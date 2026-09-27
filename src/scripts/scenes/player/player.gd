@@ -42,7 +42,6 @@ func get_interaction() -> Interaction:
 	return collider
 
 func play_animation(anim: StringName) -> void:
-	prints("Play", anim)
 	sprite.play(anim)
 
 func _on_dialogue_finished(_res: DialogueResource) -> void:
