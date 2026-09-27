@@ -31,11 +31,11 @@ func physics_process(delta: float) -> PlayerState:
 	return null
 
 func get_animation(dir: Vector2, prefix := "walk") -> StringName:
-	match dir:
-		Vector2.UP: return prefix + "_up"
-		Vector2.DOWN: return prefix + "_down"
-		Vector2.LEFT: return prefix + "_left"
-		Vector2.RIGHT: return prefix + "_right"
+	if dir.x > 0: return prefix + "_right"
+	if dir.x < 0: return prefix + "_left"
+	if dir.y < 0: return prefix + "_up"
+	if dir.y > 0: return prefix + "_down"
+	
 	return &"idle_down"
 
 func _start_walk(dir: Vector2) -> PlayerState:

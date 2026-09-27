@@ -4,7 +4,9 @@ extends PlayerState
 
 var _origin := Vector2.ZERO
 var target := Vector2.ZERO
-var target_direction := Vector2.DOWN
+var target_direction := Vector2.DOWN:
+	set(value):
+		target_direction = value
 var _walk_time := 0.0
 var _walking := false
 
@@ -40,7 +42,8 @@ func physics_process(delta: float) -> PlayerState:
 		target = Vector2.ZERO
 		_origin = Vector2.ZERO
 		_walking = false
-		player.play_animation(get_animation(target_direction, "idle"))
+		var anim := get_animation(target_direction, "idle")
+		player.play_animation(anim)
 		target_direction = Vector2.ZERO
 		return null
 	
@@ -48,17 +51,17 @@ func physics_process(delta: float) -> PlayerState:
 	return null
 
 func get_animation(dir: Vector2, prefix := "walk") -> StringName:
-	match dir:
-		Vector2.UP: return prefix + "_up"
-		Vector2.DOWN: return prefix + "_down"
-		Vector2.LEFT: return prefix + "_left"
-		Vector2.RIGHT: return prefix + "_right"
+	if dir.x > 0: return prefix + "_right"
+	if dir.x < 0: return prefix + "_left"
+	if dir.y < 0: return prefix + "_up"
+	if dir.y > 0: return prefix + "_down"
 	
 	return &"idle_down"
 
 func start_walk(dir: Vector2) -> PlayerState:
 	var offset := dir * 32.0
 	target = player.position + offset
+	target_direction = dir
 	_origin = player.position
 	_walk_time = 0.0
 	player.play_animation(get_animation(dir))
