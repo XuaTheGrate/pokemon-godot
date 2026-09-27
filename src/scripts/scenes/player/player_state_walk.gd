@@ -30,31 +30,27 @@ func physics_process(delta: float) -> PlayerState:
 	player.position = _origin.lerp(_target, _walk_time)
 	return null
 
-func get_animation(dir: Vector2) -> StringName:
-	var prefix := "walk"
-	if Input.is_action_pressed(&"Cancel"):
-		prefix = "run"
-	
+func get_animation(dir: Vector2, prefix := "walk") -> StringName:
 	match dir:
 		Vector2.UP: return prefix + "_up"
 		Vector2.DOWN: return prefix + "_down"
 		Vector2.LEFT: return prefix + "_left"
 		Vector2.RIGHT: return prefix + "_right"
-	
 	return &"idle_down"
 
 func _start_walk(dir: Vector2) -> PlayerState:
-	var offset := dir * 32.0
-	_target = player.position + offset
 	if player.is_blocked():
 		var interaction := player.get_interaction()
 		if interaction != null and interaction.bump:
+			player.play_animation(get_animation(dir, "idle"))
 			idle_state.prepare_interaction_queue(interaction)
 			return interaction_state
 		return idle_state
 	
+	var offset := dir * 32.0
+	_target = player.position + offset
 	_origin = player.position
 	_walk_time = 0.0
 	_running = Input.is_action_pressed(&"Cancel")
-	player.play_animation(get_animation(dir))
+	player.play_animation(get_animation(dir, "run" if _running else "walk"))
 	return null

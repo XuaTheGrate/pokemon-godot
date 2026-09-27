@@ -48,9 +48,10 @@ script = ExtResource("4_l2v1k")
 walk_state = NodePath("../Walk")
 interaction_state = NodePath("../Interaction")
 
-[node name="Walk" type="Node" parent="State" unique_id=1147859763 node_paths=PackedStringArray("idle_state")]
+[node name="Walk" type="Node" parent="State" unique_id=1147859763 node_paths=PackedStringArray("idle_state", "interaction_state")]
 script = ExtResource("5_ya6j6")
 idle_state = NodePath("../Idle")
+interaction_state = NodePath("../Interaction")
 
 [node name="Interaction" type="Node" parent="State" unique_id=1827694733 node_paths=PackedStringArray("idle_state")]
 script = ExtResource("7_8v6aa")

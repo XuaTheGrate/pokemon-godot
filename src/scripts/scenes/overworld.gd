@@ -52,23 +52,19 @@ func load_map_connected(
 	var new_map: Map
 	if _loaded_maps.has(map):
 		new_map = _loaded_maps[map]
-		prints("Map", new_map.map_name, "already loaded")
 	else:
 		new_map = load(map).instantiate()
 		add_child(new_map)
 		_loaded_maps[map] = new_map
-		prints("Loading new map", new_map.map_name)
 	
 	var keep_maps: Array[String] = []
 	for i in new_map.map_connections:
 		keep_maps.append(i.map)
-	prints(keep_maps.size(), "map connections")
 	
 	for c in get_children():
 		if c is Map:
 			var uid := get_map_uid(c)
 			if not keep_maps.has(uid) and uid != map:
-				prints("Queueing", c.map_name, "for deletion")
 				c.queue_free()
 				_loaded_maps.erase(uid)
 	
@@ -78,7 +74,6 @@ func load_map_connected(
 			connected_map.global_position = new_map.global_position + i.offset
 			add_child(connected_map)
 			_loaded_maps[i.map] = connected_map
-			prints("Loading connected map", connected_map.map_name)
 	
 	_map_bounds = new_map.get_bounds()
 	if player_position != null and typeof(player_position) == TYPE_VECTOR2:
@@ -87,14 +82,32 @@ func load_map_connected(
 	if new_map.show_name_popup:
 		$TownPopup.show_text(new_map.map_name)
 
-func queue_map_transfer(map: String, pos: Vector2, rot: Vector2) -> void:
+# i hate this function.
+func queue_map_transfer(map: String, pos: Vector2, rot: Vector2, door_path: String = "") -> void:
+	var state: PlayerState = player.get_node("State/Interaction")
+	state.override = true
+	
 	# play the tststs sound
 	TransitionManager.fade_in()
 	await TransitionManager.animation_finished
 	load_map_connected(map, pos, rot)
-	if not player.visible:
-		player.visible = true
 	TransitionManager.fade_out()
+	
+	if door_path == "":
+		player.visible = true
+		state.override = false
+		return
+	
+	player.visible = false
+	var sprite: AnimatedSprite2D = get_current_map().get_node(door_path)
+	sprite.play(&"opened")
+	await TransitionManager.animation_finished
+	player.visible = true
+	state.start_walk(Vector2.DOWN)
+	await player.end_step
+	sprite.play(&"close")
+	await sprite.animation_finished
+	state.override = false
 
 func _on_player_end_step() -> void:
 	if _map_bounds.has_point(player.global_position): return

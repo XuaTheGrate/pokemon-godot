@@ -10,7 +10,6 @@ func _ready() -> void:
 
 func change_state(new_state: UIState) -> void:
 	if new_state != null:
-		#prints("Change state", current_state, "->", new_state)
 		var old_state := current_state
 		current_state = null
 		await old_state.exit(new_state == self)
