@@ -12,6 +12,8 @@ func enter() -> PlayerState:
 	return null
 
 func input(event: InputEvent) -> PlayerState:
+	if TransitionManager.transitioning: return
+	
 	if event.is_action_pressed(&"Accept"):
 		var interaction := player.get_interaction()
 		if interaction != null and interaction.button:

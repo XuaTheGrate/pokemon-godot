@@ -20,8 +20,9 @@ func enter() -> PlayerState:
 
 func _play_queue() -> void:
 	while not interaction_queue.is_empty():
-		var component: InteractionComponent = interaction_queue.pop_front()
+		var component: InteractionComponent = interaction_queue[0]
 		await component.interact()
+		interaction_queue.pop_front()
 
 func process(_delta: float) -> PlayerState:
 	if interaction_queue.is_empty() and not override:

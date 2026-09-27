@@ -106,7 +106,7 @@ Pause={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://src/resources/dialogue/generic.dialogue", "res://src/resources/dialogue/trainer_setup.dialogue")
+locale/translations_pot_files=PackedStringArray("res://src/resources/dialogue/generic.dialogue", "res://src/resources/dialogue/trainer_setup.dialogue", "res://src/resources/dialogue/reds_house.dialogue")
 
 [layer_names]
 

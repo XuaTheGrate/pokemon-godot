@@ -46,7 +46,6 @@ func _setup_continue() -> void:
 			%LocationLabel.text = state.get_node_property_value(0, i)
 
 func _handle_selection(node: Control) -> void:
-	prints("HANDLE", node)
 	match node.name:
 		"Continue": _handle_continue()
 		"NewGame": _new_game()

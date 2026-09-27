@@ -5,11 +5,77 @@
 [ext_resource type="Script" uid="uid://7en4orcwg0o2" path="res://src/scripts/scenes/maps/interaction.gd" id="3_84dcv"]
 [ext_resource type="Script" uid="uid://1ff82eijjdff" path="res://src/scripts/scenes/maps/map_transfer_interaction.gd" id="4_jsss6"]
 [ext_resource type="Script" uid="uid://c4kx5vkd1d6up" path="res://src/scripts/scenes/maps/move_player_interaction.gd" id="5_and47"]
+[ext_resource type="Texture2D" uid="uid://cxo31up1njfdi" path="res://assets/graphics/characters/player_mother.png" id="6_skv4v"]
+[ext_resource type="Script" uid="uid://bde2jtuqcgisn" path="res://src/scripts/scenes/maps/look_at_player_interaction.gd" id="7_dg5kk"]
+[ext_resource type="Script" uid="uid://c5lovjds6u1xn" path="res://src/scripts/scenes/maps/dialogue_interaction.gd" id="8_hcfwu"]
+[ext_resource type="Resource" uid="uid://bo4nrih5yf480" path="res://src/resources/dialogue/reds_house.dialogue" id="9_7m7ij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg5kk"]
+atlas = ExtResource("6_skv4v")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcfwu"]
+atlas = ExtResource("6_skv4v")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m7ij"]
+atlas = ExtResource("6_skv4v")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7styl"]
+atlas = ExtResource("6_skv4v")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg5kk")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcfwu")
+}],
+"loop": 1,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg5kk")
+}],
+"loop": 0,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m7ij")
+}],
+"loop": 1,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7styl")
+}],
+"loop": 1,
+"name": &"idle_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
 size = Vector2(32, 32)
 
 [node name="RedsHouse" type="Node2D" unique_id=1779110971]
@@ -73,3 +139,29 @@ script = ExtResource("4_jsss6")
 map = "uid://dg10v3u66htu4"
 player_position = Vector2(288, 64)
 player_rotation = Vector2(1, 0)
+
+[node name="Mom" type="Area2D" parent="Interactions" unique_id=1606321579]
+position = Vector2(224, 128)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_84dcv")
+button = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Interactions/Mom" unique_id=162595341]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+centered = false
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Mom" unique_id=679041962]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_57qmd")
+
+[node name="LookAtPlayerInteraction" type="Node" parent="Interactions/Mom" unique_id=1183777487 node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_dg5kk")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="DialogueInteraction" type="Node" parent="Interactions/Mom" unique_id=2113132658]
+script = ExtResource("8_hcfwu")
+dialogue_resource = ExtResource("9_7m7ij")
+dialogue_cue = "mom"
