@@ -11,14 +11,14 @@ Nathan: For more information see the online documentation.
 => END
 
 ~ setup_start
-Oak: Hello! Sorry to keep you waiting!
-Oak: Welcome to the world of Pokémon.
-Oak: My name is Oak.
-Oak: People call me the Pokémon Professor.
+Oak: [m]Hello! Sorry to keep you waiting!
+Oak: [m]Welcome to the world of Pokémon.
+Oak: [m]My name is Oak.
+Oak: [m]People call me the Pokémon Professor.
 => setup_help
 
 ~ setup_help
-Oak: If you need help, I am certainly capable of giving it.
+Oak: [m]If you need help, I am certainly capable of giving it.
 - Controls
 	Oak: TODO
 	=> setup_help
@@ -27,32 +27,32 @@ Oak: If you need help, I am certainly capable of giving it.
 	=> setup_help
 - No info needed
 $> Setup.show_marill()
-Oak: This world is inhabited by creatures we call Pokémon.
-Oak: People and Pokémon live together by supporting each other.
-Oak: Some people play with Pokémon, some battle with them.
+Oak: [m]This world is inhabited by creatures we call Pokémon.
+Oak: [m]People and Pokémon live together by supporting each other.
+Oak: [m]Some people play with Pokémon, some battle with them.
 $> Setup.show_oak()
-Oak: But we don't know everything about Pokémon yet.
-Oak: There are still many mysteries to solve.
-Oak: That's why I study Pokémon every day.
+Oak: [m]But we don't know everything about Pokémon yet.
+Oak: [m]There are still many mysteries to solve.
+Oak: [m]That's why I study Pokémon every day.
 $> Setup.hide_all()
-Oak: Are you a boy or a girl?
+Oak: [m]Are you a boy or a girl?
 - Boy
 	$> Setup.show_boy()
 - Girl
 	$> Setup.show_girl()
-Oak: Now what did you say your name was?
+Oak: [m]Now what did you say your name was?
 => name_input
 
 ~ name_input
 $> Setup.get_name_input()
-Oak: So you're {{Setup.temp_name}}?
+Oak: [m]So you're {{Setup.temp_name}}?
 - Yes
 - No
-	Oak: What is your name?
+	Oak: [m]What is your name?
 	=> name_input
-Oak: {{Setup.temp_name}}, are you ready?
-Oak: Your very own Pokémon story is about to unfold.
-Oak: You'll face fun times and tough challenges.
-Oak: A world full of dreams and adventures with Pokémon awaits! Let's go!
+Oak: [m]{{Setup.temp_name}}, are you ready?
+Oak: [m]Your very own Pokémon story is about to unfold.
+Oak: [m]You'll face fun times and tough challenges.
+Oak: [m]A world full of dreams and adventures with Pokémon awaits! Let's go!
 $>> Setup.finalize()
 => END

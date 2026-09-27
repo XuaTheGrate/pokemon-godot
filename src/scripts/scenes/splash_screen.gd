@@ -1,12 +1,15 @@
 extends CanvasLayer
 
+const EDITOR_SKIP_SPLASH = false
+
 @export_file("*.tscn") var main_menu: String
 
 var _can_skip := false
 var _current_splash := 0
+var _title_music: AudioStreamOggVorbis = preload("res://assets/audio/music/title.ogg")
 
 func _ready() -> void:
-	if OS.has_feature("editor"):
+	if EDITOR_SKIP_SPLASH and OS.has_feature("editor"):
 		_goto_main(false)
 		return
 	
@@ -33,6 +36,7 @@ func next_splash() -> void:
 	_current_splash += 1
 	
 	if _current_splash >= 3:
+		MusicPlayer.fade_out_music()
 		TransitionManager.animation_finished.disconnect(_on_fade_complete)
 		TransitionManager.animation_finished.connect(_goto_main)
 
@@ -47,6 +51,8 @@ func _on_fade_complete(out: bool) -> void:
 	$Splash2.visible = _current_splash == 1
 	$Title.visible = _current_splash == 2
 	TransitionManager.fade_out()
+	if _current_splash == 2:
+		MusicPlayer.play_stream(_title_music)
 
 func _goto_main(_out: bool):
 	get_tree().change_scene_to_file.call_deferred(main_menu)
