@@ -42,7 +42,11 @@ func set_continue_map_data(map_id: String, pos := Vector2.ZERO) -> void:
 	_temp_map_id = map_id
 	_temp_map_pos = pos
 
-func load_map_connected(map: String, player_position: Variant = null) -> void:
+func load_map_connected(
+	map: String,
+	player_position: Variant = null,
+	player_rotation := Vector2.ZERO
+) -> void:
 	_current_map = map
 	
 	var new_map: Map
@@ -82,6 +86,15 @@ func load_map_connected(map: String, player_position: Variant = null) -> void:
 	
 	if new_map.show_name_popup:
 		$TownPopup.show_text(new_map.map_name)
+
+func queue_map_transfer(map: String, pos: Vector2, rot: Vector2) -> void:
+	# play the tststs sound
+	TransitionManager.fade_in()
+	await TransitionManager.animation_finished
+	load_map_connected(map, pos, rot)
+	if not player.visible:
+		player.visible = true
+	TransitionManager.fade_out()
 
 func _on_player_end_step() -> void:
 	if _map_bounds.has_point(player.global_position): return

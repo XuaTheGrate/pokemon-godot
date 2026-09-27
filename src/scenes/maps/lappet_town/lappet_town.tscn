@@ -4,6 +4,12 @@
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="2_fimiw"]
 [ext_resource type="AudioStream" uid="uid://pkkdm5ikd2f5" path="res://assets/audio/music/pallet_town.ogg" id="2_pe77k"]
 [ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="3_p8sst"]
+[ext_resource type="Script" uid="uid://7en4orcwg0o2" path="res://src/scripts/scenes/maps/interaction.gd" id="5_0u3am"]
+[ext_resource type="Texture2D" uid="uid://bpxokiwquf6id" path="res://assets/graphics/animtiles/doors.png" id="6_sjh8q"]
+[ext_resource type="Script" uid="uid://ionfqfgykv0c" path="res://src/scripts/scenes/maps/animate_interaction.gd" id="7_doigi"]
+[ext_resource type="Script" uid="uid://c4kx5vkd1d6up" path="res://src/scripts/scenes/maps/move_player_interaction.gd" id="8_dq4n3"]
+[ext_resource type="Script" uid="uid://dr0a1rewwfon7" path="res://src/scripts/scenes/maps/hide_player_interaction.gd" id="9_nn2hi"]
+[ext_resource type="Script" uid="uid://1ff82eijjdff" path="res://src/scripts/scenes/maps/map_transfer_interaction.gd" id="10_6e22o"]
 
 [sub_resource type="Resource" id="Resource_n4orj"]
 script = ExtResource("3_p8sst")
@@ -23,6 +29,102 @@ map = "uid://ldl5l7tul04j"
 offset = Vector2(-704, 0)
 metadata/_custom_type_script = "uid://6mruxjtdgbno"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5bsb"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0l2y"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcjm0"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob2ge"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doigi"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq4n3"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn2hi"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e22o"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyegj"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgc05"]
+atlas = ExtResource("6_sjh8q")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5bsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0l2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcjm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob2ge")
+}],
+"loop": 0,
+"name": &"close",
+"speed": 7.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doigi")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 7.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq4n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn2hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e22o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyegj")
+}],
+"loop": 0,
+"name": &"open",
+"speed": 7.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgc05")
+}],
+"loop": 0,
+"name": &"opened",
+"speed": 7.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(32, 32)
+
 [node name="LappetTown" type="Node2D" unique_id=144748096]
 y_sort_enabled = true
 script = ExtResource("1_8q6cj")
@@ -40,7 +142,7 @@ tile_set = ExtResource("2_fimiw")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="TileMapLayers" unique_id=1474220789]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAAAAsAAgAEAAAAAAABAAsAAgAFAAAAAAACAAsAAgAEAAAAAAADAAsAAgAFAAAAAAAEABMAAgAEAAAAAAAFABMAAgAFAAAAAAAGABMAAgAEAAAAAAAHABMAAgAFAAAAAAAUABMAAgAEAAAAAAAVABMAAgAFAAAAAAAWABMAAgAEAAAAAAAXABMAAgAFAAAAAAATAAkABQAFAAoAAAATAAoABQAFAAsAAAATAAsABQAFAAwAAAATAAwABQAFAA0AAAATAA0ABQAFAA4AAAAUAAkABQAGAAoAAAAUAAoABQAGAAsAAAAUAAsABQAGAAwAAAAUAAwABQAGAA0AAAAUAA0ABQAGAA4AAAAVAAkABQAHAAoAAAAVAAoABQAHAAsAAAAVAAsABQAHAAwAAAAVAAwABQAHAA0AAAAVAA0ABQAHAA4AAAASAA0ABQADAA4AAAASAAwABQADAA0AAAAPAAwABQAAAA0AAAAPAA0ABQAAAA4AAAAQAAwABQABAA0AAAAQAA0ABQABAA4AAAARAAwABQACAA0AAAARAA0ABQACAA4AAAASAAkABQAEAAoAAAASAAoABQAEAAsAAAASAAsABQAEAAwAAAARAAkABQAEAAoAAAARAAoABQAEAAsAAAARAAsABQAEAAwAAAAQAAkABQAEAAoAAAAQAAoABQAEAAsAAAAQAAsABQAEAAwAAAAPAAkABQAGAAcAAAAPAAoABQAGAAgAAAAPAAsABQAGAAkAAAAHAAMABQAAAAAAAAAHAAQABQAAAAEAAAAHAAUABQAAAAIAAAAHAAYABQAAAAMAAAAHAAcABQAAAAQAAAAIAAMABQABAAAAAAAIAAQABQABAAEAAAAIAAUABQABAAIAAAAIAAYABQABAAMAAAAIAAcABQABAAQAAAAJAAMABQACAAAAAAAJAAQABQACAAEAAAAJAAUABQACAAIAAAAJAAYABQACAAMAAAAJAAcABQACAAQAAAAKAAMABQADAAAAAAAKAAQABQADAAEAAAAKAAUABQADAAIAAAAKAAYABQADAAMAAAAKAAcABQADAAQAAAALAAMABQAEAAAAAAALAAQABQAEAAEAAAALAAUABQAEAAIAAAALAAYABQAEAAMAAAALAAcABQAEAAQAAAAQAAMABQAFAAAAAAAQAAQABQAFAAEAAAAQAAUABQAFAAIAAAAQAAYABQAAAAMAAAAQAAcABQAAAAQAAAARAAMABQAGAAAAAAARAAQABQAGAAEAAAARAAUABQAGAAIAAAARAAYABQABAAMAAAARAAcABQABAAQAAAASAAMABQAGAAAAAAASAAQABQAGAAEAAAASAAUABQAGAAIAAAASAAYABQACAAMAAAASAAcABQACAAQAAAATAAMABQAGAAAAAAATAAQABQAGAAEAAAATAAUABQAGAAIAAAATAAYABQADAAMAAAATAAcABQADAAQAAAAUAAMABQAHAAAAAAAUAAQABQAHAAEAAAAUAAUABQAHAAIAAAAUAAYABQAEAAMAAAAUAAcABQAEAAQAAAAPAAYABgACAAIAAAAPAAcABgACAAMAAAAGAAYABgACAAIAAAAGAAcABgACAAMAAAAIABQABwABAAcAAAATABQABwACAAYAAAARABQABwAAAAYAAAASABQABwABAAYAAAAPABAABwAAAAYAAAAUABAABwACAAYAAAATABAABwABAAYAAAASABAABwABAAYAAAARABAABwABAAYAAAAQABAABwABAAYAAAAHAAsABwAAAAYAAAAIAAsABwABAAYAAAAKAAsABwABAAYAAAALAAsABwACAAYAAAAJAAsABwABAAYAAAA=")
+tile_map_data = PackedByteArray("AAAAAAsAAgAEAAAAAAABAAsAAgAFAAAAAAACAAsAAgAEAAAAAAADAAsAAgAFAAAAAAAEABMAAgAEAAAAAAAFABMAAgAFAAAAAAAGABMAAgAEAAAAAAAHABMAAgAFAAAAAAAUABMAAgAEAAAAAAAVABMAAgAFAAAAAAAWABMAAgAEAAAAAAAXABMAAgAFAAAAAAATAAkABQAFAAoAAAATAAoABQAFAAsAAAATAAsABQAFAAwAAAATAAwABQAFAA0AAAATAA0ABQAFAA4AAAAUAAkABQAGAAoAAAAUAAoABQAGAAsAAAAUAAsABQAGAAwAAAAUAAwABQAGAA0AAAAUAA0ABQAGAA4AAAAVAAkABQAHAAoAAAAVAAoABQAHAAsAAAAVAAsABQAHAAwAAAAVAAwABQAHAA0AAAAVAA0ABQAHAA4AAAASAA0ABQADAA4AAAASAAwABQADAA0AAAAPAAwABQAAAA0AAAAPAA0ABQAAAA4AAAAQAAwABQABAA0AAAAQAA0ABQABAA4AAAARAAwABQACAA0AAAARAA0ABQACAA4AAAASAAkABQAEAAoAAAASAAoABQAEAAsAAAASAAsABQAEAAwAAAARAAkABQAEAAoAAAARAAoABQAEAAsAAAARAAsABQAEAAwAAAAQAAkABQAEAAoAAAAQAAoABQAEAAsAAAAQAAsABQAEAAwAAAAPAAkABQAGAAcAAAAPAAoABQAGAAgAAAAPAAsABQAGAAkAAAAHAAMABQAAAAAAAAAHAAQABQAAAAEAAAAHAAUABQAAAAIAAAAHAAYABQAAAAMAAAAHAAcABQAAAAQAAAAIAAMABQABAAAAAAAIAAQABQABAAEAAAAIAAUABQABAAIAAAAIAAYABQABAAMAAAAJAAMABQACAAAAAAAJAAQABQACAAEAAAAJAAUABQACAAIAAAAJAAYABQACAAMAAAAJAAcABQACAAQAAAAKAAMABQADAAAAAAAKAAQABQADAAEAAAAKAAUABQADAAIAAAAKAAYABQADAAMAAAAKAAcABQADAAQAAAALAAMABQAEAAAAAAALAAQABQAEAAEAAAALAAUABQAEAAIAAAALAAYABQAEAAMAAAALAAcABQAEAAQAAAAQAAMABQAFAAAAAAAQAAQABQAFAAEAAAAQAAUABQAFAAIAAAAQAAYABQAAAAMAAAAQAAcABQAAAAQAAAARAAMABQAGAAAAAAARAAQABQAGAAEAAAARAAUABQAGAAIAAAARAAYABQABAAMAAAARAAcABQABAAQAAAASAAMABQAGAAAAAAASAAQABQAGAAEAAAASAAUABQAGAAIAAAASAAYABQACAAMAAAASAAcABQACAAQAAAATAAMABQAGAAAAAAATAAQABQAGAAEAAAATAAUABQAGAAIAAAATAAYABQADAAMAAAATAAcABQADAAQAAAAUAAMABQAHAAAAAAAUAAQABQAHAAEAAAAUAAUABQAHAAIAAAAUAAYABQAEAAMAAAAUAAcABQAEAAQAAAAPAAYABgACAAIAAAAPAAcABgACAAMAAAAGAAYABgACAAIAAAAGAAcABgACAAMAAAAIABQABwABAAcAAAATABQABwACAAYAAAARABQABwAAAAYAAAASABQABwABAAYAAAAPABAABwAAAAYAAAAUABAABwACAAYAAAATABAABwABAAYAAAASABAABwABAAYAAAARABAABwABAAYAAAAQABAABwABAAYAAAAHAAsABwAAAAYAAAAIAAsABwABAAYAAAAKAAsABwABAAYAAAALAAsABwACAAYAAAAJAAsABwABAAYAAAA=")
 tile_set = ExtResource("2_fimiw")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="TileMapLayers" unique_id=35253289]
@@ -50,3 +152,45 @@ tile_set = ExtResource("2_fimiw")
 
 [node name="Interactions" type="Node2D" parent="." unique_id=1156277848]
 y_sort_enabled = true
+
+[node name="RedsHouseDoor" type="Area2D" parent="Interactions" unique_id=2058535178]
+position = Vector2(256, 224)
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("5_0u3am")
+bump = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Interactions/RedsHouseDoor" unique_id=1361397987]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/RedsHouseDoor" unique_id=1066881723]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="PlaySoundInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=568877887]
+
+[node name="OpenDoorAnimateInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=1545318410 node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_doigi")
+sprite = NodePath("../AnimatedSprite2D")
+animation = &"open"
+
+[node name="MovePlayerInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=191145734]
+script = ExtResource("8_dq4n3")
+direction = Vector2(0, -1)
+steps = 1
+
+[node name="HidePlayerInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=183286083]
+script = ExtResource("9_nn2hi")
+
+[node name="CloseDoorAnimateInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=1363905526 node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_doigi")
+sprite = NodePath("../AnimatedSprite2D")
+animation = &"close"
+
+[node name="MapTransferInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=402043492]
+script = ExtResource("10_6e22o")
+map = "uid://dopdwg0wf01em"
+player_position = Vector2(96, 256)
+player_rotation = Vector2(0, -1)

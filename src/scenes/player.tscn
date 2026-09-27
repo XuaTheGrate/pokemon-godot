@@ -5,8 +5,12 @@
 [ext_resource type="Script" uid="uid://cok4ar3ahv7ax" path="res://src/scripts/scenes/player/player_state_machine.gd" id="3_l2v1k"]
 [ext_resource type="Script" uid="uid://bu481d6qkc6gi" path="res://src/scripts/scenes/player/player_state_idle.gd" id="4_l2v1k"]
 [ext_resource type="Script" uid="uid://0ehypd41imc0" path="res://src/scripts/scenes/player/player_state_walk.gd" id="5_ya6j6"]
+[ext_resource type="Script" uid="uid://bgpr4xmsd0opb" path="res://src/scripts/scenes/player/player_state_interaction.gd" id="7_8v6aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(31, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya6j6"]
 size = Vector2(31, 31)
 
 [node name="Player" type="Node2D" unique_id=444939784 groups=["Player"]]
@@ -20,19 +24,34 @@ autoplay = "default"
 centered = false
 offset = Vector2(0, -16)
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1655715628]
+[node name="MovementCast" type="ShapeCast2D" parent="." unique_id=1655715628]
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_g4v7s")
 target_position = Vector2(0, 32)
+collide_with_areas = true
+
+[node name="InteractionCast" type="ShapeCast2D" parent="." unique_id=1443085461]
+editor_description = "This node is invisible via `modulate`!"
+modulate = Color(1, 1, 1, 0)
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_ya6j6")
+target_position = Vector2(0, 32)
+collision_mask = 4
+collide_with_areas = true
 
 [node name="State" type="Node" parent="." unique_id=55299275 node_paths=PackedStringArray("default_state")]
 script = ExtResource("3_l2v1k")
 default_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="State" unique_id=137724285 node_paths=PackedStringArray("walk_state")]
+[node name="Idle" type="Node" parent="State" unique_id=137724285 node_paths=PackedStringArray("walk_state", "interaction_state")]
 script = ExtResource("4_l2v1k")
 walk_state = NodePath("../Walk")
+interaction_state = NodePath("../Interaction")
 
 [node name="Walk" type="Node" parent="State" unique_id=1147859763 node_paths=PackedStringArray("idle_state")]
 script = ExtResource("5_ya6j6")
+idle_state = NodePath("../Idle")
+
+[node name="Interaction" type="Node" parent="State" unique_id=1827694733 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("7_8v6aa")
 idle_state = NodePath("../Idle")

@@ -3,12 +3,26 @@ extends PlayerState
 const WALK_PAUSE_TIME := 0.1
 
 @export var walk_state: PlayerState
+@export var interaction_state: PlayerState
 
 var _walk_time := 0.0
 
 func enter() -> PlayerState:
 	player.play_animation(get_animation(player.current_direction))
 	return null
+
+func input(event: InputEvent) -> PlayerState:
+	if event.is_action_pressed(&"Accept"):
+		var interaction := player.get_interaction()
+		if interaction != null and interaction.button:
+			prepare_interaction_queue(interaction)
+			return interaction_state
+	return null
+
+func prepare_interaction_queue(interaction: Interaction):
+	for c in interaction.get_children():
+		if c is InteractionComponent:
+			interaction_state.interaction_queue.append(c)
 
 func physics_process(delta: float) -> PlayerState:
 	var dir := get_input_direction()
@@ -28,6 +42,10 @@ func physics_process(delta: float) -> PlayerState:
 		_walk_time = 0.0
 		
 		if player.is_blocked():
+			var interaction := player.get_interaction()
+			if interaction != null and interaction.bump:
+				prepare_interaction_queue(interaction)
+				return interaction_state
 			return null
 		
 		return walk_state

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5m0wjikpldnt"
-path="res://.godot/imported/flower1.png-25eeaaa8399174bdb2b7767d4af53647.ctex"
+uid="uid://bpxokiwquf6id"
+path="res://.godot/imported/doors.png-ef84b0f173accc5c312237ecdee5b07d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/animtiles/flower1.png"
-dest_files=["res://.godot/imported/flower1.png-25eeaaa8399174bdb2b7767d4af53647.ctex"]
+source_file="res://assets/graphics/animtiles/doors.png"
+dest_files=["res://.godot/imported/doors.png-ef84b0f173accc5c312237ecdee5b07d.ctex"]
 
 [params]
 

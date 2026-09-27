@@ -1,6 +1,7 @@
 extends PlayerState
 
 @export var idle_state: PlayerState
+@export var interaction_state: PlayerState
 
 var _origin := Vector2.ZERO
 var _target := Vector2.ZERO
@@ -46,6 +47,10 @@ func _start_walk(dir: Vector2) -> PlayerState:
 	var offset := dir * 32.0
 	_target = player.position + offset
 	if player.is_blocked():
+		var interaction := player.get_interaction()
+		if interaction != null and interaction.bump:
+			idle_state.prepare_interaction_queue(interaction)
+			return interaction_state
 		return idle_state
 	
 	_origin = player.position

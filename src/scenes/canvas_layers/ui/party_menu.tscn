@@ -4,10 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://xie6042d2vxr" path="res://assets/graphics/ui/party/bg.png" id="2_lugrm"]
 [ext_resource type="PackedScene" uid="uid://csy5e45t062ld" path="res://src/scenes/canvas_layers/ui/party_menu_member.tscn" id="3_7wfov"]
 [ext_resource type="Texture2D" uid="uid://d2iqqraya6h0f" path="res://assets/graphics/ui/party/panels.png" id="3_mmahs"]
-[ext_resource type="Resource" uid="uid://bhd2qkc7uvlal" path="res://src/resources/player/template_bulbasaur.tres" id="5_7wfov"]
 [ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="6_71shy"]
 [ext_resource type="Script" uid="uid://cjuojipencsfj" path="res://src/scripts/scenes/canvas_layers/ui/party_menu_cancel.gd" id="6_yjk4n"]
 [ext_resource type="Theme" uid="uid://cmak7fy66g2ku" path="res://src/resources/party_menu_theme.tres" id="8_rmuts"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71shy"]
+resource_local_to_scene = true
+atlas = ExtResource("3_mmahs")
+region = Rect2(0, 0, 256, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmuts"]
 resource_local_to_scene = true
@@ -30,11 +34,6 @@ atlas = ExtResource("3_mmahs")
 region = Rect2(0, 0, 256, 98)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07t0d"]
-resource_local_to_scene = true
-atlas = ExtResource("3_mmahs")
-region = Rect2(0, 0, 256, 98)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gw122"]
 resource_local_to_scene = true
 atlas = ExtResource("3_mmahs")
 region = Rect2(0, 0, 256, 98)
@@ -66,14 +65,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Grid" type="GridContainer" parent="VBox" unique_id=1771356269]
+[node name="PartyGrid" type="GridContainer" parent="VBox" unique_id=1771356269]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = -2
 columns = 2
 
-[node name="Party1" parent="VBox/Grid" unique_id=1911551420 instance=ExtResource("3_7wfov")]
+[node name="Party1" parent="VBox/PartyGrid" unique_id=1911551420 instance=ExtResource("3_7wfov")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../HBox/MarginContainer/CancelButton")
@@ -82,11 +82,10 @@ focus_neighbor_right = NodePath("../Party2")
 focus_neighbor_bottom = NodePath("../Party3")
 focus_next = NodePath("../Party2")
 focus_previous = NodePath("../../HBox/MarginContainer/CancelButton")
-texture = SubResource("AtlasTexture_rmuts")
+texture = SubResource("AtlasTexture_71shy")
 first = true
-battler = ExtResource("5_7wfov")
 
-[node name="Party2" parent="VBox/Grid" unique_id=211607012 instance=ExtResource("3_7wfov")]
+[node name="Party2" parent="VBox/PartyGrid" unique_id=211607012 instance=ExtResource("3_7wfov")]
 unique_name_in_owner = true
 layout_mode = 2
 offset_transform_enabled = true
@@ -97,9 +96,9 @@ focus_neighbor_right = NodePath("../Party3")
 focus_neighbor_bottom = NodePath("../Party4")
 focus_next = NodePath("../Party3")
 focus_previous = NodePath("../Party1")
-texture = SubResource("AtlasTexture_mnekp")
+texture = SubResource("AtlasTexture_rmuts")
 
-[node name="Party3" parent="VBox/Grid" unique_id=1005464753 instance=ExtResource("3_7wfov")]
+[node name="Party3" parent="VBox/PartyGrid" unique_id=1005464753 instance=ExtResource("3_7wfov")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../Party2")
@@ -108,9 +107,9 @@ focus_neighbor_right = NodePath("../Party4")
 focus_neighbor_bottom = NodePath("../Party5")
 focus_next = NodePath("../Party4")
 focus_previous = NodePath("../Party2")
-texture = SubResource("AtlasTexture_7v55p")
+texture = SubResource("AtlasTexture_mnekp")
 
-[node name="Party4" parent="VBox/Grid" unique_id=2099402741 instance=ExtResource("3_7wfov")]
+[node name="Party4" parent="VBox/PartyGrid" unique_id=2099402741 instance=ExtResource("3_7wfov")]
 unique_name_in_owner = true
 layout_mode = 2
 offset_transform_enabled = true
@@ -121,9 +120,9 @@ focus_neighbor_right = NodePath("../Party5")
 focus_neighbor_bottom = NodePath("../Party6")
 focus_next = NodePath("../Party5")
 focus_previous = NodePath("../Party3")
-texture = SubResource("AtlasTexture_gqmep")
+texture = SubResource("AtlasTexture_7v55p")
 
-[node name="Party5" parent="VBox/Grid" unique_id=1918053167 instance=ExtResource("3_7wfov")]
+[node name="Party5" parent="VBox/PartyGrid" unique_id=1918053167 instance=ExtResource("3_7wfov")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../Party4")
@@ -132,9 +131,9 @@ focus_neighbor_right = NodePath("../Party6")
 focus_neighbor_bottom = NodePath("../../HBox/MarginContainer/CancelButton")
 focus_next = NodePath("../Party6")
 focus_previous = NodePath("../Party4")
-texture = SubResource("AtlasTexture_07t0d")
+texture = SubResource("AtlasTexture_gqmep")
 
-[node name="Party6" parent="VBox/Grid" unique_id=75306795 instance=ExtResource("3_7wfov")]
+[node name="Party6" parent="VBox/PartyGrid" unique_id=75306795 instance=ExtResource("3_7wfov")]
 unique_name_in_owner = true
 layout_mode = 2
 offset_transform_enabled = true
@@ -145,7 +144,7 @@ focus_neighbor_right = NodePath("../../HBox/MarginContainer/CancelButton")
 focus_neighbor_bottom = NodePath("../../HBox/MarginContainer/CancelButton")
 focus_next = NodePath("../../HBox/MarginContainer/CancelButton")
 focus_previous = NodePath("../Party5")
-texture = SubResource("AtlasTexture_gw122")
+texture = SubResource("AtlasTexture_07t0d")
 
 [node name="HBox" type="HBoxContainer" parent="VBox" unique_id=1078551622]
 layout_mode = 2
@@ -179,12 +178,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-focus_neighbor_left = NodePath("../../../Grid/Party6")
-focus_neighbor_top = NodePath("../../../Grid/Party6")
-focus_neighbor_right = NodePath("../../../Grid/Party1")
-focus_neighbor_bottom = NodePath("../../../Grid/Party1")
-focus_next = NodePath("../../../Grid/Party1")
-focus_previous = NodePath("../../../Grid/Party6")
+focus_neighbor_left = NodePath("../../../PartyGrid/Party6")
+focus_neighbor_top = NodePath("../../../PartyGrid/Party6")
+focus_neighbor_right = NodePath("../../../PartyGrid/Party1")
+focus_neighbor_bottom = NodePath("../../../PartyGrid/Party1")
+focus_next = NodePath("../../../PartyGrid/Party1")
+focus_previous = NodePath("../../../PartyGrid/Party6")
 focus_mode = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_g4v7s")
