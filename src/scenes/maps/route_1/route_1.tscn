@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_jw0ho"]
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="2_mc0ip"]
+[ext_resource type="AudioStream" uid="uid://e58v7uwt1g0j" path="res://assets/audio/music/route_1.ogg" id="2_nlv2v"]
 [ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_vgd7f"]
 
 [sub_resource type="Resource" id="Resource_p8sst"]
@@ -20,6 +21,7 @@ metadata/_custom_type_script = "uid://6mruxjtdgbno"
 y_sort_enabled = true
 script = ExtResource("1_jw0ho")
 map_name = "Route 1"
+track = ExtResource("2_nlv2v")
 map_connections = Array[ExtResource("2_vgd7f")]([SubResource("Resource_p8sst"), SubResource("Resource_0u3am")])
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=529458538]

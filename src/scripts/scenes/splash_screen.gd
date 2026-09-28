@@ -6,7 +6,7 @@ const EDITOR_SKIP_SPLASH = false
 
 var _can_skip := false
 var _current_splash := 0
-var _title_music: AudioStreamOggVorbis = preload("res://assets/audio/music/title.ogg")
+var _title_music: AudioStreamOggVorbis = preload("uid://df4v4u51kwxcl")
 
 func _ready() -> void:
 	if EDITOR_SKIP_SPLASH and OS.has_feature("editor"):

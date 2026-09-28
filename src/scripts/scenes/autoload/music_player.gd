@@ -1,8 +1,21 @@
 extends AudioStreamPlayer
 
-func play_stream(stream_: AudioStream) -> void:
+func play_stream(stream_: AudioStream, fade := 0.0) -> void:
+	if not playing:
+		stream = stream_
+		play()
+		return
+	
 	if stream_ != stream:
-		stop()
+		if fade > 0.0:
+			var t := create_tween()
+			var old_vol := volume_linear
+			t.tween_property(self, ^"volume_linear", 0.0, fade)
+			t.tween_callback(stop)
+			t.tween_property(self, ^"volume_linear", old_vol, 0.0)
+			await t.finished
+		else:
+			stop()
 		stream = stream_
 		play()
 

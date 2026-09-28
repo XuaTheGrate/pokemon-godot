@@ -83,7 +83,7 @@ func load_map_connected(
 		$TownPopup.show_text(new_map.map_name)
 	
 	if new_map.track != null:
-		MusicPlayer.play_stream(new_map.track)
+		MusicPlayer.play_stream(new_map.track, 0.5)
 
 # i hate this function.
 func queue_map_transfer(map: String, pos: Vector2, rot: Vector2, door_path: String = "") -> void:

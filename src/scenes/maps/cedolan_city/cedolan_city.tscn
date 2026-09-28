@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dpt4i0yw1vax8" path="res://src/scripts/scenes/maps/map.gd" id="1_wh7do"]
 [ext_resource type="Script" uid="uid://6mruxjtdgbno" path="res://src/scripts/resources/map_connector.gd" id="2_80ivm"]
 [ext_resource type="TileSet" uid="uid://chyqcjjmx3l6w" path="res://src/resources/tileset_outside.tres" id="2_upm0o"]
+[ext_resource type="AudioStream" uid="uid://bkvepje66ghhq" path="res://assets/audio/music/celadon_city.ogg" id="2_y5srn"]
 
 [sub_resource type="Resource" id="Resource_nlv2v"]
 script = ExtResource("2_80ivm")
@@ -32,6 +33,7 @@ metadata/_custom_type_script = "uid://6mruxjtdgbno"
 y_sort_enabled = true
 script = ExtResource("1_wh7do")
 map_name = "Cedolan City"
+track = ExtResource("2_y5srn")
 map_connections = Array[ExtResource("2_80ivm")]([SubResource("Resource_nlv2v"), SubResource("Resource_ncygx"), SubResource("Resource_w2mq3"), SubResource("Resource_qawd7")])
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=1742520935]
