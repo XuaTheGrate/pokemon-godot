@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Battler" format=3 uid="uid://e1pgwrho2mte"]
+
+[ext_resource type="Script" uid="uid://lmswah6pen1v" path="res://src/scripts/resources/stats.gd" id="1_jhsmv"]
+[ext_resource type="Script" uid="uid://dtn6jggqtesjb" path="res://src/scripts/resources/battle/battle_move.gd" id="2_jpyer"]
+[ext_resource type="Script" uid="uid://cc35kntu4g078" path="res://src/scripts/resources/battle/battler.gd" id="3_6ao6b"]
+
+[sub_resource type="Resource" id="Resource_6h3e5"]
+script = ExtResource("1_jhsmv")
+metadata/_custom_type_script = "uid://lmswah6pen1v"
+
+[sub_resource type="Resource" id="Resource_noq0e"]
+script = ExtResource("1_jhsmv")
+metadata/_custom_type_script = "uid://lmswah6pen1v"
+
+[sub_resource type="Resource" id="Resource_0qdqf"]
+script = ExtResource("2_jpyer")
+move_id = "SWORDSDANCE"
+metadata/_custom_type_script = "uid://dtn6jggqtesjb"
+
+[sub_resource type="Resource" id="Resource_a1y8l"]
+script = ExtResource("2_jpyer")
+move_id = "RAZORWIND"
+metadata/_custom_type_script = "uid://dtn6jggqtesjb"
+
+[resource]
+script = ExtResource("3_6ao6b")
+species_id = "MEOWTH"
+moves = Array[ExtResource("2_jpyer")]([SubResource("Resource_0qdqf"), SubResource("Resource_a1y8l")])
+level = 20
+nature = "HARDY"
+ivs = SubResource("Resource_noq0e")
+evs = SubResource("Resource_6h3e5")
+metadata/_custom_type_script = "uid://cc35kntu4g078"

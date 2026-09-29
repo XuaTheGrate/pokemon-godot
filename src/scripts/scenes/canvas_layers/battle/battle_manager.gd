@@ -18,19 +18,43 @@ enum CommandType {
 	UseMove, UseItem, Switch
 }
 
+var STATUS_INDEX := PackedStringArray([
+	"None", "Poison", "Burn", "Paralyze", "Freeze", "Toxic"
+])
+
+const STATUS_CURE_LINES := {
+	"Sleep": "%s woke up!",
+	"Poison": "%s was cured of it's poisoning!",
+	"Burn": "%s was cured from it's burn!",
+	"Paralyze": "%s is no longer paralyzed!",
+	"Freeze": "%s is no longer frozen!",
+	"Toxic": "%s was cured of it's poisoning!"
+}
+
+const STATUS_APPLY_LINES = {
+	"Sleep": "%s fell asleep!",
+	"Poison": "%s was poisoned!",
+	"Burn": "%s was burned!",
+	"Paralyze": "%s was paralyzed! It may not be able to move!",
+	"Freeze": "%s was frozen solid!",
+	"Toxic": "%s was badly poisoned!"
+}
+
 class Command extends RefCounted:
 	var type: CommandType
 	var user: Battler
-	## -1: The users side
-	## -2: The foes side
-	## 0: The user
-	## 1: First foe
-	## 2: User ally
-	## 3: Second foe
+	## -1: The users side[br]
+	## -2: The foes side[br]
+	## 0: The user[br]
+	## 1: First foe[br]
+	## 2: User ally[br]
+	## 3: Second foe[br]
 	var target_index: Array[int]
 	var move: BattleMove
 	var item: String
 	var auto_fail := false
+	# For multi turn moves, set this to true on the final turn
+	var charged := false
 	
 	func _to_string() -> String:
 		return "Command(%s, %s, %s, %s, %s, %s)" % [
@@ -57,10 +81,13 @@ var victory := false
 var wild_battle := true
 
 var _message_paused := false
-var _template_wild: Battler = preload("uid://bhd2qkc7uvlal")
+# why does 'preload' not work with the template meowth,
+# but does with the template bulbasaur?
+var _template_wild: Battler = load("uid://e1pgwrho2mte")
 
 func _ready() -> void:
 	if get_parent() == get_tree().root:
+		GameData.trainer_party.assign(GameData.template_party.duplicate(true))
 		init_wild_battle(_template_wild.duplicate())
 
 func _input(event: InputEvent) -> void:
@@ -72,7 +99,7 @@ func _input(event: InputEvent) -> void:
 func init_wild_battle(wild: Battler) -> void:
 	wild_battle = true
 	enemy_trainer = Trainer.new()
-	enemy_trainer.party = [wild]
+	enemy_trainer.party.append(wild)
 	enemy_trainer.dummy_wild_trainer = true
 	setup_battle()
 
@@ -90,12 +117,13 @@ func setup_battle() -> void:
 	%AllySprite.texture = load(SpeciesManager.get_species_back_sprite($DataboxAlly.battler.species_id))
 	
 	$StateManager.change_state($StateManager/Intro)
+	TransitionManager.fade_out()
 
 # TODO: DialogueManager might be able to do this better, will see
 func display_message(text: String, wait_time := 0.0, input_skip := true) -> void:
 	%MessageBox/Label.text = text
 	if wait_time > 0.0:
-		var t := get_tree().create_timer(wait_time)
+		var t := get_tree().create_timer(wait_time * 2)
 		t.timeout.connect(func()->void:_input_skip.emit())
 	elif not input_skip:
 		return
@@ -124,8 +152,17 @@ func get_side(battler: Battler) -> BattleSide:
 func request_foe_action() -> void:
 	var command := Command.new()
 	command.type = CommandType.UseMove
-	var user: Battler = $DataboxAlly.battler
+	var user: Battler = $DataboxEnemy.battler
 	command.user = user
+	
+	if user.queued_two_turn_move != "":
+		var move_index := user.moves.find_custom(func(m):return m.move_id==user.queued_two_turn_move)
+		command.move = user.moves[move_index]
+		command.target_index.assign(user.queued_two_turn_targets)
+		command.charged = true
+		foe_command_submitted.emit(command)
+		return
+	
 	command.move = user.moves.pick_random()
 	command.target_index.assign(_get_enemy_targets(command.move))
 	if command.target_index.is_empty():
@@ -134,6 +171,10 @@ func request_foe_action() -> void:
 
 func sort_command_pool() -> void:
 	var c := func(a: Command, b: Command) -> bool:
+		if MovesManager.moves[a.move.move_id].priority > MovesManager.moves[b.move.move_id].priority:
+			return true
+		if MovesManager.moves[a.move.move_id].priority < MovesManager.moves[b.move.move_id].priority:
+			return false
 		# TODO: support other forms of speed modifiers
 		return a.user.stats.speed > b.user.stats.speed
 	
@@ -179,6 +220,41 @@ func _get_enemy_targets(move: BattleMove) -> Array[int]:
 			GameData.display_error("Unknown target type '%s'" % t)
 			return []
 
-#region Move scoring
+func apply_status(status: String, target: Battler) -> void:
+	var old_status := target.status
+	target.status = status
+	
+	var pos := STATUS_INDEX.find(status)
+	
+	if target == %DataboxAlly.battler:
+		%DataboxAlly/Status.visible = pos != -1
+		%DataboxAlly/Status.texture.region.position.y = 16.0 * pos
+	elif target == %DataboxEnemy.battler:
+		%DataboxEnemy/Status.visible = pos != -1
+		%DataboxEnemy/Status.texture.region.position.y = 16.0 * pos
+	
+	if status == "None":
+		if old_status == "None": return
+		var msg: String = STATUS_CURE_LINES[status] % target.display_name
+		await display_message(msg, 1.0, false)
+	else:
+		if old_status == status: return
+		var msg: String = STATUS_APPLY_LINES[status] % target.display_name
+		await display_message(msg, 1.0, false)
 
-#endregion
+func try_raise_stat(target: Battler, stat: String, stages: int) -> void:
+	var current_stage: int = target.stat_stages.get(stat)
+	var change := clampi(current_stage + stages, -6, 6)
+	var actual_change = change - current_stage
+	target.stat_stages.set(stat, change)
+	
+	var msg: String = ""
+	match actual_change:
+		-6, -5, -4, -3: msg = "%s's %s severely fell!"
+		-2: msg = "%s's %s harshly fell!"
+		-1: msg = "%s's %s fell!"
+		0: msg = "%s's %s won't go any " + ("lower" if stages < 0 else "higher") + "!"
+		1: msg = "%s's %s rose!"
+		2: msg = "%s's %s rose sharply!"
+		3, 4, 5, 6: msg = "%s's %s rose drastically!"
+	await display_message(msg % [target.display_name, stat], 1.0, false)

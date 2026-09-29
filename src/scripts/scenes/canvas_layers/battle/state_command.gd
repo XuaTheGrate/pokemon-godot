@@ -3,10 +3,20 @@ extends BattleStateBase
 @export var fight_state: BattleStateBase
 @export var bag_state: BattleStateBase
 @export var switch_state: BattleStateBase
+@export var waiting_state: BattleStateBase
 
 var _selected := Vector2i.ZERO
 
 func enter() -> BattleStateBase:
+	var battler: Battler = %DataboxAlly.battler
+	if battler.queued_two_turn_move != "":
+		prints("Skipping Command state due to queued two turn move", battler.queued_two_turn_move)
+		var move_index: int = battler.moves.find_custom(func(m:BattleMove):return m.move_id == battler.queued_two_turn_move)
+		var command: BattleManager.Command = fight_state.create_move_command_singles(battler.moves[move_index])
+		command.charged = true
+		manager.command_pool.append(command)
+		return waiting_state
+	
 	%CommandBox.visible = true
 	%CommandBox/Label.text = "What will %s do?" % manager.get_current_battler().display_name
 	_update()

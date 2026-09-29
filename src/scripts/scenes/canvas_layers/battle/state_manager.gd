@@ -19,14 +19,16 @@ func change_state(new_state: BattleStateBase) -> void:
 		change_state(new_new_state)
 
 func _input(event: InputEvent) -> void:
-	if current_state == null: return
+	if current_state == null or TransitionManager.transitioning: return
 	
 	var new_state := current_state.input(event)
 	if new_state != null:
 		change_state(new_state)
 
 func _process(delta: float) -> void:
-	if current_state != null:
-		var new_state := current_state.process(delta)
-		if new_state != null:
-			change_state(new_state)
+	if current_state == null or TransitionManager.transitioning:
+		return
+	
+	var new_state := current_state.process(delta)
+	if new_state != null:
+		change_state(new_state)

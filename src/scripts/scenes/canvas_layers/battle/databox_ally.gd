@@ -24,7 +24,7 @@ func update() -> void:
 	$HP/CurrentHundred.texture.region.position.x = 16.0 * floori(battler.current_hp / 100.0)
 	$HP/CurrentTen.texture.region.position.x = 16.0 * floori(battler.current_hp % 100 / 10.0)
 	$HP/CurrentOne.texture.region.position.x = 16.0 * (battler.current_hp % 10)
-	$HP/MaxHundred.texture.region.position.x = 16.0 * floori(battler.stats.hp % 100 / 10.0)
+	$HP/MaxHundred.texture.region.position.x = 16.0 * floori(battler.stats.hp / 100.0)
 	$HP/MaxTen.texture.region.position.x = 16.0 * floori(battler.stats.hp % 100 / 10.0)
 	$HP/MaxOne.texture.region.position.x = 16.0 * (battler.stats.hp % 10)
 	

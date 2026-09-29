@@ -80,9 +80,10 @@ script = ExtResource("3_4qv64")
 script = ExtResource("4_btrv1")
 command_state = NodePath("../Command")
 
-[node name="Command" type="Node" parent="StateManager" unique_id=717626941 node_paths=PackedStringArray("fight_state")]
+[node name="Command" type="Node" parent="StateManager" unique_id=717626941 node_paths=PackedStringArray("fight_state", "waiting_state")]
 script = ExtResource("5_gwgno")
 fight_state = NodePath("../Fight")
+waiting_state = NodePath("../Waiting")
 
 [node name="Fight" type="Node" parent="StateManager" unique_id=1565178510 node_paths=PackedStringArray("waiting_state", "command_state")]
 script = ExtResource("6_lw0ya")

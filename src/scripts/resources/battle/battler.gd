@@ -10,9 +10,7 @@ extends Resource
 @export var ivs: Stats
 @export var evs: Stats
 @export var gender: int
-@export_enum("None", "Sleep", "Burn", "Paralyze", "Frozen", "Poison", "Toxic") var status: String
-
-var stat_stages: Stats
+@export_enum("None", "Sleep", "Burn", "Paralyze", "Frozen", "Poison", "Toxic") var status: String = "None"
 
 var display_name: String:
 	get: return nickname if nickname != "" else SpeciesManager.species[species_id].name
@@ -26,8 +24,19 @@ var stats: Stats:
 var current_hp: int:
 	get: return maxi(stats.hp - _damage_sustained, 0)
 
+#region Volatile battle data
+# clears after battle
+var stat_stages: Stats
+var queued_two_turn_move: String = ""
+var queued_two_turn_targets: Array[int] = []
+#endregion
+
 func _init() -> void:
 	stat_stages = Stats.new()
+
+# TODO: Support for Forest's Curse
+func get_active_types() -> Array[String]:
+	return SpeciesManager.species[species_id].types
 
 func is_faint() -> bool:
 	return current_hp == 0

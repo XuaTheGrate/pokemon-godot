@@ -2,3 +2,12 @@
 Mom: [f]Hello, honey.
 Mom: [f]I hope you have a grand adventure!
 => END
+
+~ battle_starter
+[m]Would you like to start a battle?
+- Wild Battle
+	TODO
+- Trainer Battle
+	TODO
+- Cancel
+=> END

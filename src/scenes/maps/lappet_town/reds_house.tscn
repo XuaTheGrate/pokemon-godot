@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bde2jtuqcgisn" path="res://src/scripts/scenes/maps/look_at_player_interaction.gd" id="7_dg5kk"]
 [ext_resource type="Script" uid="uid://c5lovjds6u1xn" path="res://src/scripts/scenes/maps/dialogue_interaction.gd" id="8_hcfwu"]
 [ext_resource type="Resource" uid="uid://bo4nrih5yf480" path="res://src/resources/dialogue/reds_house.dialogue" id="9_7m7ij"]
+[ext_resource type="Texture2D" uid="uid://bdfkqwxhvplj8" path="res://assets/graphics/characters/npc_scientist.png" id="11_qf7hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 32)
@@ -77,6 +78,68 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6naj"]
+atlas = ExtResource("11_qf7hu")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r15kj"]
+atlas = ExtResource("11_qf7hu")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw0vh"]
+atlas = ExtResource("11_qf7hu")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qok8q"]
+atlas = ExtResource("11_qf7hu")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6naj")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6naj")
+}],
+"loop": 0,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r15kj")
+}],
+"loop": 0,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw0vh")
+}],
+"loop": 0,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qok8q")
+}],
+"loop": 0,
+"name": &"idle_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0u6y"]
 size = Vector2(32, 32)
 
 [node name="RedsHouse" type="Node2D" unique_id=1779110971]
@@ -167,3 +230,27 @@ sprite = NodePath("../AnimatedSprite2D")
 script = ExtResource("8_hcfwu")
 dialogue_resource = ExtResource("9_7m7ij")
 dialogue_cue = "mom"
+
+[node name="BattleStarter" type="Area2D" parent="Interactions" unique_id=2125771247]
+position = Vector2(320, 224)
+script = ExtResource("3_84dcv")
+metadata/_custom_type_script = "uid://7en4orcwg0o2"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Interactions/BattleStarter" unique_id=1773944541]
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+autoplay = "default"
+centered = false
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/BattleStarter" unique_id=686303387]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_d0u6y")
+
+[node name="LookAtPlayerInteraction" type="Node" parent="Interactions/BattleStarter" unique_id=1897772694 node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_dg5kk")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="DialogueInteraction" type="Node" parent="Interactions/BattleStarter" unique_id=471081451]
+script = ExtResource("8_hcfwu")
+dialogue_resource = ExtResource("9_7m7ij")
+dialogue_cue = "battle_starter"
