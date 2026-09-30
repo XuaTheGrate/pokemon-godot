@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8ccw7txns1yj" path="res://src/scripts/scenes/overworld.gd" id="1_n4orj"]
 [ext_resource type="PackedScene" uid="uid://ce46bhe0eoia2" path="res://src/scenes/canvas_layers/ui/overworld_ui_manager.tscn" id="1_n7p1q"]
+[ext_resource type="AudioStream" uid="uid://dwrnpb274urpp" path="res://assets/audio/music/wild_battle.ogg" id="2_dx8gg"]
 [ext_resource type="PackedScene" uid="uid://sdiid5de54iy" path="res://src/scenes/player.tscn" id="2_n7p1q"]
 [ext_resource type="Script" uid="uid://bitv2g7to2osh" path="res://src/scripts/scenes/town_popup.gd" id="4_n3ksd"]
 [ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="5_dx8gg"]
@@ -46,8 +47,10 @@ _data = {
 [node name="Overworld" type="Node2D" unique_id=1525459472]
 y_sort_enabled = true
 script = ExtResource("1_n4orj")
+battle_manager = "uid://buuxenlnp44sq"
 default_map = "uid://c5cvujac6nnut"
 default_position = Vector2(128, 128)
+default_wild_music = ExtResource("2_dx8gg")
 
 [node name="OverworldUIManager" parent="." unique_id=1419356964 node_paths=PackedStringArray("player") instance=ExtResource("1_n7p1q")]
 player = NodePath("../Player")

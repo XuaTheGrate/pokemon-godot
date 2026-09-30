@@ -6,8 +6,16 @@ Mom: [f]I hope you have a grand adventure!
 ~ battle_starter
 [m]Would you like to start a battle?
 - Wild Battle
-	TODO
+	=> initiate_wild_battle
 - Trainer Battle
 	TODO
+	=> END
 - Cancel
+	=> END
+
+~ initiate_wild_battle
+if GameData.trainer_party.size() == 0
+	[m]You don't have any Pokémon to fight with!
+	=> END
+$>> OverworldManager.instance.start_wild_battle("MEOWTH", 20)
 => END

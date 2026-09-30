@@ -1,8 +1,11 @@
 class_name OverworldManager
 extends Node2D
 
+@export_file("*.tscn") var battle_manager: String
+
 @export_file("*.tscn") var default_map: String
 @export var default_position := Vector2.ZERO
+@export var default_wild_music: AudioStream
 
 @onready var player: Player = $Player
 
@@ -123,3 +126,34 @@ func _on_player_end_step() -> void:
 			return
 	
 	push_error("No map to load, out of bounds")
+
+func start_wild_battle(species: String, level: int) -> void:
+	var battler := BattleManager.generate_wild_battler(species, level)
+	if battler == null: return
+	
+	get_tree().paused = true
+	
+	var battle: BattleManager = load(battle_manager).instantiate()
+	battle.name = "BattleManager"
+	battle.battle_ended.connect(_on_battle_ended, CONNECT_ONE_SHOT)
+	
+	MusicPlayer.play_stream(
+		get_current_map().wild_battle_track
+		if get_current_map().wild_battle_track != null
+		else default_wild_music
+	)
+	
+	TransitionManager.custom(&"wild_battle_in")
+	TransitionManager.animation_finished.connect((func(_b):
+		add_child(battle)
+		battle.init_wild_battle(battler)),
+		CONNECT_ONE_SHOT
+	)
+
+func _on_battle_ended(victory: bool) -> void:
+	TransitionManager.fade_in()
+	await TransitionManager.animation_finished
+	$BattleManager.queue_free()
+	TransitionManager.fade_out()
+	MusicPlayer.play_stream(get_current_map().track, 0.5)
+	TransitionManager.animation_finished.connect(func(_a):get_tree().paused=false, CONNECT_ONE_SHOT)

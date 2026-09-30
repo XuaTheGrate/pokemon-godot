@@ -67,6 +67,7 @@ atlas = ExtResource("23_6gdfe")
 region = Rect2(0, 252, 64, 28)
 
 [node name="BattleManager" type="CanvasLayer" unique_id=2128692339 groups=["BattleManager"]]
+process_mode = 3
 script = ExtResource("1_lpay1")
 
 [node name="StateManager" type="Node" parent="." unique_id=114323333 node_paths=PackedStringArray("default_state")]

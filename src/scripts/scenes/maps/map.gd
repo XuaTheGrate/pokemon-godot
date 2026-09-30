@@ -3,9 +3,11 @@ extends Node2D
 
 @export var map_name: String
 @export var show_name_popup := true
-@export var track: AudioStream
-
 @export var map_connections: Array[MapConnector] = []
+@export_subgroup("Music")
+@export var track: AudioStream
+@export var wild_battle_track: AudioStream
+@export var trainer_battle_track: AudioStream
 
 func get_bounds() -> Rect2:
 	var biggest: Rect2 = Rect2(Vector2.ZERO, Vector2.ZERO)

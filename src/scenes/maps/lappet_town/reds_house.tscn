@@ -233,7 +233,10 @@ dialogue_cue = "mom"
 
 [node name="BattleStarter" type="Area2D" parent="Interactions" unique_id=2125771247]
 position = Vector2(320, 224)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("3_84dcv")
+button = true
 metadata/_custom_type_script = "uid://7en4orcwg0o2"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Interactions/BattleStarter" unique_id=1773944541]

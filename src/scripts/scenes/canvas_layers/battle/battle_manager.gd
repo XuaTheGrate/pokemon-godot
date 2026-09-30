@@ -67,6 +67,7 @@ class Field extends RefCounted:
 class BattleSide extends RefCounted:
 	pass
 
+signal battle_ended(victory: bool)
 signal foe_command_submitted(command: Command)
 signal _input_skip
 
@@ -86,7 +87,7 @@ var _message_paused := false
 var _template_wild: Battler = load("uid://e1pgwrho2mte")
 
 func _ready() -> void:
-	if get_parent() == get_tree().root:
+	if get_tree().current_scene == self:
 		GameData.trainer_party.assign(GameData.template_party.duplicate(true))
 		init_wild_battle(_template_wild.duplicate())
 
@@ -196,7 +197,7 @@ func faint_target(target: Battler) -> void:
 	await get_tree().create_timer(0.5).timeout
 
 func end_battle() -> void:
-	pass
+	battle_ended.emit(false)
 
 func _get_enemy_targets(move: BattleMove) -> Array[int]:
 	match MovesManager.moves[move.move_id].target:
@@ -258,3 +259,31 @@ func try_raise_stat(target: Battler, stat: String, stages: int) -> void:
 		2: msg = "%s's %s rose sharply!"
 		3, 4, 5, 6: msg = "%s's %s rose drastically!"
 	await display_message(msg % [target.display_name, stat], 1.0, false)
+
+static func generate_wild_battler(species_id: String, level: int = 20) -> Battler:
+	var species: Species = SpeciesManager.species.get(species_id)
+	if species == null:
+		GameData.display_error("Unknown species id '%s'" % species_id)
+		return null
+	
+	var b := Battler.new()
+	b.species_id = species_id
+	b.level = level
+	b.nature = "HARDY"
+	b.ability_index = 0
+	b.ivs = Stats.new()
+	b.evs = Stats.new()
+	
+	for l in species.level_moves:
+		if l.level <= level:
+			var bm := BattleMove.new()
+			bm.move_id = l.move_id
+			b.moves.append(bm)
+	
+	if b.moves.size() == 0:
+		push_error("0 level moves available at level %s for species '%s'" % [level, species_id])
+		var bm := BattleMove.new()
+		bm.move_id = "POUND"
+		b.moves.append(bm)
+	
+	return b

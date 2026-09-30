@@ -49,7 +49,5 @@ func _on_dialogue_finished(_res: DialogueResource) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_home"):
-		var res: DialogueResource = load("res://src/resources/dialogue/generic.dialogue")
-		DialogueManager.dialogue_ended.connect(_on_dialogue_finished, CONNECT_ONE_SHOT)
-		DialogueManager.show_dialogue_balloon(res, "start")
-		get_tree().paused = true
+		GameData.trainer_party.assign(GameData.template_party)
+		prints("OK")
