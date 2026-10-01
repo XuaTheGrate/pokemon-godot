@@ -27,8 +27,7 @@ var option_descriptions: Array[String]:
 		"TODO",
 		#tr("Choose how you want to enter text."),
 		"TODO",
-		#tr("Choose the size of the game window."),
-		"TODO",
+		tr("Choose the size of the game window."),
 		tr("Close the screen.")
 	]
 
@@ -152,6 +151,17 @@ func update() -> void:
 	for child in %ScreenSize/HBoxContainer.get_children():
 		child.theme_type_variation = THEME_UNSELECTED
 	%ScreenSize/HBoxContainer.get_child(GameData.options.screen_size).theme_type_variation = THEME_VALUE_SELECTED
+	if GameData.options.screen_size != 4:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		var size: Vector2i = GameData.RESOLUTION_BASE * GameData.RESOLUTION_SCALE[GameData.options.screen_size]
+		DisplayServer.window_set_size(size)
+		var screen_index := DisplayServer.get_keyboard_focus_screen()
+		var new_size := DisplayServer.screen_get_size(screen_index)
+		new_size -= size
+		new_size /= 2
+		DisplayServer.window_set_position(new_size)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func decrement() -> void:
 	match current.name:

@@ -35,12 +35,10 @@ const NATURES := {
 
 const OPTIONS_FILE := "user://options.tres"
 
-const TEXT_SPEED: Array[float] = [
-	4/80.0,
-	2/80.0,
-	1/80.0,
-	0.0
-]
+const TEXT_SPEED := [4/80.0, 2/80.0, 1/80.0, 0.0]
+
+const RESOLUTION_BASE := Vector2i(512, 384)
+const RESOLUTION_SCALE := [0.5, 1.0, 1.5, 2.0]
 
 var template_party: Array[Battler] = [
 	preload("res://src/resources/player/template_bulbasaur.tres")
@@ -108,6 +106,18 @@ func _load_options() -> void:
 	
 	AudioServer.set_bus_volume_linear(1, options.music_volume / 100.0)
 	AudioServer.set_bus_volume_linear(2, options.se_volume / 100.0)
+	
+	if options.screen_size != 4:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		var size: Vector2i = RESOLUTION_BASE * RESOLUTION_SCALE[options.screen_size]
+		DisplayServer.window_set_size(size)
+		var screen_index := DisplayServer.get_keyboard_focus_screen()
+		var new_size := DisplayServer.screen_get_size(screen_index)
+		new_size -= size
+		new_size /= 2
+		DisplayServer.window_set_position(new_size)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func display_error(text: String, title := "Alert!") -> void:
 	OS.alert(text, title)
