@@ -1,0 +1,657 @@
+[gd_scene format=3 uid="uid://b701w6r02jtcv"]
+
+[ext_resource type="Script" uid="uid://cio3j04mcj45h" path="res://src/scripts/scenes/canvas_layers/ui/options_menu.gd" id="1_7nqyg"]
+[ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="2_mrodw"]
+[ext_resource type="Texture2D" uid="uid://bigpbdu8vgb6c" path="res://assets/graphics/ui/sel_arrow.png" id="3_vsai6"]
+[ext_resource type="Theme" uid="uid://cm5xjdbtassus" path="res://src/resources/speech_theme.tres" id="4_dnsg7"]
+[ext_resource type="AudioStream" uid="uid://bq5y8yawapoi8" path="res://assets/audio/sounds/ui_focus.ogg" id="5_dnsg7"]
+[ext_resource type="AudioStream" uid="uid://m4o65aq2wa77" path="res://assets/audio/sounds/ui_menu_close.ogg" id="6_6nbk5"]
+
+[sub_resource type="Gradient" id="Gradient_6nbk5"]
+colors = PackedColorArray(0.972549, 0.1882353, 0.09411765, 1, 0.972549, 0.1882353, 0.09411765, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p1u0y"]
+gradient = SubResource("Gradient_6nbk5")
+width = 8
+height = 16
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_57qmd"]
+color = Color(0.3137255, 0.3137255, 0.34509805, 1)
+thickness = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5s0fj"]
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=1822092262]
+layer = 10
+script = ExtResource("1_7nqyg")
+main_menu = "uid://ck728ce2ry2a5"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1583711280]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7529412, 0.78431374, 0.8156863, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=155347174]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_mrodw")
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=929166775]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer" unique_id=998360146]
+clip_contents = false
+layout_mode = 2
+text = "Options"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=840880505]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scroller" type="ScrollContainer" parent="VBoxContainer/PanelContainer" unique_id=833337422]
+unique_name_in_owner = true
+layout_mode = 2
+scroll_vertical_custom_step = 32.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="OptionsList" type="VBoxContainer" parent="VBoxContainer/PanelContainer/Scroller" unique_id=1631395037]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="MusicVolume" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=756309812]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/MusicVolume" unique_id=902349896]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/MusicVolume" unique_id=1486589787]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Music Volume"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/MusicVolume" unique_id=448956006]
+custom_minimum_size = Vector2(212.5, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_icons/grabber = SubResource("GradientTexture2D_p1u0y")
+theme_override_styles/slider = SubResource("StyleBoxLine_57qmd")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_5s0fj")
+value = 100.0
+
+[node name="Value" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/MusicVolume" unique_id=277434199]
+custom_minimum_size = Vector2(34, 28)
+clip_contents = false
+layout_mode = 2
+theme_type_variation = &"RedLabel2"
+text = "100"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="SEVolume" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=1305164626]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SEVolume" unique_id=1966937596]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SEVolume" unique_id=820410451]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "SE Volume"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SEVolume" unique_id=17798027]
+custom_minimum_size = Vector2(212.5, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_icons/grabber = SubResource("GradientTexture2D_p1u0y")
+theme_override_styles/slider = SubResource("StyleBoxLine_57qmd")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_5s0fj")
+value = 100.0
+
+[node name="Value" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SEVolume" unique_id=800282069]
+custom_minimum_size = Vector2(34, 28)
+clip_contents = false
+layout_mode = 2
+theme_type_variation = &"RedLabel2"
+text = "100"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="TextSpeed" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=2104528446]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextSpeed" unique_id=2093876918]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextSpeed" unique_id=1430891171]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Battle Effects"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextSpeed" unique_id=613252013]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Slow" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextSpeed/HBoxContainer" unique_id=783688929]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "Slow"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Mid" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextSpeed/HBoxContainer" unique_id=1258919280]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Mid"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Fast" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextSpeed/HBoxContainer" unique_id=1725267364]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Fast"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Inst" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextSpeed/HBoxContainer" unique_id=1921738863]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Inst"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="BattleEffects" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=979923983]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleEffects" unique_id=145479996]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleEffects" unique_id=983918643]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Battle Effects"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleEffects" unique_id=604159980]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="On" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleEffects/HBoxContainer" unique_id=636644601]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "On"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Off" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleEffects/HBoxContainer" unique_id=1996830821]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Off"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="BattleStyle" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=1092331451]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleStyle" unique_id=990656192]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleStyle" unique_id=27625332]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Battle Style"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleStyle" unique_id=692342331]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Switch" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleStyle/HBoxContainer" unique_id=1225621777]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "Switch"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Set" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/BattleStyle/HBoxContainer" unique_id=977319765]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Set"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="DefaultMovement" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=1138915427]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/DefaultMovement" unique_id=231898291]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/DefaultMovement" unique_id=1665259537]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Default Movement"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/DefaultMovement" unique_id=2092036274]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Walking" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/DefaultMovement/HBoxContainer" unique_id=512465223]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "Walking"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Running" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/DefaultMovement/HBoxContainer" unique_id=1771122366]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Running"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SendtoBoxes" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=778205044]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SendtoBoxes" unique_id=1040779555]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SendtoBoxes" unique_id=1248056331]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Send to Boxes"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SendtoBoxes" unique_id=404731732]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Manual" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SendtoBoxes/HBoxContainer" unique_id=741969573]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "Manual"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Automatic" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SendtoBoxes/HBoxContainer" unique_id=1507595330]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Automatic"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="GiveNicknames" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=1569105975]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/GiveNicknames" unique_id=2091679278]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/GiveNicknames" unique_id=124819157]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Give Nicknames"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/GiveNicknames" unique_id=1930131132]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Give" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/GiveNicknames/HBoxContainer" unique_id=1658712692]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "Give"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="DontGive" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/GiveNicknames/HBoxContainer" unique_id=870225322]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Don't give"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SpeechFrame" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=1694962529]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SpeechFrame" unique_id=561222573]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SpeechFrame" unique_id=589301621]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Speech Frame"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Frame" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/SpeechFrame" unique_id=107975193]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RedLabel2"
+text = "Type 1/21"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="MenuFrame" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=604863354]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/MenuFrame" unique_id=1080113242]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/MenuFrame" unique_id=1730395549]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Menu Frame"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Frame" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/MenuFrame" unique_id=1369197103]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"RedLabel2"
+text = "Type 1/28"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="TextEntry" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=850955622]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextEntry" unique_id=684183]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextEntry" unique_id=1911929302]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Text Entry"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextEntry" unique_id=960863145]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Cursor" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextEntry/HBoxContainer" unique_id=902604203]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "Cursor"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Keyboard" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/TextEntry/HBoxContainer" unique_id=1933334657]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Keyboard"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ScreenSize" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=1822754897]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize" unique_id=2139777184]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize" unique_id=1077998734]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Screen Size"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize" unique_id=541306188]
+custom_minimum_size = Vector2(252, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="S" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize/HBoxContainer" unique_id=598126706]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+theme_type_variation = &"RedLabel2"
+text = "S"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="M" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize/HBoxContainer" unique_id=1545817658]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "M"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="L" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize/HBoxContainer" unique_id=594878921]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "L"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="XL" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize/HBoxContainer" unique_id=862955330]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "XL"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Full" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/ScreenSize/HBoxContainer" unique_id=1338372101]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Full"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Close" type="HBoxContainer" parent="VBoxContainer/PanelContainer/Scroller/OptionsList" unique_id=1952930832]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/Close" unique_id=190918222]
+layout_mode = 2
+texture = ExtResource("3_vsai6")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Scroller/OptionsList/Close" unique_id=770182819]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"YellowLabel"
+text = "Close"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer" unique_id=100787351]
+custom_minimum_size = Vector2(512, 90)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("4_dnsg7")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer2" unique_id=1036926714]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="OptionDescription" type="RichTextLabel" parent="VBoxContainer/PanelContainer2/MarginContainer" unique_id=1205466877]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+fit_content = true
+scroll_active = false
+
+[node name="UISelect" type="AudioStreamPlayer" parent="." unique_id=1575014064]
+stream = ExtResource("5_dnsg7")
+bus = &"Sound"
+
+[node name="UIClose" type="AudioStreamPlayer" parent="." unique_id=180545151]
+stream = ExtResource("6_6nbk5")
+bus = &"Sound"

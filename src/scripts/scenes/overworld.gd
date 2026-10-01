@@ -93,6 +93,7 @@ func queue_map_transfer(map: String, pos: Vector2, rot: Vector2, door_path: Stri
 	var state: PlayerState = player.get_node("State/Interaction")
 	state.override = true
 	
+	$TransferSound.play()
 	# play the tststs sound
 	TransitionManager.fade_in()
 	await TransitionManager.animation_finished

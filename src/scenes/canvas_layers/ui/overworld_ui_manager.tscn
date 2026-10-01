@@ -4,17 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://bppo308wxlgju" path="res://src/scenes/canvas_layers/ui/pause_menu.tscn" id="2_7n5ae"]
 [ext_resource type="PackedScene" uid="uid://dfs6tg52ehew7" path="res://src/scenes/canvas_layers/ui/party_menu.tscn" id="3_7n5ae"]
 [ext_resource type="PackedScene" uid="uid://u8ev5u8kgp2r" path="res://src/scenes/canvas_layers/ui/save_screen.tscn" id="4_m846y"]
+[ext_resource type="PackedScene" uid="uid://b701w6r02jtcv" path="res://src/scenes/canvas_layers/ui/options_menu.tscn" id="5_0neu7"]
 
 [node name="OverworldUIManager" type="CanvasLayer" unique_id=1419356964 groups=["OverworldUIManager"]]
 process_mode = 3
 script = ExtResource("1_cnqj4")
 
-[node name="PauseMenu" parent="." unique_id=1177538951 node_paths=PackedStringArray("ui_default", "ui_pokemon", "ui_save") instance=ExtResource("2_7n5ae")]
+[node name="PauseMenu" parent="." unique_id=1177538951 node_paths=PackedStringArray("ui_default", "ui_pokemon", "ui_save", "ui_options") instance=ExtResource("2_7n5ae")]
 process_mode = 2
 visible = false
 ui_default = NodePath("..")
 ui_pokemon = NodePath("../PartyMenu")
 ui_save = NodePath("../SaveScreen")
+ui_options = NodePath("../OptionsMenu")
 
 [node name="PartyMenu" parent="." unique_id=818273869 node_paths=PackedStringArray("return_state") instance=ExtResource("3_7n5ae")]
 process_mode = 2
@@ -24,4 +26,8 @@ return_state = NodePath("../PauseMenu")
 [node name="SaveScreen" parent="." unique_id=1451828463 node_paths=PackedStringArray("default_state", "return_state") instance=ExtResource("4_m846y")]
 visible = false
 default_state = NodePath("..")
+return_state = NodePath("../PauseMenu")
+
+[node name="OptionsMenu" parent="." unique_id=1822092262 node_paths=PackedStringArray("return_state") instance=ExtResource("5_0neu7")]
+visible = false
 return_state = NodePath("../PauseMenu")

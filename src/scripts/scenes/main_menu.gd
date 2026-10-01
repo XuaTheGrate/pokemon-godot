@@ -50,7 +50,7 @@ func _handle_selection(node: Control) -> void:
 		"Continue": _handle_continue()
 		"NewGame": _new_game()
 		"SaveFiles": pass
-		"Options": pass
+		"Options": _handle_options()
 		"Debug": pass
 		"QuitGame":
 			get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
@@ -73,3 +73,8 @@ func _new_game() -> void:
 	TransitionManager.fade_in()
 	await TransitionManager.animation_finished
 	get_tree().change_scene_to_file.call_deferred("res://src/scenes/trainer_setup.tscn")
+
+func _handle_options() -> void:
+	TransitionManager.fade_in()
+	await TransitionManager.animation_finished
+	get_tree().change_scene_to_file.call_deferred("res://src/scenes/canvas_layers/ui/options_menu.tscn")

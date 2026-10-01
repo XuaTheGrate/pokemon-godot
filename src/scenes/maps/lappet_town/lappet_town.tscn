@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://7en4orcwg0o2" path="res://src/scripts/scenes/maps/interaction.gd" id="5_0u3am"]
 [ext_resource type="Texture2D" uid="uid://bpxokiwquf6id" path="res://assets/graphics/animtiles/doors.png" id="6_sjh8q"]
 [ext_resource type="Script" uid="uid://ionfqfgykv0c" path="res://src/scripts/scenes/maps/animate_interaction.gd" id="7_doigi"]
+[ext_resource type="Script" uid="uid://knrn21hkqw2r" path="res://src/scripts/scenes/maps/play_sound_interaction.gd" id="7_ob2ge"]
 [ext_resource type="Script" uid="uid://c4kx5vkd1d6up" path="res://src/scripts/scenes/maps/move_player_interaction.gd" id="8_dq4n3"]
+[ext_resource type="AudioStream" uid="uid://c227a221htr1t" path="res://assets/audio/sounds/door_open.ogg" id="8_fgc05"]
 [ext_resource type="Script" uid="uid://dr0a1rewwfon7" path="res://src/scripts/scenes/maps/hide_player_interaction.gd" id="9_nn2hi"]
 [ext_resource type="Script" uid="uid://1ff82eijjdff" path="res://src/scripts/scenes/maps/map_transfer_interaction.gd" id="10_6e22o"]
 [ext_resource type="Texture2D" uid="uid://cleh7viyjhnk1" path="res://assets/graphics/characters/npc_01.png" id="11_e5bsb"]
@@ -195,8 +197,8 @@ size = Vector2(32, 32)
 y_sort_enabled = true
 script = ExtResource("1_8q6cj")
 map_name = "Lappet Town"
-track = ExtResource("2_pe77k")
 map_connections = Array[ExtResource("3_p8sst")]([SubResource("Resource_n4orj"), SubResource("Resource_g4v7s"), SubResource("Resource_p8sst")])
+track = ExtResource("2_pe77k")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=2072954506]
 y_sort_enabled = true
@@ -235,7 +237,13 @@ centered = false
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_g4v7s")
 
-[node name="PlaySoundInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=568877887]
+[node name="PlaySoundInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=568877887 node_paths=PackedStringArray("player")]
+script = ExtResource("7_ob2ge")
+player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interactions/RedsHouseDoor/PlaySoundInteraction" unique_id=424870145]
+stream = ExtResource("8_fgc05")
+bus = &"Sound"
 
 [node name="OpenDoorAnimateInteraction" type="Node" parent="Interactions/RedsHouseDoor" unique_id=1545318410 node_paths=PackedStringArray("sprite")]
 script = ExtResource("7_doigi")
