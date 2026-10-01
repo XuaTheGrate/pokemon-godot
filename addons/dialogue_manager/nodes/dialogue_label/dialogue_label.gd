@@ -18,12 +18,12 @@ signal started_typing()
 ## Emitted when typing finishes.
 signal finished_typing()
 
-
 ## The action to press to skip typing.
 @export var skip_action: StringName = &"ui_cancel"
 
 ## The speed with which the text types out.
-@export var seconds_per_step: float = 0.02
+var seconds_per_step: float:
+	get: return GameData.TEXT_SPEED[GameData.options.text_speed]
 
 ## Automatically have a brief pause when these characters are encountered.
 @export var pause_at_characters: String = ".?!"

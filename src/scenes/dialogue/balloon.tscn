@@ -95,6 +95,7 @@ clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 text = "Dialogue..."
+seconds_per_step = 0.02
 
 [node name="Control" type="Control" parent="Balloon" unique_id=418507161]
 custom_minimum_size = Vector2(20, 10)

@@ -51,6 +51,9 @@ func _start_walk(dir: Vector2) -> PlayerState:
 	_target = player.position + offset
 	_origin = player.position
 	_walk_time = 0.0
-	_running = Input.is_action_pressed(&"Cancel")
+	_running = (
+		(Input.is_action_pressed(&"Cancel") and GameData.options.default_movement == 0)
+		or (not Input.is_action_pressed(&"Cancel") and GameData.options.default_movement == 1)
+	)
 	player.play_animation(get_animation(dir, "run" if _running else "walk"))
 	return null

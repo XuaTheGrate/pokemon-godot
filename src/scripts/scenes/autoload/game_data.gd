@@ -33,11 +33,22 @@ const NATURES := {
 	"QUIRKY":  [0, 0, 0, 0, 0, 0]
 }
 
+const OPTIONS_FILE := "user://options.tres"
+
+const TEXT_SPEED: Array[float] = [
+	4/80.0,
+	2/80.0,
+	1/80.0,
+	0.0
+]
+
 var template_party: Array[Battler] = [
 	preload("res://src/resources/player/template_bulbasaur.tres")
 ]
 
 var rand: RandomNumberGenerator
+
+var options: OptionsResource
 
 #region Trainer Info
 var trainer_gender := 0
@@ -85,7 +96,18 @@ func _ready() -> void:
 		res.species.assign(SpeciesManager.species)
 		res.species_hash = CompiledResource.hash_file(SpeciesManager.FILE_LOCATION)
 		
-		ResourceSaver.save(res, "user://data.res")
+		ResourceSaver.save(res, "user://data.res", ResourceSaver.FLAG_COMPRESS)
+	
+	_load_options()
+
+func _load_options() -> void:
+	if ResourceLoader.exists(OPTIONS_FILE, "OptionsResource"):
+		options = ResourceLoader.load(OPTIONS_FILE)
+	else:
+		options = OptionsResource.new()
+	
+	AudioServer.set_bus_volume_linear(1, options.music_volume / 100.0)
+	AudioServer.set_bus_volume_linear(2, options.se_volume / 100.0)
 
 func display_error(text: String, title := "Alert!") -> void:
 	OS.alert(text, title)
