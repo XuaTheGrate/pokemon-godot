@@ -27,7 +27,7 @@ static func create(data: Dictionary) -> Trainer:
 	t.battle_bgm_override = data.get("battle_bgm_override", "")
 	t.victory_bgm_override = data.get("victory_bgm_override", "")
 	
-	for p: Dictionary in data['party']:
+	for p: Dictionary in data.get("party", []):
 		t.party.append(TrainerPartyMember.create(p))
 	
 	return t

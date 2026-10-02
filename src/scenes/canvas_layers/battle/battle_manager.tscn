@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://chrm3r16bro8x" path="res://src/scripts/scenes/canvas_layers/battle/battle_manager.gd" id="1_lpay1"]
 [ext_resource type="Script" uid="uid://cquvw1kahw4ai" path="res://src/scripts/scenes/canvas_layers/battle/state_manager.gd" id="2_5bvh4"]
+[ext_resource type="Texture2D" uid="uid://bha4cyt2ebi6s" path="res://assets/graphics/animations/Tackle_B.png" id="2_7404c"]
 [ext_resource type="Texture2D" uid="uid://c7an1vkcn872f" path="res://assets/graphics/battle/field_bg.png" id="2_ukqhs"]
 [ext_resource type="Script" uid="uid://dv1tekiil80qh" path="res://src/scripts/scenes/canvas_layers/battle/state_default.gd" id="3_4qv64"]
 [ext_resource type="Texture2D" uid="uid://dg34qfbvwlmmh" path="res://assets/graphics/battle/field_message.png" id="3_g4khm"]
+[ext_resource type="AudioStream" uid="uid://bu8vbspblb3j5" path="res://assets/audio/sounds/battle/Blow1.ogg" id="3_okjgm"]
 [ext_resource type="Script" uid="uid://dfnwmnvhk2wrs" path="res://src/scripts/scenes/canvas_layers/battle/state_intro.gd" id="4_btrv1"]
 [ext_resource type="PackedScene" uid="uid://cfkdpk862sow1" path="res://src/scenes/canvas_layers/battle/databox_ally.tscn" id="4_ukqhs"]
 [ext_resource type="Script" uid="uid://k24t4bykikyd" path="res://src/scripts/scenes/canvas_layers/battle/state_command.gd" id="5_gwgno"]
@@ -29,6 +31,208 @@
 [ext_resource type="Texture2D" uid="uid://bw81uwr4g0q1f" path="res://assets/graphics/ui/battle/cursor_fight.png" id="22_lgnut"]
 [ext_resource type="Texture2D" uid="uid://bfconyoimhtqi" path="res://assets/graphics/ui/types.png" id="23_6gdfe"]
 [ext_resource type="FontFile" uid="uid://f810jv2keqjl" path="res://assets/fonts/power green narrow.ttf" id="24_ixe8a"]
+
+[sub_resource type="Animation" id="Animation_43dj2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackFoe:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackFoe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FieldEnemy/EnemySprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackAlly:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackAlly:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FieldAlly/AllySprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7404c"]
+resource_name = "damage_ally"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FieldAlly/AllySprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_8u1lg"]
+resource_name = "damage_foe"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FieldEnemy/EnemySprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_okjgm"]
+resource_name = "hit_generic_ally"
+length = 0.6
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationSFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_okjgm")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackAlly:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_7404c")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackAlly:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.39999998, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m5ln7"]
+resource_name = "hit_generic_foe"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackFoe:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_7404c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackFoe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationSFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_okjgm")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2y1vf"]
+_data = {
+&"RESET": SubResource("Animation_43dj2"),
+&"damage_ally": SubResource("Animation_7404c"),
+&"damage_foe": SubResource("Animation_8u1lg"),
+&"hit_generic_ally": SubResource("Animation_okjgm"),
+&"hit_generic_foe": SubResource("Animation_m5ln7")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owq1r"]
 atlas = ExtResource("12_yw0wr")
@@ -69,6 +273,15 @@ region = Rect2(0, 252, 64, 28)
 [node name="BattleManager" type="CanvasLayer" unique_id=2128692339 groups=["BattleManager"]]
 process_mode = 3
 script = ExtResource("1_lpay1")
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="." unique_id=116954632]
+bus = &"Sound"
+
+[node name="AnimationSFX" type="AudioStreamPlayer" parent="." unique_id=1652759193]
+bus = &"Sound"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=358986322]
+libraries/ = SubResource("AnimationLibrary_2y1vf")
 
 [node name="StateManager" type="Node" parent="." unique_id=114323333 node_paths=PackedStringArray("default_state")]
 script = ExtResource("2_5bvh4")
@@ -479,5 +692,15 @@ text = "PP: 64/64"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="AttackFoe" type="Sprite2D" parent="." unique_id=2106069101]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(272, 32)
+centered = false
+
+[node name="AttackAlly" type="Sprite2D" parent="." unique_id=2144962454]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(18, 138)
+centered = false
 
 [connection signal="foe_command_submitted" from="." to="StateManager/Waiting" method="_on_battle_manager_foe_command_submitted"]

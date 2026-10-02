@@ -71,6 +71,9 @@ func validate() -> void:
 	if not flag_valid:
 		print("MovesManager validation failure")
 
+func get_move_animation(move_id: String) -> String:
+	return moves[move_id].animation
+
 #region Move callbacks
 
 # Some functions are seperated out to better support things like multi-hit moves
@@ -84,6 +87,10 @@ func _accuracy_check(move: Move, user: Battler, target: Battler, field: BattleMa
 # returns [bool, float, bool]
 # [fainted?, effectiveness, critical?]
 func _process_damage(manager: BattleManager, bmove: BattleMove, user: Battler, target: Battler, field: BattleManager.Field, user_side: BattleManager.BattleSide, target_side: BattleManager.BattleSide) -> Array:
+	# TODO: should this be done here? maybe elsewhere idk
+	var ally := manager.is_battler_ally(target)
+	await manager.play_animation(get_move_animation(bmove.move_id) + ("_ally" if ally else "_foe"))
+	
 	var r: Array = [false, 1.0, false]
 	var crit_chance := Calculator.get_critical_chance(
 		bmove, user, target, target_side
@@ -103,7 +110,7 @@ func _process_damage(manager: BattleManager, bmove: BattleMove, user: Battler, t
 	)
 	r[1] = Calculator.get_effectiveness(bmove, user, target, field)
 	# play attack animation
-	r[0] = await manager.animate_damage(target, damage)
+	r[0] = await manager.animate_damage(target, damage, r[1])
 	return r
 
 # All functions should have a parameter for the following order:

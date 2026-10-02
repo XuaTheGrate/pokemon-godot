@@ -9,10 +9,11 @@ func enter() -> BattleStateBase:
 	_target_state = null
 	
 	if manager.enemy_trainer.has_valid_switch_target():
-		var target: Battler = manager.enemy_trainer.party.filter(func(b:Battler)->bool:
+		var targets: Array[Battler] = manager.enemy_trainer.party.filter(func(b:Battler)->bool:
 			return not b.is_faint()
-		).pick_random()
-		await manager.queue_enemy_switch(target)
+		)
+		var i := GameData.rand.randi_range(0, targets.size() - 1)
+		await manager.queue_enemy_switch(targets[i])
 		_target_state = command_state
 	else:
 		manager.victory = true

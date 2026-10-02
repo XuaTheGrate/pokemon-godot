@@ -20,6 +20,14 @@ func _init() -> void:
 			init_compiled(res)
 	else:
 		init_new()
+	
+	# for internal use, don't use for actual trainers
+	trainers["WILD"] = Trainer.create({
+		"type": "WILD",
+		"name": "WILD",
+		"lose_text": "",
+		"skill_level": 0,
+	})
 
 func init_new() -> void:
 	flag_recompile = true

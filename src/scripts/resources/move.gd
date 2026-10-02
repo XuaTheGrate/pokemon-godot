@@ -20,6 +20,7 @@ const ALL_TARGETS = [
 @export var effect_chance: int
 @export var priority: int
 @export var description: String
+@export var animation: String = "hit_generic"
 
 static func create(data: Dictionary) -> Move:
 	var r := Move.new()
@@ -36,5 +37,6 @@ static func create(data: Dictionary) -> Move:
 	r.effect_chance = data.get("effect_chance", 0)
 	r.priority = data.get("priority", 0)
 	r.description = data.get("description", "???")
+	r.animation = data.get("animation", "hit_generic")
 	
 	return r

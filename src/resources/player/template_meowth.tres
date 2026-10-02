@@ -12,20 +12,15 @@ metadata/_custom_type_script = "uid://lmswah6pen1v"
 script = ExtResource("1_jhsmv")
 metadata/_custom_type_script = "uid://lmswah6pen1v"
 
-[sub_resource type="Resource" id="Resource_0qdqf"]
-script = ExtResource("2_jpyer")
-move_id = "SWORDSDANCE"
-metadata/_custom_type_script = "uid://dtn6jggqtesjb"
-
 [sub_resource type="Resource" id="Resource_a1y8l"]
 script = ExtResource("2_jpyer")
-move_id = "RAZORWIND"
+move_id = "POUND"
 metadata/_custom_type_script = "uid://dtn6jggqtesjb"
 
 [resource]
 script = ExtResource("3_6ao6b")
 species_id = "MEOWTH"
-moves = Array[ExtResource("2_jpyer")]([SubResource("Resource_0qdqf"), SubResource("Resource_a1y8l")])
+moves = Array[ExtResource("2_jpyer")]([SubResource("Resource_a1y8l")])
 level = 20
 nature = "HARDY"
 ivs = SubResource("Resource_noq0e")

@@ -76,7 +76,7 @@ signal _input_skip
 var ally_side: BattleSide
 var command_pool: Array[Command] = []
 var enemy_side: BattleSide
-var enemy_trainer: Trainer
+var enemy_trainer: BattleTrainer
 var field: Field
 var victory := false
 var wild_battle := true
@@ -84,7 +84,11 @@ var wild_battle := true
 var _message_paused := false
 # why does 'preload' not work with the template meowth,
 # but does with the template bulbasaur?
-var _template_wild: Battler = load("uid://e1pgwrho2mte")
+var _template_wild: Battler = load("res://src/resources/player/template_meowth.tres")
+
+var _sfx_damage_normal: AudioStream = preload("res://assets/audio/sounds/battle/damage_normal.ogg")
+var _sfx_damage_super: AudioStream = preload("res://assets/audio/sounds/battle/damage_super.ogg")
+var _sfx_damage_weak: AudioStream = preload("res://assets/audio/sounds/battle/damage_weak.ogg")
 
 func _ready() -> void:
 	if get_tree().current_scene == self:
@@ -99,9 +103,9 @@ func _input(event: InputEvent) -> void:
 
 func init_wild_battle(wild: Battler) -> void:
 	wild_battle = true
-	enemy_trainer = Trainer.new()
+	enemy_trainer = BattleTrainer.new()
+	enemy_trainer.trainer_id = "WILD"
 	enemy_trainer.party.append(wild)
-	enemy_trainer.dummy_wild_trainer = true
 	setup_battle()
 
 func setup_battle() -> void:
@@ -164,7 +168,8 @@ func request_foe_action() -> void:
 		foe_command_submitted.emit(command)
 		return
 	
-	command.move = user.moves.pick_random()
+	var i := GameData.rand.randi_range(0, user.moves.size()-1)
+	command.move = user.moves[i]
 	command.target_index.assign(_get_enemy_targets(command.move))
 	if command.target_index.is_empty():
 		command.auto_fail = true
@@ -182,11 +187,26 @@ func sort_command_pool() -> void:
 	command_pool.sort_custom(c)
 
 ## returns true if the target fainted, or false otherwise
-func animate_damage(target: Battler, amount: int) -> bool:
+func animate_damage(target: Battler, amount: int, effectiveness := 1.0) -> bool:
+	if effectiveness <= 0.5:
+		$DamageSFX.stream = _sfx_damage_weak
+	elif effectiveness >= 2.0:
+		$DamageSFX.stream = _sfx_damage_super
+	else:
+		$DamageSFX.stream = _sfx_damage_normal
+	$DamageSFX.play()
+	
+	$AnimationPlayer.play(&"RESET")
 	if target == $DataboxAlly.battler:
+		$AnimationPlayer.play(&"damage_ally")
 		return await $DataboxAlly.animate_damage(amount)
 	else:
+		$AnimationPlayer.play(&"damage_foe")
 		return await $DataboxEnemy.animate_damage(amount)
+
+func play_animation(animation: String) -> void:
+	$AnimationPlayer.play(animation)
+	await $AnimationPlayer.animation_finished
 
 func faint_target(target: Battler) -> void:
 	# play cry

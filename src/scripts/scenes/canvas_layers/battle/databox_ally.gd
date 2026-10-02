@@ -42,7 +42,7 @@ func animate_damage(amount: int) -> bool:
 	var old_hp := battler.current_hp
 	battler._damage_sustained += amount
 	var t := create_tween()
-	t.tween_method(_update_hp, old_hp, battler.current_hp, 0.5)
+	t.tween_method(_update_hp, old_hp, battler.current_hp, 0.8)
 	await t.finished
 	
 	return battler.is_faint()
