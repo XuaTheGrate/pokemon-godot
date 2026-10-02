@@ -10,6 +10,7 @@ This is in no specific order, and may have more added in the future
 
 ### Battle
 
+- [x] Basic wild battle implementation
 - [ ] Battle move implementations
 - - [ ] Gen 1
 - - [ ] Gen 2
