@@ -29,21 +29,26 @@ func input(event: InputEvent) -> BattleStateBase:
 	if event.is_action_pressed(&"Up") and _selected.y != 0:
 		get_viewport().set_input_as_handled()
 		_selected.y = 0
+		%UIFocus.play()
 		_update()
 	if event.is_action_pressed(&"Down") and _selected.y != 1:
 		get_viewport().set_input_as_handled()
 		_selected.y = 1
+		%UIFocus.play()
 		_update()
 	if event.is_action_pressed(&"Left") and _selected.x != 0:
 		get_viewport().set_input_as_handled()
 		_selected.x = 0
+		%UIFocus.play()
 		_update()
 	if event.is_action_pressed(&"Right") and _selected.x != 1:
 		get_viewport().set_input_as_handled()
 		_selected.x = 1
+		%UIFocus.play()
 		_update()
 	if event.is_action_pressed(&"Accept"):
 		get_viewport().set_input_as_handled()
+		%UISelect.play()
 		match _selected:
 			Vector2i(0, 0): return fight_state
 			Vector2i(1, 0): return bag_state

@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://buuxenlnp44sq"]
 
 [ext_resource type="Script" uid="uid://chrm3r16bro8x" path="res://src/scripts/scenes/canvas_layers/battle/battle_manager.gd" id="1_lpay1"]
+[ext_resource type="AudioStream" uid="uid://bq5y8yawapoi8" path="res://assets/audio/sounds/ui_focus.ogg" id="2_2y1vf"]
 [ext_resource type="Script" uid="uid://cquvw1kahw4ai" path="res://src/scripts/scenes/canvas_layers/battle/state_manager.gd" id="2_5bvh4"]
 [ext_resource type="Texture2D" uid="uid://bha4cyt2ebi6s" path="res://assets/graphics/animations/Tackle_B.png" id="2_7404c"]
 [ext_resource type="Texture2D" uid="uid://c7an1vkcn872f" path="res://assets/graphics/battle/field_bg.png" id="2_ukqhs"]
 [ext_resource type="Script" uid="uid://dv1tekiil80qh" path="res://src/scripts/scenes/canvas_layers/battle/state_default.gd" id="3_4qv64"]
 [ext_resource type="Texture2D" uid="uid://dg34qfbvwlmmh" path="res://assets/graphics/battle/field_message.png" id="3_g4khm"]
+[ext_resource type="AudioStream" uid="uid://duo7iw3m7g52n" path="res://assets/audio/sounds/ui_select.ogg" id="3_mw6gp"]
 [ext_resource type="AudioStream" uid="uid://bu8vbspblb3j5" path="res://assets/audio/sounds/battle/Blow1.ogg" id="3_okjgm"]
 [ext_resource type="Script" uid="uid://dfnwmnvhk2wrs" path="res://src/scripts/scenes/canvas_layers/battle/state_intro.gd" id="4_btrv1"]
 [ext_resource type="PackedScene" uid="uid://cfkdpk862sow1" path="res://src/scenes/canvas_layers/battle/databox_ally.tscn" id="4_ukqhs"]
@@ -27,9 +29,12 @@
 [ext_resource type="Texture2D" uid="uid://dte64poak8rea" path="res://assets/graphics/ui/battle/overlay_command.png" id="11_ticj2"]
 [ext_resource type="Texture2D" uid="uid://qonoowsu5c8d" path="res://assets/graphics/pokemon/back/PIKACHU.png" id="12_8qdqw"]
 [ext_resource type="Texture2D" uid="uid://bqhr1ebhqbucl" path="res://assets/graphics/ui/battle/cursor_command.png" id="12_yw0wr"]
+[ext_resource type="Texture2D" uid="uid://c561d81ri71s5" path="res://assets/graphics/animations/ball_POKEBALL.png" id="21_8u1lg"]
 [ext_resource type="Texture2D" uid="uid://bk273jseisd4i" path="res://assets/graphics/ui/battle/overlay_fight.png" id="21_fhkv1"]
+[ext_resource type="Texture2D" uid="uid://n3lja58w50pl" path="res://assets/graphics/battle/player_m_anim.png" id="21_okjgm"]
 [ext_resource type="Texture2D" uid="uid://bw81uwr4g0q1f" path="res://assets/graphics/ui/battle/cursor_fight.png" id="22_lgnut"]
 [ext_resource type="Texture2D" uid="uid://bfconyoimhtqi" path="res://assets/graphics/ui/types.png" id="23_6gdfe"]
+[ext_resource type="Texture2D" uid="uid://dboryyqkx8223" path="res://assets/graphics/animations/ballBurst_particle.png" id="23_m5ln7"]
 [ext_resource type="FontFile" uid="uid://f810jv2keqjl" path="res://assets/fonts/power green narrow.ttf" id="24_ixe8a"]
 
 [sub_resource type="Animation" id="Animation_43dj2"]
@@ -106,6 +111,222 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Bg:offset_transform_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FieldEnemy:offset_transform_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DataboxEnemy:offset_transform_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MessageBg:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("DataboxAlly:offset_transform_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FieldAlly:offset_transform_position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("FieldAlly/Player:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("FieldAlly/Player:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(181, -106)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("FieldAlly/Player:frame")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("FieldAlly/Ball:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("FieldAlly/Ball:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, -40)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("FieldAlly/Ball:frame")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("FieldAlly/Flash:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("FieldAlly/Flash:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("FieldAlly/AllySprite:offset_transform_scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("FieldAlly/AllySprite:offset_transform_position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("FieldEnemy/EnemySprite:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, -32)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("FieldEnemy/Shadow:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7404c"]
 resource_name = "damage_ally"
@@ -137,6 +358,86 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_gu6k2"]
+resource_name = "faint_ally"
+length = 0.33333668405152855
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DataboxAlly:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(244, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FieldAlly/AllySprite:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 192)]
+}
+
+[sub_resource type="Animation" id="Animation_xn10x"]
+resource_name = "faint_foe"
+length = 0.33333668405152855
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FieldEnemy/EnemySprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(48, -32), Vector2(48, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FieldEnemy/Shadow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DataboxEnemy:offset_transform_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.33333668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-244, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FieldEnemy/EnemySprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.33333668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_okjgm"]
@@ -225,14 +526,403 @@ tracks/2/keys = {
 }
 tracks/2/use_blend = true
 
+[sub_resource type="Animation" id="Animation_mw6gp"]
+resource_name = "opening_player_send"
+length = 2.000003437641636
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FieldAlly/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(181, -106), Vector2(0, -106)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FieldAlly/Player:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.40000004, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FieldAlly/Ball:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FieldAlly/Ball:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.40000004, 0.5666667, 0.7333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(200, -40), Vector2(250, -10), Vector2(262, 8)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FieldAlly/Ball")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.73333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FieldAlly/Ball:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FieldAlly/Flash:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.75, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(5, 5)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FieldAlly/Flash:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 1.5000001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.85490197, 1), Color(1, 1, 0.85490197, 1), Color(1, 1, 0.85490197, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FieldAlly/AllySprite:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.9333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FieldAlly/AllySprite:offset_transform_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.9333334, 1.5000001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FieldAlly/AllySprite:offset_transform_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.9333334, 1.5000001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 64), Vector2(0, 64), Vector2(0, 0)]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.0000001),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_ally_cry"
+}]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("DataboxAlly:offset_transform_position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1, 1.5000001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(244, 0), Vector2(244, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2y1vf"]
+resource_name = "opening_wild"
+length = 1.3333367362055928
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bg:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.0000001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(512, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FieldEnemy:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0000001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-512, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DataboxEnemy:offset_transform_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.3333367),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-244, 0), Vector2(-244, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MessageBg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6666667, 1.0000001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DataboxAlly:offset_transform_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(244, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FieldAlly:offset_transform_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(618, 0), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FieldAlly/AllySprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FieldAlly/Player:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_enemy_cry"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2y1vf"]
 _data = {
 &"RESET": SubResource("Animation_43dj2"),
 &"damage_ally": SubResource("Animation_7404c"),
 &"damage_foe": SubResource("Animation_8u1lg"),
+&"faint_ally": SubResource("Animation_gu6k2"),
+&"faint_foe": SubResource("Animation_xn10x"),
 &"hit_generic_ally": SubResource("Animation_okjgm"),
-&"hit_generic_foe": SubResource("Animation_m5ln7")
+&"hit_generic_foe": SubResource("Animation_m5ln7"),
+&"opening_player_send": SubResource("Animation_mw6gp"),
+&"opening_wild": SubResource("Animation_2y1vf")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y1vf"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw6gp"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0ft0"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jghqe"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5c36"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqogx"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x3vi"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhsm8"]
+atlas = ExtResource("21_8u1lg")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y1vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw6gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0ft0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jghqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5c36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqogx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x3vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhsm8")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 7.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn10x"]
+atlas = ExtResource("21_okjgm")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu6k2"]
+atlas = ExtResource("21_okjgm")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7jcj"]
+atlas = ExtResource("21_okjgm")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc1t5"]
+atlas = ExtResource("21_okjgm")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jj33"]
+atlas = ExtResource("21_okjgm")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn10x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu6k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7jcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc1t5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jj33")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 7.5
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owq1r"]
 atlas = ExtResource("12_yw0wr")
@@ -280,7 +970,18 @@ bus = &"Sound"
 [node name="AnimationSFX" type="AudioStreamPlayer" parent="." unique_id=1652759193]
 bus = &"Sound"
 
+[node name="UIFocus" type="AudioStreamPlayer" parent="." unique_id=1860136071]
+unique_name_in_owner = true
+stream = ExtResource("2_2y1vf")
+bus = &"Sound"
+
+[node name="UISelect" type="AudioStreamPlayer" parent="." unique_id=716802568]
+unique_name_in_owner = true
+stream = ExtResource("3_mw6gp")
+bus = &"Sound"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=358986322]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_2y1vf")
 
 [node name="StateManager" type="Node" parent="." unique_id=114323333 node_paths=PackedStringArray("default_state")]
@@ -334,19 +1035,20 @@ end_battle_state = NodePath("../EndBattle")
 [node name="EndBattle" type="Node" parent="StateManager" unique_id=1587160435]
 script = ExtResource("11_ngwlr")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=619539125]
+[node name="Bg" type="HBoxContainer" parent="." unique_id=619539125]
 offset_left = -512.0
 offset_right = 512.0
 offset_bottom = 288.0
+offset_transform_enabled = true
 theme = ExtResource("6_yw0wr")
 
-[node name="Bg" type="TextureRect" parent="HBoxContainer" unique_id=250642913]
+[node name="Bg" type="TextureRect" parent="Bg" unique_id=250642913]
 layout_mode = 2
 texture = ExtResource("2_ukqhs")
 stretch_mode = 2
 flip_h = true
 
-[node name="Bg2" type="TextureRect" parent="HBoxContainer" unique_id=1933623735]
+[node name="Bg2" type="TextureRect" parent="Bg" unique_id=1933623735]
 layout_mode = 2
 texture = ExtResource("2_ukqhs")
 stretch_mode = 2
@@ -356,6 +1058,7 @@ offset_left = 256.0
 offset_top = 112.0
 offset_right = 512.0
 offset_bottom = 240.0
+offset_transform_enabled = true
 texture = ExtResource("11_owq1r")
 stretch_mode = 2
 
@@ -396,6 +1099,7 @@ offset_left = -142.0
 offset_top = 234.0
 offset_right = 370.0
 offset_bottom = 298.0
+offset_transform_enabled = true
 texture = ExtResource("9_nyr31")
 stretch_mode = 2
 
@@ -412,8 +1116,28 @@ offset_top = -160.0
 offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 0
+offset_transform_enabled = true
 texture = ExtResource("12_8qdqw")
 stretch_mode = 2
+
+[node name="Ball" type="AnimatedSprite2D" parent="FieldAlly" unique_id=1534574826]
+visible = false
+position = Vector2(200, -40)
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+autoplay = "default"
+frame = 7
+centered = false
+
+[node name="Player" type="AnimatedSprite2D" parent="FieldAlly" unique_id=393761633]
+visible = false
+position = Vector2(181, -106)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+centered = false
+
+[node name="Flash" type="Sprite2D" parent="FieldAlly" unique_id=1977173295]
+position = Vector2(274, 42)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("23_m5ln7")
 
 [node name="MessageBg" type="TextureRect" parent="." unique_id=472633143]
 anchors_preset = 7
@@ -431,7 +1155,6 @@ stretch_mode = 2
 
 [node name="MessageBox" type="TextureRect" parent="MessageBg" unique_id=1150125243]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -455,8 +1178,6 @@ offset_right = 486.0
 offset_bottom = 84.0
 theme = ExtResource("6_5bvh4")
 theme_override_constants/line_separation = 8
-text = "Hello, world!
-This is on the second line!"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -467,6 +1188,7 @@ offset_left = 268.0
 offset_top = 184.0
 offset_right = 528.0
 offset_bottom = 268.0
+offset_transform_enabled = true
 
 [node name="DataboxEnemy" parent="." unique_id=436979408 instance=ExtResource("9_ticj2")]
 unique_name_in_owner = true
@@ -474,6 +1196,7 @@ offset_left = -16.0
 offset_top = 36.0
 offset_right = 244.0
 offset_bottom = 98.0
+offset_transform_enabled = true
 
 [node name="CommandBox" type="TextureRect" parent="." unique_id=2015031492]
 unique_name_in_owner = true
@@ -704,3 +1427,4 @@ position = Vector2(18, 138)
 centered = false
 
 [connection signal="foe_command_submitted" from="." to="StateManager/Waiting" method="_on_battle_manager_foe_command_submitted"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Intro" method="_on_animation_player_animation_finished"]

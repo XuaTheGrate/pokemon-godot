@@ -89,6 +89,7 @@ var _template_wild: Battler = load("res://src/resources/player/template_meowth.t
 var _sfx_damage_normal: AudioStream = preload("res://assets/audio/sounds/battle/damage_normal.ogg")
 var _sfx_damage_super: AudioStream = preload("res://assets/audio/sounds/battle/damage_super.ogg")
 var _sfx_damage_weak: AudioStream = preload("res://assets/audio/sounds/battle/damage_weak.ogg")
+var _sfx_faint: AudioStream = preload("res://assets/audio/sounds/pokemon_faint.ogg")
 
 func _ready() -> void:
 	if get_tree().current_scene == self:
@@ -128,7 +129,7 @@ func setup_battle() -> void:
 func display_message(text: String, wait_time := 0.0, input_skip := true) -> void:
 	%MessageBox/Label.text = text
 	if wait_time > 0.0:
-		var t := get_tree().create_timer(wait_time * 2)
+		var t := get_tree().create_timer(wait_time)
 		t.timeout.connect(func()->void:_input_skip.emit())
 	elif not input_skip:
 		return
@@ -208,12 +209,29 @@ func play_animation(animation: String) -> void:
 	$AnimationPlayer.play(animation)
 	await $AnimationPlayer.animation_finished
 
+func play_enemy_cry() -> void:
+	$AnimationSFX.stream = load(SpeciesManager.get_species_cry($DataboxEnemy.battler.species_id))
+	$AnimationSFX.play()
+
+func play_ally_cry() -> void:
+	$AnimationSFX.stream = load(SpeciesManager.get_species_cry($DataboxAlly.battler.species_id))
+	$AnimationSFX.play()
+
 func faint_target(target: Battler) -> void:
+	await display_message("%s fainted!" % target.display_name, 0.5, false)
 	# play cry
+	$AnimationSFX.stream = load(SpeciesManager.get_species_cry(target.species_id))
+	$AnimationSFX.pitch_scale = 0.75
+	$AnimationSFX.play()
+	await $AnimationSFX.finished
+	$AnimationSFX.pitch_scale = 1.0
+	$AnimationSFX.stream = _sfx_faint
+	$AnimationSFX.play()
+	
 	if target == $DataboxEnemy.battler:
-		%EnemySprite.visible = false
+		%AnimationPlayer.play(&"faint_foe")
 	else:
-		%AllySprite.visible = false
+		%AnimationPlayer.play(&"faint_ally")
 	await get_tree().create_timer(0.5).timeout
 
 func end_battle() -> void:

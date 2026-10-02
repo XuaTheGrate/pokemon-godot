@@ -14,6 +14,8 @@ const FRONT_DEFAULT_PATH := "res://assets/graphics/pokemon/front/%s.png"
 const BACK_SHINY_PATH := "res://assets/graphics/pokemon/back_shiny/%s.png"
 const BACK_DEFAULT_PATH := "res://assets/graphics/pokemon/back/%s.png"
 
+const CRY_PATH := "res://assets/audio/sounds/cries/%s.ogg"
+
 const FILE_LOCATION := "res://src/resources/data/species.toml"
 
 var flag_recompile := false
@@ -201,3 +203,7 @@ func get_species_ability(species_id: String, index: int) -> String:
 	var all_abilities := s.abilities.duplicate()
 	all_abilities.append_array(s.hidden_abilities)
 	return all_abilities[index]
+
+func get_species_cry(species_id: String) -> String:
+	# TODO: Add option for cry overrides?
+	return CRY_PATH % species_id

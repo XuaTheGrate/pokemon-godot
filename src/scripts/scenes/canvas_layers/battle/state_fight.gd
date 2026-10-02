@@ -19,18 +19,22 @@ func input(event: InputEvent) -> BattleStateBase:
 	if event.is_action_pressed(&"Left") and _selected.x != 0:
 		get_viewport().set_input_as_handled()
 		_selected.x = 0
+		%UIFocus.play()
 		_update()
 	if event.is_action_pressed(&"Right") and _selected.x != 1:
 		get_viewport().set_input_as_handled()
 		_selected.x = 1
+		%UIFocus.play()
 		_update()
 	if event.is_action_pressed(&"Up") and _selected.y != 0:
 		get_viewport().set_input_as_handled()
 		_selected.y = 0
+		%UIFocus.play()
 		_update()
 	if event.is_action_pressed(&"Down") and _selected.y != 1:
 		get_viewport().set_input_as_handled()
 		_selected.y = 1
+		%UIFocus.play()
 		_update()
 	
 	if event.is_action_pressed(&"Accept"):
@@ -38,6 +42,7 @@ func input(event: InputEvent) -> BattleStateBase:
 		var battler: Battler = %DataboxAlly.battler
 		var command := create_move_command_singles(battler.moves[_selected.x + (_selected.y * 2)])
 		manager.command_pool.append(command)
+		%UISelect.play()
 		return waiting_state
 	
 	if event.is_action_pressed(&"Cancel"):
