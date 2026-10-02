@@ -1,6 +1,7 @@
 extends Node
 
 const MAX_LEVEL := 100
+const MAX_NICKNAME_LENGTH := 10
 const NATURES := {
 	"HARDY":   [0, 0, 0, 0, 0, 0],
 	"LONELY":  [0, 1, -1, 0, 0, 0],
@@ -32,6 +33,8 @@ const NATURES := {
 	"CAREFUL": [0, 0, 0, -1, 1, 0],
 	"QUIRKY":  [0, 0, 0, 0, 0, 0]
 }
+
+const SHINY_RATE := 1/4096.0
 
 const OPTIONS_FILE := "user://options.tres"
 
@@ -74,10 +77,12 @@ func _ready() -> void:
 	
 	var _recompile := TypesManager.flag_recompile \
 		or MovesManager.flag_recompile \
-		or SpeciesManager.flag_recompile
+		or SpeciesManager.flag_recompile \
+		or TrainersManager.flag_recompile
 	var _valid := TypesManager.flag_valid \
 		and MovesManager.flag_valid \
-		and SpeciesManager.flag_valid
+		and SpeciesManager.flag_valid \
+		and TrainersManager.flag_valid
 	
 	if _recompile:
 		if not _valid:
@@ -93,6 +98,9 @@ func _ready() -> void:
 		
 		res.species.assign(SpeciesManager.species)
 		res.species_hash = CompiledResource.hash_file(SpeciesManager.FILE_LOCATION)
+		
+		res.trainers.assign(TrainersManager.trainers)
+		res.trainers_hash = CompiledResource.hash_file(TrainersManager.FILE_LOCATION)
 		
 		ResourceSaver.save(res, "user://data.res", ResourceSaver.FLAG_COMPRESS)
 	

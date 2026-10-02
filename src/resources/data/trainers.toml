@@ -1,0 +1,54 @@
+[CAMPER_LIAM]
+type = "CAMPER"                             # required, refers to in-battle sprite
+name = "Liam"                               # required
+lose_text = "[m]A very good battle, indeed!"# required
+base_money = 60                             # default: 0
+items = []                                  # list of items the trainer can use in battle, default: []
+skill_level = 60                            # TODO
+flags = []                                  # TODO
+intro_bgm_override = ""                     # path to music track (res://assets/audio/bgm/track.ogg)
+battle_bgm_override = ""                    # path to music track
+victory_bgm_override = ""                   # path to music track
+
+[[CAMPER_LIAM.party]]
+species = "DIGLETT"                         # required
+level = 10                                  # required
+# nickname = ""                             # default: ""
+# gender = -1:Genderless, 0:Male, 1:Female  # randomized
+# ivs = [HP, ATK, DEF, SPA, SPD, SPE]       # default: [10, 10, 10, 10, 10, 10]
+# evs = [HP, ATK, DEF, SPA, SPD, SPE]       # default: [0, 0, 0, 0, 0, 0]
+# ability = 0                               # randomized
+# moves = ["POUND", "DEFENSECURL", "ROCKTHROW", "BULLDOZE"] # default based on level
+# item = "STIRUSBERRY"                      # defaults: ""
+# shiny = false                             # randomized
+# ball = "POKEBALL"                         # default: "POKEBALL"
+
+[[CAMPER_LIAM.party]]
+species = "BONSLY"
+level = 11
+
+[LEADER_BROCK]
+type = "LEADER_Brock"
+name = "Brock"
+lose_text = "[m]Very good."
+items = ["FULLRESTORE", "FULLRESTORE"]
+
+[[LEADER_BROCK.party]]
+species = "GEODUDE"
+level = 12
+moves = ["DEFENSECURL", "HEADSMASH", "ROCKPOLISH", "ROCKTHROW"]
+ability = 0
+gender = 0
+ivs = [20, 20, 20, 20, 20, 20]
+
+[[LEADER_BROCK.party]]
+species = "ONIX"
+level = 14
+nickname = "Rocky"
+ability = 0
+moves = ["HEADSMASH", "ROCKTHROW", "RAGE", "ROCKTOMB"]
+item = "SITRUSBERRY"
+gender = 0
+ivs = [20, 20, 20, 20, 20, 20]
+shiny = true
+ball = "HEAVYBALL"
