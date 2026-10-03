@@ -53,6 +53,8 @@ This is in no specific order, and may have more added in the future
 
 - [ ] Pokédex
 - [ ] Item bag
+- - [x] Item list
+- - [ ] Item interaction (toss, give, etc)
 - [ ] Shops
 - [ ] Party member summary screen
 - [ ] Improved debug menu
