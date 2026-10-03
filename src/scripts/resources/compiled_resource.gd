@@ -16,6 +16,9 @@ extends Resource
 @export var trainers: Dictionary[String, Trainer]
 @export var trainers_hash: String
 
+@export var items: Dictionary[String, Item]
+@export var items_hash: String
+
 static func hash_file(path: String) -> String:
 	if not FileAccess.file_exists(path): return ""
 	var ctx := HashingContext.new()

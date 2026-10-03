@@ -46,8 +46,3 @@ func play_animation(anim: StringName) -> void:
 
 func _on_dialogue_finished(_res: DialogueResource) -> void:
 	get_tree().paused = false
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"ui_home"):
-		GameData.trainer_party.assign(GameData.template_party)
-		prints("OK")

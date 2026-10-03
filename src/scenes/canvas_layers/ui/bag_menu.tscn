@@ -1,0 +1,489 @@
+[gd_scene format=3 uid="uid://6788sj4e3ttf"]
+
+[ext_resource type="Theme" uid="uid://cdw27pdxcqyc5" path="res://src/resources/pause_menu_theme.tres" id="1_ft8sc"]
+[ext_resource type="Script" uid="uid://cuwhnibbvqpdg" path="res://src/scripts/scenes/canvas_layers/ui/bag_menu.gd" id="1_k0orv"]
+[ext_resource type="Texture2D" uid="uid://b8p1f1h6ngtn" path="res://assets/graphics/ui/bag/bg_1.png" id="1_nmyc6"]
+[ext_resource type="AudioStream" uid="uid://bq5y8yawapoi8" path="res://assets/audio/sounds/ui_focus.ogg" id="2_81f8q"]
+[ext_resource type="Texture2D" uid="uid://cw341dhgxukea" path="res://assets/graphics/ui/bag/icon_pocket.png" id="2_trbqc"]
+[ext_resource type="AudioStream" uid="uid://m4o65aq2wa77" path="res://assets/audio/sounds/ui_menu_close.ogg" id="3_7mmy1"]
+[ext_resource type="Script" uid="uid://c5xhkcswr5wig" path="res://src/scripts/scenes/canvas_layers/ui/bag_submenu.gd" id="4_t6nfn"]
+[ext_resource type="Texture2D" uid="uid://b62uuxd3dpk2n" path="res://assets/graphics/ui/bag/bg_2.png" id="4_trbqc"]
+[ext_resource type="Texture2D" uid="uid://beq84m4apcptr" path="res://assets/graphics/ui/bag/bg_3.png" id="5_t6nfn"]
+[ext_resource type="Texture2D" uid="uid://td6mjvrdya6i" path="res://assets/graphics/ui/bag/bg_4.png" id="6_81f8q"]
+[ext_resource type="Texture2D" uid="uid://rpxm20m3bvmt" path="res://assets/graphics/ui/bag/bg_5.png" id="7_elh64"]
+[ext_resource type="Texture2D" uid="uid://c2s06lo7xraqf" path="res://assets/graphics/ui/bag/bg_6.png" id="8_7mmy1"]
+[ext_resource type="Texture2D" uid="uid://cd02ckeupcj37" path="res://assets/graphics/ui/bag/bg_7.png" id="9_h5it4"]
+[ext_resource type="Texture2D" uid="uid://clafaok75cgrc" path="res://assets/graphics/ui/bag/bg_8.png" id="10_yle5t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ft8sc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flv73"]
+atlas = ExtResource("2_trbqc")
+region = Rect2(0, 0, 28, 28)
+
+[node name="BagMenu" type="CanvasLayer" unique_id=230713780]
+script = ExtResource("1_k0orv")
+
+[node name="UIFocus" type="AudioStreamPlayer" parent="." unique_id=1300199748]
+unique_name_in_owner = true
+stream = ExtResource("2_81f8q")
+bus = &"Sound"
+
+[node name="UICancel" type="AudioStreamPlayer" parent="." unique_id=1041573634]
+stream = ExtResource("3_7mmy1")
+bus = &"Sound"
+
+[node name="Tabs" type="TabContainer" parent="." unique_id=344082846]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ft8sc")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ft8sc")
+current_tab = 0
+tabs_visible = false
+
+[node name="Items" type="TextureRect" parent="Tabs" unique_id=1171830178]
+layout_mode = 2
+texture = ExtResource("1_nmyc6")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/Items" unique_id=2131386627]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/Items/ScrollContainer" unique_id=1745626780]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/Items/ScrollContainer/VBoxContainer" unique_id=1453788866]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/Items/ScrollContainer/VBoxContainer/Template" unique_id=2134846744]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/Items/ScrollContainer/VBoxContainer/Template" unique_id=333305391]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Medicine" type="TextureRect" parent="Tabs" unique_id=1012437942]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_trbqc")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/Medicine" unique_id=1146390454]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/Medicine/ScrollContainer" unique_id=1022172178]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/Medicine/ScrollContainer/VBoxContainer" unique_id=1143240475]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/Medicine/ScrollContainer/VBoxContainer/Template" unique_id=1644983938]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/Medicine/ScrollContainer/VBoxContainer/Template" unique_id=1834699633]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Poké Balls" type="TextureRect" parent="Tabs" unique_id=1388591189]
+visible = false
+layout_mode = 2
+texture = ExtResource("5_t6nfn")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/Poké Balls" unique_id=1847021403]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/Poké Balls/ScrollContainer" unique_id=634428696]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/Poké Balls/ScrollContainer/VBoxContainer" unique_id=774895896]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/Poké Balls/ScrollContainer/VBoxContainer/Template" unique_id=1826510865]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/Poké Balls/ScrollContainer/VBoxContainer/Template" unique_id=265675226]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="TMs & HMs" type="TextureRect" parent="Tabs" unique_id=270015832]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_81f8q")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/TMs & HMs" unique_id=520964913]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/TMs & HMs/ScrollContainer" unique_id=977171225]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/TMs & HMs/ScrollContainer/VBoxContainer" unique_id=950044965]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/TMs & HMs/ScrollContainer/VBoxContainer/Template" unique_id=688158961]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/TMs & HMs/ScrollContainer/VBoxContainer/Template" unique_id=902853360]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Berries" type="TextureRect" parent="Tabs" unique_id=241305008]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_elh64")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/Berries" unique_id=805297773]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/Berries/ScrollContainer" unique_id=1052979033]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/Berries/ScrollContainer/VBoxContainer" unique_id=2117389258]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/Berries/ScrollContainer/VBoxContainer/Template" unique_id=68024792]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/Berries/ScrollContainer/VBoxContainer/Template" unique_id=171715741]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Mail" type="TextureRect" parent="Tabs" unique_id=1205608583]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_7mmy1")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/Mail" unique_id=996785287]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/Mail/ScrollContainer" unique_id=38546797]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/Mail/ScrollContainer/VBoxContainer" unique_id=1434011490]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/Mail/ScrollContainer/VBoxContainer/Template" unique_id=474463905]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/Mail/ScrollContainer/VBoxContainer/Template" unique_id=1137491370]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Battle Items" type="TextureRect" parent="Tabs" unique_id=1665479922]
+visible = false
+layout_mode = 2
+texture = ExtResource("9_h5it4")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/Battle Items" unique_id=1885287344]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/Battle Items/ScrollContainer" unique_id=1225418321]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/Battle Items/ScrollContainer/VBoxContainer" unique_id=773870896]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/Battle Items/ScrollContainer/VBoxContainer/Template" unique_id=1442909994]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/Battle Items/ScrollContainer/VBoxContainer/Template" unique_id=1493710963]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Key Items" type="TextureRect" parent="Tabs" unique_id=160447941]
+visible = false
+layout_mode = 2
+texture = ExtResource("10_yle5t")
+stretch_mode = 2
+script = ExtResource("4_t6nfn")
+metadata/_tab_index = 7
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Tabs/Key Items" unique_id=1055573540]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 450.0
+offset_bottom = 263.99994
+follow_focus = true
+scroll_vertical_custom_step = 30.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tabs/Key Items/ScrollContainer" unique_id=1421846743]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Template" type="HBoxContainer" parent="Tabs/Key Items/ScrollContainer/VBoxContainer" unique_id=494263635]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Tabs/Key Items/ScrollContainer/VBoxContainer/Template" unique_id=970443466]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ITEM"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Count" type="RichTextLabel" parent="Tabs/Key Items/ScrollContainer/VBoxContainer/Template" unique_id=1008839575]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 10
+text = "x1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VScrollBar" type="VScrollBar" parent="." unique_id=1079861686]
+offset_left = 470.0
+offset_top = 16.0
+offset_right = 506.0
+offset_bottom = 266.0
+mouse_filter = 2
+theme = ExtResource("1_ft8sc")
+
+[node name="BagCursor" type="TextureRect" parent="." unique_id=1738378024]
+offset_left = 2.0
+offset_top = 226.0
+offset_right = 30.0
+offset_bottom = 254.0
+offset_transform_enabled = true
+texture = SubResource("AtlasTexture_flv73")
+stretch_mode = 2
+
+[node name="PocketName" type="RichTextLabel" parent="." unique_id=1959673156]
+offset_top = 178.0
+offset_right = 186.0
+offset_bottom = 216.0
+theme = ExtResource("1_ft8sc")
+text = "POCKET"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ItemDescription" type="RichTextLabel" parent="." unique_id=573600727]
+offset_left = 84.0
+offset_top = 288.0
+offset_right = 480.0
+offset_bottom = 384.0
+theme = ExtResource("1_ft8sc")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+scroll_active = false
+
+[node name="ItemIcon" type="TextureRect" parent="." unique_id=578782707]
+offset_left = 16.0
+offset_top = 304.0
+offset_right = 80.0
+offset_bottom = 368.0
+stretch_mode = 3
+
+[connection signal="item_highlighted" from="Tabs/Items" to="." method="_on_item_highlighted"]
+[connection signal="item_highlighted" from="Tabs/Medicine" to="." method="_on_item_highlighted"]
+[connection signal="item_highlighted" from="Tabs/Poké Balls" to="." method="_on_item_highlighted"]
+[connection signal="item_highlighted" from="Tabs/TMs & HMs" to="." method="_on_item_highlighted"]
+[connection signal="item_highlighted" from="Tabs/Berries" to="." method="_on_item_highlighted"]
+[connection signal="item_highlighted" from="Tabs/Mail" to="." method="_on_item_highlighted"]
+[connection signal="item_highlighted" from="Tabs/Battle Items" to="." method="_on_item_highlighted"]
+[connection signal="item_highlighted" from="Tabs/Key Items" to="." method="_on_item_highlighted"]

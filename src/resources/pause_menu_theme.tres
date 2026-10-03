@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c265gv2ai0nop" path="res://assets/graphics/ui/choice/choice 1.png" id="1_3vi1s"]
 [ext_resource type="FontFile" uid="uid://4f7f257qhct8" path="res://assets/fonts/power green.ttf" id="2_k2s2o"]
+[ext_resource type="Texture2D" uid="uid://b3btlj4sifbvi" path="res://assets/graphics/ui/bag/icon_slider.png" id="3_k2s2o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_atu6a"]
 texture = ExtResource("1_3vi1s")
@@ -9,6 +10,29 @@ texture_margin_left = 16.0
 texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x1g1"]
+atlas = ExtResource("3_k2s2o")
+region = Rect2(0, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7uqm"]
+atlas = ExtResource("3_k2s2o")
+region = Rect2(0, 38, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6nfn"]
+atlas = ExtResource("3_k2s2o")
+region = Rect2(36, 0, 36, 38)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trbqc"]
+texture = SubResource("AtlasTexture_t6nfn")
+texture_margin_left = 18.0
+texture_margin_top = 19.0
+texture_margin_right = 18.0
+texture_margin_bottom = 19.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1cqw4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmyc6"]
 
 [resource]
 BlueLabel/base_type = &"RichTextLabel"
@@ -31,6 +55,11 @@ RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/shadow_outline_size = 4
 RichTextLabel/font_sizes/normal_font_size = 24
 RichTextLabel/fonts/normal_font = ExtResource("2_k2s2o")
+VScrollBar/icons/decrement = SubResource("AtlasTexture_5x1g1")
+VScrollBar/icons/increment = SubResource("AtlasTexture_c7uqm")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_trbqc")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_1cqw4")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_nmyc6")
 YellowLabel/base_type = &"RichTextLabel"
 YellowLabel/colors/default_color = Color(0.7529412, 0.47058824, 0, 1)
 YellowLabel/colors/font_shadow_color = Color(0.972549, 0.6901961, 0.3137255, 1)

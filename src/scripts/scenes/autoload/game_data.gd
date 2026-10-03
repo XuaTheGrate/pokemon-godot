@@ -58,6 +58,18 @@ var trainer_party: Array[Battler] = []
 var trainer_money: int = 0
 var save_playtime: int = 0
 
+# dict of 2d array {pocket_id:[[ITEM_NAME, COUNT]]}
+var bag: Dictionary = {
+	0: [],
+	1: [],
+	2: [],
+	3: [],
+	4: [],
+	5: [],
+	6: [],
+	7: []
+}
+
 ## This function returns the first party member that can fight
 ## i.e. excluding eggs and fainted party members
 func get_first_party_member() -> Battler:
@@ -78,11 +90,13 @@ func _ready() -> void:
 	var _recompile := TypesManager.flag_recompile \
 		or MovesManager.flag_recompile \
 		or SpeciesManager.flag_recompile \
-		or TrainersManager.flag_recompile
+		or TrainersManager.flag_recompile \
+		or ItemsManager.flag_recompile
 	var _valid := TypesManager.flag_valid \
 		and MovesManager.flag_valid \
 		and SpeciesManager.flag_valid \
-		and TrainersManager.flag_valid
+		and TrainersManager.flag_valid \
+		and ItemsManager.flag_valid
 	
 	if _recompile:
 		if not _valid:
@@ -101,6 +115,9 @@ func _ready() -> void:
 		
 		res.trainers.assign(TrainersManager.trainers)
 		res.trainers_hash = CompiledResource.hash_file(TrainersManager.FILE_LOCATION)
+		
+		res.items.assign(ItemsManager.items)
+		res.items_hash = CompiledResource.hash_file(ItemsManager.FILE_LOCATION)
 		
 		ResourceSaver.save(res, "user://data.res", ResourceSaver.FLAG_COMPRESS)
 	

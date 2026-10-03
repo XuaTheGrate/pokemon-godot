@@ -2,6 +2,8 @@ extends CanvasLayer
 
 const REFRESH_RATE := 10
 
+const LEFT_STATES = ["PauseMenu", "BagMenu"]
+
 func _init() -> void:
 	visible = OS.has_feature("editor")
 
@@ -40,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 		var state: UIState = owui.current_state
 		if state != null:
 			%UIState.text = "UIState: %s" % state.name
-			$HBoxContainer.alignment = HBoxContainer.ALIGNMENT_BEGIN if state.name == "PauseMenu" else HBoxContainer.ALIGNMENT_END
+			$HBoxContainer.alignment = HBoxContainer.ALIGNMENT_BEGIN if LEFT_STATES.has(state.name) else HBoxContainer.ALIGNMENT_END
 		else:
 			%UIState.text = "[color=red]UIState: null[/color]"
 	else:
